@@ -1,17 +1,14 @@
 {
   "routing": {
-    "index": "index.html",
+    "index": "/asite/index.html",
     "routes": {
       "/": {
         "match": "exact"
       },
-      "/asite/": {
+      "/asite/home": {
         "match": "prefix"
       },
-      "/home": {
-        "match": "prefix"
-      },
-      "about": {
+      "/asite/about": {
         "match": "prefix"
       }
     }
