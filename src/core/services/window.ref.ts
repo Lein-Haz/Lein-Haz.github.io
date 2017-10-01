@@ -68,7 +68,7 @@ export class WindowRef {
         console.log(err);
       },
       ()=>{
-        console.log("scrolling completed");
+
       }
     );
   }
