@@ -34,17 +34,5 @@
 </head>
 <body>
   <app-root>Loading...</app-root>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then((registration) => {
-          console.log('Registration successful, scope is:', registration.scope);
-          console.log(registration);
-        })
-        .catch((err) => {
-          console.log('SW error', err);
-        });
-    }
-  </script>
 </body>
 </html>

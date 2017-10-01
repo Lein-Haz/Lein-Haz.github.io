@@ -10,6 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "pwa": "ng build --prod --base-href \"https://Lein-Haz.github.io/asite/\" && sw-precache --root=dist --config=precache-config.js",
+    "ngpwa": "ng build --prod --base-href \"https://Lein-Haz.github.io/asite/\"",
     "ghpages": "angular-cli-ghpages"
   },
   "private": true,

@@ -1,0 +1,19 @@
+{
+  "routing": {
+    "index": "index.html",
+    "routes": {
+      "/": {
+        "match": "exact"
+      },
+      "/asite/": {
+        "match": "prefix"
+      },
+      "/home": {
+        "match": "prefix"
+      },
+      "about": {
+        "match": "prefix"
+      }
+    }
+  }
+}

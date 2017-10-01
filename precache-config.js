@@ -6,7 +6,6 @@ module.exports = {
   root: 'dist/',
   plugins: [
     new SWPrecacheWebpackPlugin({
-      cacheId: 'myCache',
       filename: 'service-worker.js',
       staticFileGlobs: [
         'dist/index.html',
@@ -17,5 +16,20 @@ module.exports = {
       stripPrefix: 'assets/',
       mergeStaticsConfig: true // if you don't set this to true, you won't see any webpack-emitted assets in your serviceworker config
     }),
-  ]
+  ]/*,
+  runtimeCaching: [
+    {
+      urlPattern: /^https:\/\/lein-haz.github.io\/asite\//,
+      handler: 'cacheFirst',
+      options: {
+        maxEntries: 3
+      }
+    }, {
+      urlPattern: /\/home\//,
+      handler: 'fastest',
+      options: {
+        maxEntries: 3
+      }
+    }
+  ]*/
 };
