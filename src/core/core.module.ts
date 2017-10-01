@@ -16,7 +16,9 @@ import * as Services from "./services/services";
     Services.AuthService,
     Services.ApiService,
     Services.ConstantService,
-    Services.StoryService
+    Services.StoryService,
+    Services.GoogleRef,
+    Services.WindowRef,
   ],
   bootstrap: []
 })
