@@ -1,5 +1,6 @@
 // import app theme
 @import './theme/app-theme';
+@import './theme/variables';
 
 body{
   background-color: mat-color($my-app-primary, 50);
@@ -49,17 +50,17 @@ mat-sidenav-container{
 
 mat-toolbar.full-nav{
   position: fixed;
-  min-height: 7vh;
+  min-height: $nav-tool-bar-height-dt;
   top: 0;
   left: 0;
   z-index: 10;
   .mat-toolbar-layout{
-    height: 7vh;
+    height: $nav-tool-bar-height-dt;
     & span{
       width: inherit;
     }
     mat-toolbar-row{
-      height: 7vh;
+      height: $nav-tool-bar-height-dt;
     }
   }
 }

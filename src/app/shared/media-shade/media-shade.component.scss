@@ -1,5 +1,54 @@
+@import "../../../theme/variables";
+
 .shade{
-  height: 93vh;
-  border-bottom: 2px solid green;
-  background-color: #3C8AA7;
+  @media #{$break-point-mob} {
+    height: $view-port-height-mob;
+    &:after{
+      top: $nav-tool-bar-height-mob;
+    }
+    & + .background-pic{
+      top: $nav-tool-bar-height-mob;
+      height: $view-port-height-mob;
+    }
+  }
+  @media #{$break-point-dt} {
+    height: $view-port-height-dt;
+    &:after{
+      top: $nav-tool-bar-height-dt;
+    }
+    & + .background-pic{
+      top: $nav-tool-bar-height-dt;
+      height: $view-port-height-dt;
+    }
+  }
+
+  z-index: -3;
+  border: 2px solid green;
+
+  button{
+    z-index: 2;
+  }
+
+  &:after{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    height: inherit;
+    width: 100%;
+    background-color: rgba(45, 145, 155, 0.5);
+  }
+
+  .shade-text{
+    z-index: 1;
+    text-align: center;
+  }
+
+  & + .background-pic{
+    position: absolute;
+    left: 0;
+    z-index: 0;
+  }
+
 }
