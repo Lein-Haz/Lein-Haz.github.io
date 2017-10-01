@@ -17,74 +17,48 @@ export class WindowRef {
     return _window();
   }
 
-  public animatedScroll(startY: number, stopY: number){
+  public animatedScroll(startY: number, stopY: number, animationDuration: number =550, totalSteps: number = 70){
     let initialY: number = startY;
     let destinationY: number = stopY;
+
+    //let animationDuration = 550;
+    //let totalSteps = 70;
+    let scrollStepsArray: ScrollPoint[] = [];
     let scrollingUpFlag = (destinationY < initialY);
-
-
-    let animateDistance = (destinationY > initialY) ? destinationY - initialY : initialY - destinationY;
-    let animationDuration = 550;
-    console.log("Animate Distance is: " + animateDistance);
-    console.log("Scrolling up is: " + scrollingUpFlag);
-    let anArray: ScrollPoint[] = [];
-
-    let totalSteps = 70;
+    let animateDistance = (scrollingUpFlag) ? initialY - destinationY : destinationY - initialY;
 
     let stepSize = animateDistance / totalSteps;
     let stepDuration = animationDuration / totalSteps;
     const BASE_WEIGHT = 0.185;
     const STEP_WEIGHT = (1 - BASE_WEIGHT) / totalSteps;
-    console.log("Step size is: " + stepSize);
-    console.log("Step weight is: " + STEP_WEIGHT);
-    console.log("Step duration is: " + stepDuration);
-    console.log("Start number is: " + initialY);
-    for(let i = 1; i <= totalSteps + 1; i += 1){
 
-      //console.log("Duration oughta: "+ ((stepDuration) * (BASE_WEIGHT + (STEP_WEIGHT * i)) ) );
-      //console.log("Duration : "+ ( (BASE_WEIGHT + (STEP_WEIGHT * i)) ) );
-      //let thisAdjustedDuration = ((stepDuration * (i - 1)) * (BASE_WEIGHT + (STEP_WEIGHT * i)) - (stepDuration * (i - 2)) * (BASE_WEIGHT + (STEP_WEIGHT * i-1)));
+    for(let i = 1; i <= totalSteps + 1; i += 1){
       let thisAdjustedDuration = (stepDuration * (i - 1)) * (BASE_WEIGHT + (STEP_WEIGHT * i));
       let previousAdjustedDuration = (stepDuration * (i - 2)) * (BASE_WEIGHT + (STEP_WEIGHT * (i-1)));
       let stepYPosition = (stepSize * (i - 1)) * (BASE_WEIGHT + (STEP_WEIGHT * i));
       if(scrollingUpFlag){
-        stepYPosition = initialY - stepYPosition;
-        if(stepYPosition < destinationY){
-          console.log("I SHOULD ONLY SEE THIS ONCE OR POSSIBLY NEVER");
+        stepYPosition = initialY - stepYPosition;//if scrolling up subtract y-step from current
+        if(stepYPosition < destinationY){//adjustment for last step
           stepYPosition = destinationY;
         }
       }else{
-        if(stepYPosition > destinationY){
-          console.log("I SHOULD ONLY SEE THIS ONCE OR POSSIBLY NEVER");
+        if(stepYPosition > destinationY){//adjustment for last step
           stepYPosition = destinationY;
         }
       }
-
-      //console.log("For index "+ i+"; This dur is: " + thisAdjustedDuration + " last dur is: " + previousAdjustedDuration);
 
       let scrollPoint: ScrollPoint = {
         position: stepYPosition,
         duration: thisAdjustedDuration - previousAdjustedDuration
       };
-      anArray.push(scrollPoint);
+      scrollStepsArray.push(scrollPoint);
     }
 
-    //anArray.reverse();
-    console.log(anArray);
-
-    let duraSum = 0;
-    anArray.forEach((point: ScrollPoint)=>{
-      console.log("summed");
-      duraSum += point.duration;
-    });
-
-    console.log("Duration sum is " + duraSum);
-
-    this.meScroll(anArray);
+    this.scrollHandler(scrollStepsArray);
   }
 
-  meScroll(scrollPosArray: ScrollPoint[]){
-    let scrollObservable = this.steppedScroll(scrollPosArray);
+  private scrollHandler(scrollPosArray: ScrollPoint[]){
+    let scrollObservable = this.scrollStepObservableBuilder(scrollPosArray);
 
     scrollObservable.subscribe(
       (nextYPosition)=>{
@@ -99,7 +73,7 @@ export class WindowRef {
     );
   }
 
-  public setStepDelay(delay: number, yPos:number): Observable<any>{
+  private setScrollDelay(delay: number, yPos:number): Observable<any>{
     return Observable.create((observer)=>{
       setTimeout(()=>{
         observer.next(yPos);
@@ -108,10 +82,10 @@ export class WindowRef {
     });
   }
 
-  steppedScroll(scrollSteps: ScrollPoint[]): Observable<any>{
+  private scrollStepObservableBuilder(scrollSteps: ScrollPoint[]): Observable<any>{
     let scrollObservable: Observable<any>;
     scrollSteps.forEach((step)=>{
-      let newObservable = this.setStepDelay(step.duration, step.position);
+      let newObservable = this.setScrollDelay(step.duration, step.position);
       if(isUndefined(scrollObservable)){
         scrollObservable = newObservable;
       }else{
