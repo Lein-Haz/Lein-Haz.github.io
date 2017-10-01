@@ -3,7 +3,7 @@
     <mat-sidenav #sidenav mode="over" (click)="sidenav.toggle()">
       <mat-nav-list fxLayout="column" fxLayoutAlign="space-between">
         <mat-list-item>
-          <button mat-button color="accent">
+          <button aria-hidden="true" mat-button color="accent">
             <mat-icon>chevron_left</mat-icon>
           </button>
         </mat-list-item>
@@ -35,7 +35,7 @@
     <div class="body-content">
       <mat-toolbar class="full-nav" fxShow.gt-md fxHide.lt-md color="primary">
         <span fxLayout="row" fxLayoutAlign="space-between center">
-          <button fxFlex="{{FLEX_LAYOUT.NO_GROW}}" mat-button (click)="sidenav.toggle()" color="accent">
+          <button aria-label="menu" fxFlex="{{FLEX_LAYOUT.NO_GROW}}" mat-button (click)="sidenav.toggle()" color="accent">
             <mat-icon>menu</mat-icon>
           </button>
 
@@ -52,7 +52,7 @@
       </mat-toolbar>
 
       <div fxShow.lt-md fxHide.gt-md class="mobile-nav">
-        <button mat-fab (click)="sidenav.toggle()">
+        <button aria-label="menu" mat-fab (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
       </div>
