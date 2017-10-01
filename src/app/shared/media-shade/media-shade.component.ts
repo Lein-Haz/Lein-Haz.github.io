@@ -1,5 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {WindowRef} from "../../../core/services/window.ref";
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'media-shade',
@@ -8,22 +7,16 @@ import {WindowRef} from "../../../core/services/window.ref";
 })
 export class MediaShadeComponent implements OnInit {
 
-  constructor(private windowRef: WindowRef) {
-    this.window = this.windowRef.nativeWindow();
-  }
+  constructor() {}
 
-  private window: Window;
-  @Input()
-  public toolbarHeight: number;
+  @Output() scrollPast: EventEmitter<any> = new EventEmitter();
 
 
-  goDown(){
-    console.log("clicked scroll");
-    this.windowRef.animatedScroll(0, this.window.innerHeight - this.toolbarHeight);
+  scrollDown(){
+    this.scrollPast.emit(true);
   }
 
   ngOnInit() {
-
 
   }
 

@@ -37,11 +37,12 @@ export class WindowRef {
       let previousAdjustedDuration = (stepDuration * (i - 2)) * (BASE_WEIGHT + (STEP_WEIGHT * (i-1)));
       let stepYPosition = (stepSize * (i - 1)) * (BASE_WEIGHT + (STEP_WEIGHT * i));
       if(scrollingUpFlag){
-        stepYPosition = initialY - stepYPosition;//if scrolling up subtract y-step from current
+        stepYPosition = initialY - stepYPosition;//if scrolling up subtract y-step from starting
         if(stepYPosition < destinationY){//adjustment for last step
           stepYPosition = destinationY;
         }
       }else{
+        stepYPosition = initialY + stepYPosition;//if scrolling down add y-step to starting
         if(stepYPosition > destinationY){//adjustment for last step
           stepYPosition = destinationY;
         }

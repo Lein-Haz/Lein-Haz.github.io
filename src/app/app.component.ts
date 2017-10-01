@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, ElementRef, ViewChild, OnInit} from '@angular/core';
+import {Component, ElementRef, ViewChild, OnInit} from '@angular/core';
 import {ConstantService} from "../core/services/constant.service";
 import {AuthService} from "../core/services/auth.service";
 import {GoogleRef} from "../core/services/google.ref";
@@ -11,29 +11,25 @@ declare const google: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit{
+export class AppComponent implements OnInit{
 
   public FLEX_LAYOUT = ConstantService.FLEX_LAYOUT;
 
   public isSignedIn: boolean;
 
+  public window: Window;
   public navHeight: number;
 
   @ViewChild('navref') navRef: ElementRef;
 
   ngOnInit(): void {
-    console.log(this.navRef);
-    console.log(this.navRef.nativeElement.children[0].clientHeight);
     this.navHeight = this.navRef.nativeElement.children[0].clientHeight;
+    this.window = this.windowRef.nativeWindow();
   }
 
-  ngAfterViewInit(): void {
-    /*this.windowRef.nativeWindow().addEventListener('scroll', ($event)=>{
-      //console.log($event);
-      //console.log(this.windowRef.nativeWindow().scrollX);
-      //console.log(this.windowRef.nativeWindow().scrollY);
-
-    });*/
+  scrollHandler($event){
+    this.navHeight = this.navRef.nativeElement.children[0].clientHeight;
+    this.windowRef.animatedScroll(this.window.scrollY, this.window.innerHeight - this.navHeight);
   }
 
   backUp(){

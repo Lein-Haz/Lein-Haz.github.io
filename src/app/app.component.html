@@ -59,7 +59,7 @@
         </button>
       </div>
 
-      <media-shade [toolbarHeight]="navHeight"></media-shade>
+      <media-shade (scrollPast)="scrollHandler($event)"></media-shade>
 
       <div fxLayout="row" fxLayoutAlign="center center" class="app-content">
         <div fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="75%" fxFlex.lg="75%" fxFlex.xl="66%">
