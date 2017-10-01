@@ -14,11 +14,13 @@ import {AboutModule} from "./about/about.module";
 import {GoogleSigninModule} from "./shared/google-signin/google-signin.module";
 import {HomeModule} from "./home/home.module";
 import {MapStuffModule} from "./map-stuff/map-stuff.module";
+import {MediaShadeComponent} from "./shared/media-shade/media-shade.component";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MediaShadeComponent
   ],
   imports: [
     BrowserModule,

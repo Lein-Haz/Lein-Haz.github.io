@@ -1,19 +1,43 @@
-import {Component, AfterViewInit} from '@angular/core';
+import {Component, AfterViewInit, ElementRef, ViewChild, OnInit} from '@angular/core';
 import {ConstantService} from "../core/services/constant.service";
 import {AuthService} from "../core/services/auth.service";
+import {GoogleRef} from "../core/services/google.ref";
+import {WindowRef} from "../core/services/window.ref";
+
+declare const google: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements OnInit, AfterViewInit{
+
   public FLEX_LAYOUT = ConstantService.FLEX_LAYOUT;
 
   public isSignedIn: boolean;
 
-  ngAfterViewInit() {
+  public navHeight: number;
 
+  @ViewChild('navref') navRef: ElementRef;
+
+  ngOnInit(): void {
+    console.log(this.navRef);
+    console.log(this.navRef.nativeElement.children[0].clientHeight);
+    this.navHeight = this.navRef.nativeElement.children[0].clientHeight;
+  }
+
+  ngAfterViewInit(): void {
+    /*this.windowRef.nativeWindow().addEventListener('scroll', ($event)=>{
+      //console.log($event);
+      //console.log(this.windowRef.nativeWindow().scrollX);
+      //console.log(this.windowRef.nativeWindow().scrollY);
+
+    });*/
+  }
+
+  backUp(){
+    this.windowRef.animatedScroll(this.windowRef.nativeWindow().scrollY, 0);
   }
 
   updateStatus($event){
@@ -31,7 +55,8 @@ export class AppComponent implements AfterViewInit{
 
   title = 'app';
 
-  constructor(private authService: AuthService){
-    console.log(this.FLEX_LAYOUT);
+  constructor(private authService: AuthService, private googleRef: GoogleRef, private windowRef: WindowRef){
+    console.log(googleRef.nativeGoogle());
+    //console.log(googleRef.nativeGoogle());
   }
 }

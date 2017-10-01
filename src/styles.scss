@@ -49,12 +49,17 @@ mat-sidenav-container{
 
 mat-toolbar.full-nav{
   position: fixed;
+  min-height: 7vh;
   top: 0;
   left: 0;
   z-index: 10;
   .mat-toolbar-layout{
+    height: 7vh;
     & span{
       width: inherit;
+    }
+    mat-toolbar-row{
+      height: 7vh;
     }
   }
 }

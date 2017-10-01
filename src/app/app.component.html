@@ -33,7 +33,8 @@
     </mat-sidenav>
 
     <div class="body-content">
-      <mat-toolbar class="full-nav" fxShow.gt-md fxHide.lt-md color="primary">
+      <div #navref>
+        <mat-toolbar class="full-nav" fxShow.gt-md fxHide.lt-md color="primary">
         <span fxLayout="row" fxLayoutAlign="space-between center">
           <button aria-label="menu" fxFlex="{{FLEX_LAYOUT.NO_GROW}}" mat-button (click)="sidenav.toggle()" color="accent">
             <mat-icon>menu</mat-icon>
@@ -49,7 +50,8 @@
             </span>
           </div>
         </span>
-      </mat-toolbar>
+        </mat-toolbar>
+      </div>
 
       <div fxShow.lt-md fxHide.gt-md class="mobile-nav">
         <button aria-label="menu" mat-fab (click)="sidenav.toggle()">
@@ -57,11 +59,17 @@
         </button>
       </div>
 
+      <media-shade [toolbarHeight]="navHeight"></media-shade>
+
       <div fxLayout="row" fxLayoutAlign="center center" class="app-content">
         <div fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="75%" fxFlex.lg="75%" fxFlex.xl="66%">
           <router-outlet></router-outlet>
         </div>
       </div>
+
+      <button aria-label="menu" mat-fab (click)="backUp()">
+        <mat-icon>menu</mat-icon>
+      </button>
 
     </div>
 
