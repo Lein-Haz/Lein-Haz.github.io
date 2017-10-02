@@ -15,6 +15,7 @@ import {GoogleSigninModule} from "./shared/google-signin/google-signin.module";
 import {HomeModule} from "./home/home.module";
 import {MapStuffModule} from "./map-stuff/map-stuff.module";
 import {MediaShadeComponent} from "./shared/media-shade/media-shade.component";
+import {BaseModule} from "./base/base.module";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {MediaShadeComponent} from "./shared/media-shade/media-shade.component";
     FlexLayoutModule,
     GoogleSigninModule,
     HomeModule,
-    MapStuffModule
+    MapStuffModule,
+    BaseModule
   ],
   providers: [
     { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true }

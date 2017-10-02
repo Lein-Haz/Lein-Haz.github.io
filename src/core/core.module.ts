@@ -19,6 +19,7 @@ import * as Services from "./services/services";
     Services.StoryService,
     Services.GoogleRef,
     Services.WindowRef,
+    Services.GoogleAuthLoadService,
   ],
   bootstrap: []
 })
