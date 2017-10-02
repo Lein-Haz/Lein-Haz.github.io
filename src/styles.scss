@@ -24,7 +24,10 @@ mat-sidenav-container{
   mat-nav-list{
     mat-list-item{
       width: 100%;
-      border-bottom: 1px solid black;//bottom border
+      .mat-list-item-content{
+        color: mat-contrast($my-app-primary, $nav-list-items-hue);
+      }
+      border-bottom: 1px solid mat-contrast($my-app-primary, $nav-list-items-hue);//bottom border
       &:last-child{
         border-bottom: none;//except on last
       }
@@ -39,16 +42,18 @@ mat-sidenav-container{
     z-index: 10;
   }
 
-  mat-sidenav.mat-drawer{
+  mat-sidenav.mat-drawer.mat-sidenav{
     position: fixed;
     top: 0;
     left: 0;
     z-index: 11;
-    background-color: mat-color($my-app-primary, 600);
+    background-color: mat-color($my-app-primary, $nav-list-items-hue);
+
   }
 }
 
 mat-toolbar.full-nav{
+  background-color: mat-color($my-app-primary, $top-nav-hue);
   position: fixed;
   min-height: $nav-tool-bar-height-dt;
   top: 0;
