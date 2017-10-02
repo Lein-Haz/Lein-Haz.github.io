@@ -1,0 +1,49 @@
+@import "../../../theme/variables";
+
+.screen-flex-tile-wrap{
+  background-color: mat-color($my-app-accent, 500, 0.5);
+  border: 1px solid mat-color($my-app-accent, 800);
+  cursor: pointer;
+
+  &:before {
+    display: table;//fix for firefox padding collapse
+    content:'';
+    float:left;
+    padding: 50% 0;
+  }
+
+  .screen-tile-button-group{
+    min-width: 9em;//for webkit square sizing tricks, padding calcs based off of element width
+    min-height: 9em;//for mozilla square sizing tricks, padding calcs based off of element height
+
+    .tileTitle{
+      display: inline-block;
+      word-wrap: break-word;
+      max-width: 150px;
+    }
+  }
+}
+
+.screen-button.mat-raised-button.mat-primary {
+  padding: 0.5em;
+  .material-icons {
+    font-size: 48px;
+  }
+
+  background-color: mat-color($my-app-accent, 700);
+  border: solid 2px mat-color($my-app-primary, 500);
+  color: mat-color($mat-primary, 500);
+  font-size: 18px;
+
+  min-width: 7em;
+  min-height: 7em;
+  white-space: normal;
+
+  &:before {
+    content:'';
+    float:left;
+    padding-top:100%;
+  }
+}
+
+

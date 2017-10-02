@@ -6,6 +6,7 @@ import { HomeComponent } from './home.component';
 import {AppMaterialModule} from "../shared/app-material/app-material.module";
 import {GoogleMapModule} from "../shared/google-map/google-map.module";
 import {ScreenTileModule} from "../shared/screen-tile/screen-tile.module";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import {ScreenTileModule} from "../shared/screen-tile/screen-tile.module";
     HomeRoutingModule,
     AppMaterialModule,
     ScreenTileModule,
-    GoogleMapModule
+    GoogleMapModule,
+    FlexLayoutModule
   ],
   declarations: [HomeComponent]
 })
