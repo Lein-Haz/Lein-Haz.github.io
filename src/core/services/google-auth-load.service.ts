@@ -10,28 +10,18 @@ export class GoogleAuthLoadService {
 
   window: Window;
   constructor(private windowRef: WindowRef){
-    console.log("constructor time");
     this.window = this.windowRef.nativeWindow();
-
-    console.log("gonna load");
-
   }
 
   public load(): Observable<any>{
-    console.log("load called");
-    console.log(this.loadAPI);
+    //console.log(this.loadAPI);
     if(!this.loadAPI){
       this.loadAPI = new Promise((resolve)=> {
-        console.log("loady res");
         this.window['__onGoogleLoaded'] = (ev) => {
-          console.log("gapi is in");
           resolve(this.window['gapi']);
         };
 
         this.loadScript();
-      }).then((result)=>{
-        console.log("ressie");
-        console.log(result);
       });
     }
     //return this.loadAPI;
@@ -40,7 +30,7 @@ export class GoogleAuthLoadService {
 
 
   private loadScript(){
-    console.log("Loading");
+    console.log("Loading gapi");
     let node = document.createElement('script');
     node.src = url;
     node.type = 'text/javascript';
