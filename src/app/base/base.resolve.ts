@@ -1,12 +1,12 @@
 import {Resolve, ActivatedRouteSnapshot} from '@angular/router';
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {GoogleAuthLoadService} from "../core/services/google-auth-load.service";
+import {GoogleAuthLoadService} from "../../core/services/google-auth-load.service";
 
 
 
 @Injectable()
-export class AppResolve implements Resolve<any> {
+export class BaseResolve implements Resolve<any> {
   constructor(
     private googleAuthLoad: GoogleAuthLoadService,
   ) {}
