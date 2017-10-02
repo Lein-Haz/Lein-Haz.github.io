@@ -9,5 +9,25 @@
         "match": "regex"
       }
     }
+  },
+  "dynamic": {
+    "group": [
+      {
+        "name": "unsplash",
+        "urls": {
+          "https://images.unsplash.com/": {
+            "match": "prefix"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "maxAgeMS": "604800000",
+          "maxEntries": 20,
+          "strategy": "lru"
+
+        },
+        "fullUrl": "https://images.unsplash.com/photo-1428094479093-8973a318bd76?dpr=1&auto=compress,format&fm=jpg"
+      }
+    ]
   }
 }
