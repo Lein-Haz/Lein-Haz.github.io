@@ -1,5 +1,7 @@
 @import "../../../theme/variables";
 
+$shade-hue: 600;
+
 .shade{
   @media #{$break-point-mob} {
     height: $view-port-height-mob;
@@ -36,12 +38,13 @@
     z-index: 1;
     height: inherit;
     width: 100%;
-    background-color: rgba(45, 145, 155, 0.5);
+    background-color: mat-color($my-app-neutral, $shade-hue, 0.4);
   }
 
   .shade-text{
     z-index: 1;
     text-align: center;
+    color: mat-contrast($my-app-neutral, $shade-hue);
   }
 
   & + .background-pic{
@@ -50,6 +53,10 @@
     left: 0;
     z-index: 0;
     overflow: hidden;
+    img{
+      height: 100%;
+      width: 100%;
+    }
   }
 
 }
