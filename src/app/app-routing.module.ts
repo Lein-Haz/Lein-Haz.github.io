@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: "/base",
+    redirectTo: "base",
     pathMatch: 'full',
     resolve: {
     }
@@ -12,6 +12,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  //imports: [RouterModule.forRoot(routes, {enableTracing: true})],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

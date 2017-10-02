@@ -8,20 +8,20 @@
           </button>
         </mat-list-item>
 
-        <!--<mat-list-item routerLink="oauthreturn">
+        <!--<mat-list-item [routerLink]="['/base/oauthreturn']">
           <a >Auth return</a>
         </mat-list-item>-->
 
-        <mat-list-item routerLink="home">
+        <mat-list-item [routerLink]="['/base/home']">
           <a>Home</a>
         </mat-list-item>
 
-        <mat-list-item routerLink="map-stuff">
+        <mat-list-item [routerLink]="['/base/map-stuff']">
           <a>Map</a>
         </mat-list-item>
 
 
-        <mat-list-item routerLink="about">
+        <mat-list-item [routerLink]="['/base/about']">
           <span>About</span>
         </mat-list-item>
 
@@ -42,7 +42,7 @@
 
           <div fxFlex.gt-sm="20%" fxFlex.gt-md="15%" fxFlex.gt-lg="15%">
             <span fxLayout="row" fxLayoutAlign="space-between center">
-              <google-signin (authInitializedEmitter)="authInitializedHandler($event)" (signedInState)="updateStatus($event)"></google-signin>
+              <!--<google-signin (authInitializedEmitter)="authInitializedHandler($event)" (signedInState)="updateStatus($event)"></google-signin>-->
 
               <button fxFlex="{{FLEX_LAYOUT.NO_GROW}}" mat-fab routerLink="/">
                 <mat-icon>home</mat-icon>

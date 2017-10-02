@@ -12,7 +12,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [/*RouterModule.forChild(routes)*/],
   exports: [RouterModule]
 })
-export class MapStuffRoutingModule { }
+export class MapStuffRoutingModule{
+  public static getRoutes(){
+    return routes;
+  }
+}

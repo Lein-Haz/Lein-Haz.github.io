@@ -12,7 +12,9 @@ import {AppResolve} from "../app.resolve";
     BaseRoutingModule,
     CoreModule
   ],
-  declarations: [BaseComponent],
+  declarations: [
+    BaseComponent
+  ],
   providers: [AppResolve]
 })
 export class BaseModule { }
