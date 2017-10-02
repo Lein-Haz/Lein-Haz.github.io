@@ -108,8 +108,42 @@ $mat-warn: (
   )
 );
 
+$mat-neutral: (
+  50: #EAEAEC,
+  100: #CACBCF,
+  200: #A7A8AF,
+  300: #84858F,
+  400: #696B77,
+  500: #4F515F,
+  600: #484A57,
+  700: #3F404D,
+  800: #363743,
+  900: #262732,
+  A100: #7E8BFF,
+  A200: #4B5DFF,
+  A400: #192EFF,
+  A700: #0017FE,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $white-87-opacity,
+    500: $white-87-opacity,
+    600: $white-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $white-87-opacity,
+    A400: $white-87-opacity,
+    A700: $white-87-opacity,
+  )
+);
+
 $my-app-primary: mat-palette($mat-primary);
 $my-app-accent:  mat-palette($mat-accent);
+$my-app-neutral:  mat-palette($mat-neutral);
 
 // The warn palette is optional (defaults to red).
 $my-app-warn:    mat-palette($mat-warn);

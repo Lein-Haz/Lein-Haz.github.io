@@ -1,8 +1,9 @@
 @import "../../../theme/variables";
 
+
 .screen-flex-tile-wrap{
-  background-color: mat-color($my-app-accent, 500, 0.5);
-  border: 1px solid mat-color($my-app-accent, 800);
+  background-color: mat-color($my-app-neutral, 100, 0.5);
+  border: 1px solid mat-color($my-app-primary, 300, 0.8);
   cursor: pointer;
 
   &:before {
@@ -30,7 +31,7 @@
     font-size: 48px;
   }
 
-  background-color: mat-color($my-app-accent, 700);
+  background-color: mat-color($my-app-accent, 100, 0.4);
   border: solid 2px mat-color($my-app-primary, 500);
   color: mat-color($mat-primary, 500);
   font-size: 18px;

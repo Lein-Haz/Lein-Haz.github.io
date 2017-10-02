@@ -64,3 +64,39 @@ mat-toolbar.full-nav{
     }
   }
 }
+
+mat-card{
+  @media #{$break-point-xs} {
+    padding: 0 !important;
+  }
+
+  @media #{$break-point-sm} {
+    padding: 0.2em !important;
+  }
+
+  @media #{$break-point-md} {
+    padding: 0.75em !important;
+  }
+
+  @media #{$break-point-lg} {
+    padding: 0.75em !important;
+  }
+}
+
+screen-tile{
+  @media #{$break-point-xs} {
+    padding: 0.1em;
+  }
+
+  @media #{$break-point-sm} {
+    padding: 0.2em;
+  }
+
+  @media #{$break-point-md} {
+    padding: 0.25em;
+  }
+
+  @media #{$break-point-lg} {
+    padding: 0.25em;
+  }
+}

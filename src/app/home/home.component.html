@@ -1,5 +1,25 @@
 <div>
   <mat-toolbar color="accent">
+    <h4>Something else</h4>
+    <button mat-button (click)="less()">
+      <span>Less</span>
+    </button>
+    <button mat-button (click)="more()">
+      <span>More</span>
+    </button>
+  </mat-toolbar>
+  <mat-card>
+    <div fxLayout="row" fxLayoutWrap fxLayoutAlign="start center">
+      <screen-tile fxFlex.xs="1 1 100%" fxFlex.sm="1 1 50%" fxFlex.md="1 1 33%" fxFlex.lg="1 1 25%" fxFlex.xl="1 1 20%" *ngFor="let valt of anArray">
+        <div >
+          {{valt}}
+        </div>
+      </screen-tile>
+    </div>
+
+  </mat-card>
+
+  <mat-toolbar color="accent">
     <h4>Home</h4>
   </mat-toolbar>
   <mat-card>
