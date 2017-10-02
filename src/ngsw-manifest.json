@@ -5,11 +5,8 @@
       "/": {
         "match": "exact"
       },
-      "/asite/home": {
-        "match": "prefix"
-      },
-      "/asite/about": {
-        "match": "prefix"
+      "\/asite\/base\/.*": {
+        "match": "regex"
       }
     }
   }
