@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConstantService} from "../../core/services/constant.service";
 import {AuthService} from "../../core/services/auth.service";
 import {WindowRef} from "../../core/services/window.ref";
@@ -17,15 +17,11 @@ export class BaseComponent implements OnInit {
   public window: Window;
   public navHeight: number;
 
-  @ViewChild('navref') navRef: ElementRef;
-
   ngOnInit(): void {
-    this.navHeight = this.navRef.nativeElement.children[0].clientHeight;
     this.window = this.windowRef.nativeWindow();
   }
 
   scrollHandler($event){
-    this.navHeight = this.navRef.nativeElement.children[0].clientHeight;
     this.windowRef.animatedScroll(this.window.scrollY, this.window.innerHeight - this.navHeight);
   }
 
@@ -33,9 +29,8 @@ export class BaseComponent implements OnInit {
     this.isSignedIn = $event;
   }
 
-  authInitializedHandler($event){
-    let authInstance = this.authService.getAuth();
-    this.isSignedIn = authInstance.isSignedIn.get();
+  updateNavHeight($event){
+    this.navHeight = $event;
   }
 
   logout(){

@@ -33,31 +33,7 @@
     </mat-sidenav>
 
     <div class="body-content">
-      <div #navref>
-        <mat-toolbar class="full-nav" fxShow.gt-md fxHide.lt-md color="primary">
-        <span fxLayout="row" fxLayoutAlign="space-between center">
-          <button aria-label="menu" fxFlex="{{FLEX_LAYOUT.NO_GROW}}" mat-button (click)="sidenav.toggle()" color="accent">
-            <mat-icon>menu</mat-icon>
-          </button>
-
-          <div fxFlex.gt-sm="20%" fxFlex.gt-md="15%" fxFlex.gt-lg="15%">
-            <span fxLayout="row" fxLayoutAlign="space-between center">
-              <google-signin (authInitializedEmitter)="authInitializedHandler($event)" (signedInState)="updateStatus($event)"></google-signin>
-
-              <button fxFlex="{{FLEX_LAYOUT.NO_GROW}}" mat-fab routerLink="/">
-                <mat-icon>home</mat-icon>
-              </button>
-            </span>
-          </div>
-        </span>
-        </mat-toolbar>
-      </div>
-
-      <div fxShow.lt-md fxHide.gt-md class="mobile-nav">
-        <button aria-label="menu" mat-fab (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </div>
+      <app-nav (navToggle)="sidenav.toggle()" (signedInState)="updateStatus($event)" (navHeightSize)="updateNavHeight($event)"></app-nav>
 
       <media-shade (scrollPast)="scrollHandler($event)"></media-shade>
 
