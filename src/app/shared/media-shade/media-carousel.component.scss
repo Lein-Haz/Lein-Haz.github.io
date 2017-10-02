@@ -1,0 +1,12 @@
+@import "../../../theme/variables";
+
+img{
+  @media #{$break-point-mob} {
+    width: initial;
+    height: 100%;
+  }
+  @media #{$break-point-dt} {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -74,6 +74,22 @@ export class WindowRef {
     );
   }
 
+  /* being used to get url params for picture loads */
+  public static getMediaBreakPointFull(width: number){
+    if(width < 600){//xs
+      return 600;
+    }else if(width < 960){//sm
+      return 960;
+    }else if(width < 1280){//md
+      return 1280;
+    }else if(width < 1920){//lg
+      return 1920;
+    }else if(width < 5000){//xl
+      //return 5000;
+      return 3840;//max image size right now
+    }
+  }
+
   private setScrollDelay(delay: number, yPos:number): Observable<any>{
     return Observable.create((observer)=>{
       setTimeout(()=>{
