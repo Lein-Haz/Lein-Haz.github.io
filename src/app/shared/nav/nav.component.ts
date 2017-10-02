@@ -33,16 +33,6 @@ export class NavComponent implements OnInit, AfterContentChecked {
   }
 
   ngOnInit() {
-    /*console.log(this.navRef);
-
-    this.navRef.nativeElement.addEventListener('onresize', ($event)=>{
-      console.log("resize handler");
-      console.log($event);
-    });
-    this.navRef.nativeElement.addEventListener('onmouseenter', ($event)=>{
-      console.log("click handler");
-      console.log($event);
-    });*/
 
   }
 
