@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import {AppMaterialModule} from "../app-material/app-material.module";
+import {AppMaterialModule} from "../shared/app-material/app-material.module";
 import {GoogleMapModule} from "../shared/google-map/google-map.module";
 
 @NgModule({

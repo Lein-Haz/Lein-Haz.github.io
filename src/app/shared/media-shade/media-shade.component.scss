@@ -23,7 +23,6 @@
   }
 
   z-index: -3;
-  border: 2px solid green;
 
   button{
     z-index: 2;
@@ -46,9 +45,11 @@
   }
 
   & + .background-pic{
+    width: 100%;
     position: absolute;
     left: 0;
     z-index: 0;
+    overflow: hidden;
   }
 
 }

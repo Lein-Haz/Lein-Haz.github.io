@@ -1,3 +1,4 @@
+<!--
 <div>
   <mat-sidenav-container class="nav-drawer-container">
     <mat-sidenav #sidenav mode="over" (click)="sidenav.toggle()">
@@ -8,9 +9,9 @@
           </button>
         </mat-list-item>
 
-        <!--<mat-list-item [routerLink]="['/base/oauthreturn']">
+        &lt;!&ndash;<mat-list-item [routerLink]="['/base/oauthreturn']">
           <a >Auth return</a>
-        </mat-list-item>-->
+        </mat-list-item>&ndash;&gt;
 
         <mat-list-item [routerLink]="['/base/home']">
           <a>Home</a>
@@ -42,7 +43,7 @@
 
           <div fxFlex.gt-sm="20%" fxFlex.gt-md="15%" fxFlex.gt-lg="15%">
             <span fxLayout="row" fxLayoutAlign="space-between center">
-              <!--<google-signin (authInitializedEmitter)="authInitializedHandler($event)" (signedInState)="updateStatus($event)"></google-signin>-->
+              &lt;!&ndash;<google-signin (authInitializedEmitter)="authInitializedHandler($event)" (signedInState)="updateStatus($event)"></google-signin>&ndash;&gt;
 
               <button fxFlex="{{FLEX_LAYOUT.NO_GROW}}" mat-fab routerLink="/">
                 <mat-icon>home</mat-icon>
@@ -75,4 +76,10 @@
 
   </mat-sidenav-container>
 
+</div>
+-->
+<div fxLayout="row" fxLayoutAlign="center center" class="primary-router-wrapper">
+  <div fxFlex="100%">
+    <router-outlet></router-outlet>
+  </div>
 </div>

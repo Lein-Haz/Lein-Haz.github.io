@@ -1,0 +1,35 @@
+@import "../../theme/variables";
+
+.app-content{
+  padding-top: 0.3em;
+}
+
+.body-content{
+  width: 100%;
+  //height: 100vh;
+  //height: 1800px;
+}
+
+@media #{$break-point-xs} {
+  .body-content{
+    padding-top: $view-port-height-mob;
+  }
+}
+
+@media #{$break-point-sm} {
+  .body-content{
+    padding-top: $nav-tool-bar-height-mob;
+  }
+}
+
+@media #{$break-point-md} {
+  .body-content{
+    padding-top: $nav-tool-bar-height-dt;
+  }
+}
+
+@media #{$break-point-lg} {
+  .body-content{
+    padding-top: $nav-tool-bar-height-dt;
+  }
+}

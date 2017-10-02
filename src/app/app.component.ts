@@ -23,8 +23,8 @@ export class AppComponent implements OnInit{
   @ViewChild('navref') navRef: ElementRef;
 
   ngOnInit(): void {
-    this.navHeight = this.navRef.nativeElement.children[0].clientHeight;
-    this.window = this.windowRef.nativeWindow();
+    //this.navHeight = this.navRef.nativeElement.children[0].clientHeight;
+    //this.window = this.windowRef.nativeWindow();
   }
 
   scrollHandler($event){

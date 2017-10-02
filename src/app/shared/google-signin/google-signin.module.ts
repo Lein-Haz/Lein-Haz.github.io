@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {GoogleSigninComponent} from "./google-signin.component";
-import {AppMaterialModule} from "../../app-material/app-material.module";
+import {AppMaterialModule} from "../app-material/app-material.module";
 
 
 
