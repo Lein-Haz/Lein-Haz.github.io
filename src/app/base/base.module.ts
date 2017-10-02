@@ -13,6 +13,7 @@ import {OauthreturnModule} from "../oauthreturn/oauthreturn.module";
 import {AboutModule} from "../about/about.module";
 import {BaseResolve} from "./base.resolve";
 import {GoogleSigninModule} from "../shared/google-signin/google-signin.module";
+import {NavComponent} from "../shared/nav/nav.component";
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {GoogleSigninModule} from "../shared/google-signin/google-signin.module";
   ],
   declarations: [
     BaseComponent,
-    MediaShadeComponent
+    MediaShadeComponent,
+    NavComponent
   ],
   providers: [BaseResolve]
 })
