@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {StoryService} from "../../core/services/story.service";
+import {Observable} from "rxjs";
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-home',
@@ -9,13 +12,12 @@ export class HomeComponent implements OnInit {
 
   public testSize: number = 5;
   public anArray = [];
-  constructor() { }
+  constructor(private storyService: StoryService) { }
 
   ngOnInit() {
     for(let i = 0; i < this.testSize; i++){
       this.anArray.push(2*i);
     }
-    console.log(this.anArray);
   }
 
   more(){
@@ -27,26 +29,42 @@ export class HomeComponent implements OnInit {
     if(this.anArray.length > 0){
 
       let removeCount = (this.anArray.length < 3) ? this.anArray.length : 3;
-      console.log("Removing this many "+  removeCount);
       this.delta(this.anArray.length - removeCount);
     }
-
   }
 
   delta(newSize: number){
     let removeFlag = (newSize < this.anArray.length);
     let changeAmount = (newSize < this.anArray.length) ? this.anArray.length - newSize : newSize - this.anArray.length;
-    console.log(changeAmount);
+    let animationObservable: Observable<any>;
 
     for (let i = 0; i < changeAmount; i++){
-      if(removeFlag){
-        this.anArray.pop();
-
+      let position = this.anArray.length + (i * ((removeFlag)? -1: 1));
+      position = (removeFlag) ? position - 1 : position;
+      if(isUndefined(animationObservable)){
+        animationObservable = this.storyService.setStepDelay(150, position);
       }else{
-        this.anArray.push((this.anArray.length - 1) * 2);
-
+        animationObservable = animationObservable.concat(this.storyService.setStepDelay(150, position));
       }
     }
+    animationObservable.subscribe(
+      (indexSpot)=> {
+        //console.log("so yeah indexSpot is " + indexSpot);
+        if(removeFlag){
+          this.anArray.splice(indexSpot);
+
+        }else{
+          this.anArray.push((this.anArray.length) * 2);
+        }
+      },
+      (err)=> {
+        console.log("Error happened");
+        console.log(err);
+      },
+      ()=> {
+
+      }
+    );
   }
 
 }
