@@ -1,5 +1,6 @@
 import {Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, AfterContentChecked} from '@angular/core';
 import {ConstantService} from "../../../core/services/constant.service";
+import {WindowRef} from "../../../core/services/window.ref";
 
 @Component({
   selector: 'app-nav',
@@ -38,6 +39,7 @@ export class NavComponent implements OnInit, AfterContentChecked {
 
   ngAfterContentChecked(): void {
     this.navHeight = this.navRef.nativeElement.children[0].clientHeight;
+    WindowRef.setNavHeight(this.navHeight);
     this.navHeightSize.emit(this.navHeight);
   }
 

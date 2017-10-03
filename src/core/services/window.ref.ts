@@ -17,6 +17,16 @@ export class WindowRef {
     return _window();
   }
 
+  private static navHeight: number;
+
+  public static getNavHeight(): number{
+    return WindowRef.navHeight;
+  }
+
+  public static setNavHeight(height: number): void{
+    WindowRef.navHeight = height;
+  }
+
   public animatedScroll(startY: number, stopY: number, animationDuration: number =550, totalSteps: number = 70){
     let initialY: number = startY;
     let destinationY: number = stopY;
