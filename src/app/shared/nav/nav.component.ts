@@ -38,9 +38,11 @@ export class NavComponent implements OnInit, AfterContentChecked {
   }
 
   ngAfterContentChecked(): void {
-    this.navHeight = this.navRef.nativeElement.children[0].clientHeight;
-    WindowRef.setNavHeight(this.navHeight);
-    this.navHeightSize.emit(this.navHeight);
+    if(this.navHeight != this.navRef.nativeElement.children[0].clientHeight){//height changed, update
+      this.navHeight = this.navRef.nativeElement.children[0].clientHeight;
+      WindowRef.setNavHeight(this.navHeight);
+      this.navHeightSize.emit(this.navHeight);
+    }
   }
 
 }
