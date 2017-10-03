@@ -1,3 +1,25 @@
 <div>
-  Thats a tile
+  <div #meself class="display-tile-flex-wrap" fxLayout="column" fxLayoutAlign="center" fxLayoutAlign.xs="space-around">
+    Inview = {{inView}}
+    <div>
+      Enters View Bot At: {{elementPositionData.entersViewBotAt}}
+    </div>
+    <div>
+      Full View Bot At: {{elementPositionData.fullViewBotAt}}
+    </div>
+    <div>
+      Full View Top At: {{elementPositionData.fullViewTopAt}}
+    </div>
+    <div>
+      Exits View Top At: {{elementPositionData.exitsViewTopAt}}
+    </div>
+    <div>
+      Half Visible Bot At: {{elementPositionData.halfVisibleBotAt}}
+    </div>
+    <div>
+      Half Visible Top At: {{elementPositionData.halfVisibleTopAt}}
+    </div>
+
+    <ng-content></ng-content>
+  </div>
 </div>

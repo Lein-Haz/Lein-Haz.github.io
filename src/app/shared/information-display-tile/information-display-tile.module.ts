@@ -20,4 +20,4 @@ import {InformationDisplayTileComponent} from "./information-display-tile.compon
   ]
 })
 
-export class InformationDiplayTileModule {}
+export class InformationDisplayTileModule {}

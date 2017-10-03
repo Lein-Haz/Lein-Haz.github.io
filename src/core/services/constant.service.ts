@@ -45,6 +45,13 @@ export class ConstantService {
     'https://images.unsplash.com/photo-1490598000245-075175152d25?dpr=1&auto=compress,format&fm=jpg'
   ];
 
+  public static ANIMATION_VIEW_STATES = {
+    IN_VIEW: 'isInView',
+    NOT_IN_VIEW: 'isNotInView',
+    TRANSITION_INTO_VIEW: 'isNotInView => isInView',
+    TRANSITION_OUT_OF_VIEW: 'isInView => isNotInView',
+  };
+
   public static STORIES = [
     {
       text: "Part1",

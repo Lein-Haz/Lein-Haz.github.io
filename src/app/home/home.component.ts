@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {StoryService} from "../../core/services/story.service";
 import {Observable} from "rxjs";
 import {isUndefined} from "util";
+import {WindowRef} from "../../core/services/window.ref";
+
 
 @Component({
   selector: 'app-home',
@@ -12,12 +14,38 @@ export class HomeComponent implements OnInit {
 
   public testSize: number = 5;
   public anArray = [];
-  constructor(private storyService: StoryService) { }
+  public testArray = [];
+
+  private window: Window;
+
+  constructor(private storyService: StoryService, private windowRef: WindowRef) {
+    this.window = this.windowRef.nativeWindow();
+  }
 
   ngOnInit() {
     for(let i = 0; i < this.testSize; i++){
       this.anArray.push(2*i);
+      this.testArray.push(i);
     }
+
+    //this.subScrollListener();
+  }
+
+  subScrollListener(){
+    this.window.addEventListener('scroll', ($event)=>{
+      //console.log("Scroll at ");
+      //console.log(this.window.scrollY);
+      console.log("Window scroll at "+this.window.scrollY);
+    });
+  }
+
+  scrawlYa(){
+    let toTheThing = 0;
+    toTheThing = 1980;//item 3 enter
+    toTheThing = 761;//item 1 halfway
+    toTheThing = 1296;//item 2 enters
+
+    this.windowRef.animatedScroll(this.window.scrollY, toTheThing, 200, 50);
   }
 
   more(){
