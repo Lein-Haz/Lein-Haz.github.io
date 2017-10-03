@@ -31,7 +31,7 @@ declare interface DisplayData{
         transform: 'rotateY(0deg) rotateX(0deg) scale(1)',
       })),
       state(ConstantService.ANIMATION_VIEW_STATES.NOT_IN_VIEW, style({
-        transform: 'rotateY(0deg) rotateX(90deg) scale(0.5)',
+        transform: 'rotateY(90deg) rotateX(0deg) scale(1)',
       })),
       transition(ConstantService.ANIMATION_VIEW_STATES.TRANSITION_INTO_VIEW, [
         style({
@@ -44,7 +44,7 @@ declare interface DisplayData{
       transition(ConstantService.ANIMATION_VIEW_STATES.TRANSITION_OUT_OF_VIEW, [
         group([
           animate('500ms 100ms cubic-bezier(.1,.56,.3,.82)', style({
-            transform: 'rotateY(90deg) scale(0.5)'
+            transform: 'rotateY(90deg) scale(0.4)'
           }))
         ])
       ])
@@ -86,6 +86,15 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
     };
   }
 
+  onImageLoaded(){
+    //console.log("onImageLoaded called");
+    this.initPositionData();
+    if(this.text == "5"){
+      console.log("img src on change happened");
+      //this.updatePositionData();
+    }
+  }
+
   filterScrollsThatICareAbout(val):boolean{
     let inView = (val > this.elementPositionData.halfVisibleBotAt && val < this.elementPositionData.halfVisibleTopAt);
     //let inView = (val > this.elementPositionData.entersViewBotAt && val < this.elementPositionData.exitsViewTopAt);
@@ -95,7 +104,7 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
     return inView;
   }
 
-  private doSubby(){
+  private subToScrollSubject(){
     let aThing = this.windowRef.getScrollSubject();
     this.subscription = aThing
       .filter((val)=>this.filterScrollsThatICareAbout(val))
@@ -113,22 +122,31 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
   }
 
   private initListener(){
-    console.log(this.windowRef.nativeWindow().innerHeight);
+
+  }
+
+  heightCalls(source: string = 'Nunya'){
+    console.log("From " + source + " vals are");
+    console.log("Ele client height is " + this.tileElement.nativeElement.clientHeight);
+    console.log("Ele offset height is " + this.tileElement.nativeElement.offsetHeight);
+    console.log("Ele scroll height is " + this.tileElement.nativeElement.scrollHeight);
+    console.log("Done logging " + source + "values");
   }
 
   ngOnInit(): void {
 
     this.initPositionData();
-    this.doSubby();
+    this.subToScrollSubject();
 
     if(this.text == "0" ){
-      this.initListener();
-      //this.doSubby();
+      //this.initListener();
+      //this.subToScrollSubject();
     }else if(this.text == "3" || this.text == "1"){
-      //this.doSubby();
+      //this.subToScrollSubject();
       //console.log(this.tileElement);
       //this.initListener();
-    }else if(this.text == "4"){
+    }else if(this.text == "5"){
+      //this.initListener();
       //this.viewState = ConstantService.ANIMATION_VIEW_STATES.IN_VIEW;
     }
   }
