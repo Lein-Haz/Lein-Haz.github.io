@@ -29,5 +29,11 @@
         "fullUrl": "https://images.unsplash.com/photo-1428094479093-8973a318bd76?dpr=1&auto=compress,format&fm=jpg"
       }
     ]
+  },
+  "external": {
+    "urls": [
+      { "url": "https://fonts.googleapis.com/icon?family=Material+Icons" },
+      { "url": "https://maps.googleapis.com/maps/api/js?key=AIzaSyDW2rnsG-2gOOJM5N3V3h261420EuDSrm4&libraries=geometry" }
+    ]
   }
 }
