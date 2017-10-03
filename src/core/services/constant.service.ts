@@ -50,43 +50,53 @@ export class ConstantService {
       name: 'Angular',
       imgSrc: 'assets/Angular_logo.svg',
       information: [
-        'Building data driven interfaces'
+        'So good',
+        'Building data driven interfaces',
+        '1.x or 2+ whatever, it don\'t matter'
       ]
     }, {
       name: 'Node.js',
       imgSrc: 'assets/Node.js_logo.svg',
       information: [
-        'Setting data services to drive user interfaces'
+        'Setting data services to drive user interfaces',
+        'Of course Express too',
+        'Basically MEAN stack, if MYSQL were \'M\''
       ]
     }, {
       name: 'TypeScript',
       imgSrc: 'assets/TypeScript_logo.svg',
       information: [
-        'I love this so far'
+        'Microsoft has been up to some good stuff lately',
+        'I love this so far',
       ]
     }, {
       name: 'Android',
       imgSrc: 'assets/Android_logo.svg',
       information: [
+        'Wouldn\'t mind doing more of this',
         'My first mobile interest'
       ]
     }, {
       name: 'Ionic',
       imgSrc: 'assets/Ionic_logo.svg',
       information: [
+        'Have actual project/work experience here',
         'An interesting cross section between Angular and native mobile development'
       ]
     }, {
       name: 'Java',
       imgSrc: 'assets/Java_logo.svg',
       information: [
-        'Where I started'
+        'Where I started',
+        'Though most of the Java I deal with now is Android'
       ]
     }, {
       name: 'PHP',
       imgSrc: 'assets/PHP_logo.svg',
       information: [
-        'I can, but I\'d rather not'
+        'Symfony is pretty tolerable for a PHP framework',
+        'Then you just use Symfony as an API to serve your Angular front-end',
+        'Basically I can, but I\'d rather not'
       ]
     }
   ];

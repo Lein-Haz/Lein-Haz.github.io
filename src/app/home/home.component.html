@@ -8,9 +8,9 @@
   </mat-toolbar>
   <mat-card>
     <div fxLayout="column" fxLayoutWrap fxLayoutAlign="center">
-      <display-tile fxFlex="0 1 auto" *ngFor="let valt of testArray; let i = index" [text]="i">
+      <display-tile fxFlex="0 1 auto" *ngFor="let valt of testArray; let i = index" [text]="i" [displayData]="valt">
         <div >
-          trannysclude ya: {{valt}}
+          trannysclude ya:
         </div>
       </display-tile>
     </div>

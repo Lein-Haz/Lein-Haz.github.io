@@ -1,33 +1,47 @@
 <div>
   <div #displayTile class="display-tile-flex-wrap" fxLayout="row" fxLayoutAlign="center" fxLayoutAlign.xs="space-around">
     <div fxFlex="60%" fxLayout="column" fxLayoutAlign="center">
-      <div fxFlex="85%" fxFlexFill class="image-hold">
+      <div fxFlex="80%" fxFlexFill class="image-hold">
         <div class="image-wrapper">
-          <img src="assets/Android_logo.svg">
+          <!--<img src="assets/Android_logo.svg">-->
+          <img src="{{displayData.imgSrc}}">
         </div>
       </div>
 
-      <div fxFlex="15%" class="tech-heading">
-        <h3>
-          Android
-        </h3>
-      </div>
+
     </div>
     <div fxFlex="40%" fxLayout="column" fxLayoutAlign="center" class="details-wrap">
-      <mat-list>
-        <mat-list-item>
-          <mat-icon mat-list-icon>folder</mat-icon>
-          My first mobile interest
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon mat-list-icon>menu</mat-icon>
-          Jibber jabber
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon mat-list-icon>stop</mat-icon>
-          <ng-content></ng-content>
-        </mat-list-item>
-      </mat-list>
+      <div fxFlex="15%" class="tech-heading">
+        <h3>
+          {{displayData.name}}
+        </h3>
+      </div>
+      <div fxFlex>
+        <mat-list>
+          <mat-list-item *ngFor="let info of displayData.information">
+            <mat-icon mat-list-icon>stop</mat-icon>
+            {{info}}
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>stop</mat-icon>
+            <ng-content></ng-content>
+          </mat-list-item>
+        </mat-list>
+        <!--<mat-list>
+          <mat-list-item>
+            <mat-icon mat-list-icon>folder</mat-icon>
+            My first mobile interest
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>menu</mat-icon>
+            Jibber jabber
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>stop</mat-icon>
+            <ng-content></ng-content>
+          </mat-list-item>
+        </mat-list>-->
+      </div>
 
       <div>
 

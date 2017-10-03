@@ -14,6 +14,12 @@ declare interface ElementPositionData{
   halfVisibleTopAt: number;
 }
 
+declare interface DisplayData{
+  name: string;
+  imgSrc: string;
+  information: string[];
+}
+
 @Component({
   selector: "display-tile",
   templateUrl: './information-display-tile.component.html',
@@ -50,6 +56,8 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
 
   @Input()
   text: string;
+  @Input()
+  displayData: DisplayData;
 
   @ViewChild('displayTile') tileElement : ElementRef;
 

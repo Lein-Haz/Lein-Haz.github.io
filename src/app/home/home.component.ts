@@ -3,6 +3,7 @@ import {StoryService} from "../../core/services/story.service";
 import {Observable} from "rxjs";
 import {isUndefined} from "util";
 import {WindowRef} from "../../core/services/window.ref";
+import {ConstantService} from "../../core/services/constant.service";
 
 
 @Component({
@@ -25,18 +26,15 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     for(let i = 0; i < this.testSize; i++){
       this.anArray.push(2*i);
-      this.testArray.push(i);
     }
 
-    //this.subScrollListener();
+    this.meThing();
   }
 
-  subScrollListener(){
-    this.window.addEventListener('scroll', ($event)=>{
-      //console.log("Scroll at ");
-      //console.log(this.window.scrollY);
-      console.log("Window scroll at "+this.window.scrollY);
-    });
+
+  meThing(){
+    this.testArray = ConstantService.TECH_IMAGE_LINKS;
+
   }
 
   scrawlYa(){
