@@ -26,8 +26,32 @@ $shade-hue: 600;
 
   z-index: -3;
 
-  button{
-    z-index: 2;
+  .shade-footer{
+    span{
+      position: relative;
+      overflow: hidden;
+      display: flex;
+    }
+    .butt-wrapper{//as in short for button, it wraps a button
+      border: 2px solid mat-color($my-app-primary, $shade-hue);
+      display: flex;
+      position: absolute;
+      top: 50%;
+      border-top-left-radius: 23em;
+      border-top-right-radius: 23em;
+      height: 100%;
+      width: 100%;
+      z-index: 4;
+      overflow: hidden;
+
+      button{
+        z-index: 4;
+        color: mat-color($my-app-primary, $shade-hue);
+        height: 50%;
+        width: 100%;
+        position: absolute;
+      }
+    }
   }
 
   &:after{
@@ -38,7 +62,7 @@ $shade-hue: 600;
     z-index: 1;
     height: inherit;
     width: 100%;
-    background-color: mat-color($my-app-neutral, $shade-hue, 0.4);
+    background-color: mat-color($my-app-neutral, $shade-hue, 0.5);
   }
 
   .shade-text{

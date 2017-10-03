@@ -1,20 +1,25 @@
-<div class="basey">
-  <div class="shade" fxLayout="column" fxLayoutAlign="center">
-    <div fxFlex="80">
+<div>
+  <div class="shade" fxLayout="column" fxLayoutAlign="space-between">
+    <div fxFlex.xs="90" fxFlex.sm="85" fxFlex.md="20" fxFlex.lg="80">
       <div fxLayout="row" fxFlexFill fxLayoutAlign="center center">
         <div fxFlex class="shade-text">
           Looking for dev?
         </div>
       </div>
-
     </div>
-    <div fxFlex>
-      <div fxLayout="row" fxLayoutAlign="center center">
-        <button aria-label="menu" mat-button (click)="scrollDown()" color="primary">
-          <mat-icon>expand_more</mat-icon>
-        </button>
+
+    <div fxFlex.xs="10" fxFlex.sm="15" fxFlex.md="20" fxFlex.lg="20">
+      <div class="shade-footer" fxFlexFill fxLayout="row" fxLayoutAlign="center stretch">
+        <span fxFlex.xs="25" fxFlex.sm="30" fxFlex.md="20" fxFlex.lg="15">
+          <div class="butt-wrapper">
+            <button aria-label="menu" mat-button (click)="scrollDown()">
+              <mat-icon>expand_more</mat-icon>
+            </button>
+          </div>
+        </span>
       </div>
     </div>
+
   </div>
   <div class="background-pic">
     <media-carousel></media-carousel>
