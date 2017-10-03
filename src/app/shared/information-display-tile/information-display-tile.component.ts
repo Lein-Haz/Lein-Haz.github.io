@@ -23,37 +23,23 @@ declare interface ElementPositionData{
     trigger('dispView', [
       state(ConstantService.ANIMATION_VIEW_STATES.IN_VIEW, style({
         transform: 'rotateY(0deg) rotateX(0deg) scale(1)',
-        backgroundColor: '#00FF00'
       })),
       state(ConstantService.ANIMATION_VIEW_STATES.NOT_IN_VIEW, style({
         transform: 'rotateY(0deg) rotateX(90deg) scale(0.5)',
-        backgroundColor: '#FF0000'
       })),
       transition(ConstantService.ANIMATION_VIEW_STATES.TRANSITION_INTO_VIEW, [
         style({
           transform: 'rotateY(0deg) rotateX(90deg) scale(0.5)'
         }),
-        /*animate('500ms 900ms cubic-bezier(.75,.23,.32,.82)', keyframes([
-          style({transform: 'rotateX(80deg) scale(0.3)', offset: 0}),
-          style({transform: 'rotateX(70deg) scale(0.4)', offset: 0.33}),
-          style({transform: 'rotateX(10deg) scale(0.85)', offset: 0.66}),
-          style({transform: 'rotateX(0deg) scale(1)', offset: 1}),
-        ])),*/
-        animate('550ms 250ms cubic-bezier(.75,.23,.32,.82)', style({
+        animate('550ms 150ms cubic-bezier(.75,.23,.32,.82)', style({
           transform: 'rotateX(0deg) scale(1)'
         })),
       ]),
       transition(ConstantService.ANIMATION_VIEW_STATES.TRANSITION_OUT_OF_VIEW, [
         group([
-          animate('900ms cubic-bezier(.1,.56,.3,.82)', style({
+          animate('500ms 100ms cubic-bezier(.1,.56,.3,.82)', style({
             transform: 'rotateY(90deg) scale(0.5)'
-          })),
-          /*animate('900ms cubic-bezier(.94,.24,.28,.97)', keyframes([
-            style({transform: 'rotateY(0deg)', offset: 0}),
-            style({transform: 'rotateY(20deg)', offset: 0.33}),
-            style({transform: 'rotateY(45deg)', offset: 0.66}),
-            style({transform: 'rotateY(90deg)', offset: 1}),
-          ])),*/
+          }))
         ])
       ])
     ])
@@ -65,7 +51,7 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
   @Input()
   text: string;
 
-  @ViewChild('meself') meEl : ElementRef;
+  @ViewChild('displayTile') tileElement : ElementRef;
 
   public elementPositionData: ElementPositionData;
 
@@ -78,8 +64,8 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
   ){}
 
   private initPositionData(){
-    let boundingRect = this.meEl.nativeElement.getBoundingClientRect();
-    let halfHeight = (this.meEl.nativeElement.clientHeight / 2);
+    let boundingRect = this.tileElement.nativeElement.getBoundingClientRect();
+    let halfHeight = (this.tileElement.nativeElement.clientHeight / 2);
     let viewHeight = this.windowRef.nativeWindow().innerHeight;
 
     this.elementPositionData = {
@@ -107,7 +93,7 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
       .filter((val)=>this.filterScrollsThatICareAbout(val))
       .subscribe(
       (val)=>{
-        console.log("In IDT, with ID: " + this.text+ " val is: " + val);
+        //console.log("In IDT, with ID: " + this.text+ " val is: " + val);
       },
       (err)=>{
         console.log(err);
@@ -127,13 +113,12 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
     this.initPositionData();
     this.doSubby();
 
-    //this.meEl;
     if(this.text == "0" ){
       this.initListener();
       //this.doSubby();
     }else if(this.text == "3" || this.text == "1"){
       //this.doSubby();
-      //console.log(this.meEl);
+      //console.log(this.tileElement);
       //this.initListener();
     }else if(this.text == "4"){
       //this.viewState = ConstantService.ANIMATION_VIEW_STATES.IN_VIEW;

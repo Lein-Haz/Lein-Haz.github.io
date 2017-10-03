@@ -1,25 +1,39 @@
 <div>
-  <div #meself class="display-tile-flex-wrap" fxLayout="column" fxLayoutAlign="center" fxLayoutAlign.xs="space-around">
-    Inview = {{inView}}
-    <div>
-      Enters View Bot At: {{elementPositionData.entersViewBotAt}}
+  <div #displayTile class="display-tile-flex-wrap" fxLayout="row" fxLayoutAlign="center" fxLayoutAlign.xs="space-around">
+    <div fxFlex="60%" fxLayout="column" fxLayoutAlign="center">
+      <div fxFlex="85%" fxFlexFill class="image-hold">
+        <div class="image-wrapper">
+          <img src="assets/Android_logo.svg">
+        </div>
+      </div>
+
+      <div fxFlex="15%" class="tech-heading">
+        <h3>
+          Android
+        </h3>
+      </div>
     </div>
-    <div>
-      Full View Bot At: {{elementPositionData.fullViewBotAt}}
-    </div>
-    <div>
-      Full View Top At: {{elementPositionData.fullViewTopAt}}
-    </div>
-    <div>
-      Exits View Top At: {{elementPositionData.exitsViewTopAt}}
-    </div>
-    <div>
-      Half Visible Bot At: {{elementPositionData.halfVisibleBotAt}}
-    </div>
-    <div>
-      Half Visible Top At: {{elementPositionData.halfVisibleTopAt}}
+    <div fxFlex="40%" fxLayout="column" fxLayoutAlign="center" class="details-wrap">
+      <mat-list>
+        <mat-list-item>
+          <mat-icon mat-list-icon>folder</mat-icon>
+          My first mobile interest
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>menu</mat-icon>
+          Jibber jabber
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>stop</mat-icon>
+          <ng-content></ng-content>
+        </mat-list-item>
+      </mat-list>
+
+      <div>
+
+      </div>
     </div>
 
-    <ng-content></ng-content>
+
   </div>
 </div>

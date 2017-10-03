@@ -45,6 +45,52 @@ export class ConstantService {
     'https://images.unsplash.com/photo-1490598000245-075175152d25?dpr=1&auto=compress,format&fm=jpg'
   ];
 
+  public static TECH_IMAGE_LINKS = [
+    {
+      name: 'Angular',
+      imgSrc: 'assets/Angular_logo.svg',
+      information: [
+        'Building data driven interfaces'
+      ]
+    }, {
+      name: 'Node.js',
+      imgSrc: 'assets/Node.js_logo.svg',
+      information: [
+        'Setting data services to drive user interfaces'
+      ]
+    }, {
+      name: 'TypeScript',
+      imgSrc: 'assets/TypeScript_logo.svg',
+      information: [
+        'I love this so far'
+      ]
+    }, {
+      name: 'Android',
+      imgSrc: 'assets/Android_logo.svg',
+      information: [
+        'My first mobile interest'
+      ]
+    }, {
+      name: 'Ionic',
+      imgSrc: 'assets/Ionic_logo.svg',
+      information: [
+        'An interesting cross section between Angular and native mobile development'
+      ]
+    }, {
+      name: 'Java',
+      imgSrc: 'assets/Java_logo.svg',
+      information: [
+        'Where I started'
+      ]
+    }, {
+      name: 'PHP',
+      imgSrc: 'assets/PHP_logo.svg',
+      information: [
+        'I can, but I\'d rather not'
+      ]
+    }
+  ];
+
   public static ANIMATION_VIEW_STATES = {
     IN_VIEW: 'isInView',
     NOT_IN_VIEW: 'isNotInView',
@@ -208,7 +254,5 @@ export class ConstantService {
       LAT: 37.625891,
       LNG: -122.243500
     },
-
-
   };
 }

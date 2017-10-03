@@ -1,4 +1,42 @@
+@import "../../../theme/variables";
+
+$display-hue: 100;
+
 .display-tile-flex-wrap{
+  background-color: mat-color($my-app-primary, $display-hue);
   min-height: 30em;
   border: 1px black solid;
+  padding: 0.5em;
+
+  .tech-heading{
+    text-align: center;
+  }
+
+  .image-hold{
+    .image-wrapper{
+      display: flex;
+      height: inherit;
+      width: auto;
+
+      img{
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+  }
+  .details-wrap{
+    .mat-list{
+      .mat-list-item{
+        font-size: 200%;
+      }
+      mat-list-item + mat-list-item{
+        padding-top: 0.5em;
+      }
+    }
+  }
+
+
+
 }
