@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {isUndefined} from "util";
 
 function _window(): any {
@@ -97,6 +97,30 @@ export class WindowRef {
         observer.complete();
       }, delay);
     });
+  }
+
+  public static windowScrollObserver(window: Window): Observable<any>{
+    let scrollObservable = Observable.create((observer)=>{
+      window.addEventListener('scroll', ()=>{
+        observer.next(window.scrollY);
+      });
+    });
+    return scrollObservable;
+  }
+
+  public getScrollSubject(): Subject<any>{
+    let window = this.nativeWindow();
+    let scrollObservable = WindowRef.windowScrollObserver(window);
+    let scrollSubject = new Subject();
+
+    scrollObservable.subscribe(scrollSubject);
+    return scrollSubject;
+  }
+
+  public checkPortraitOrientation(){
+    let viewWidth = this.nativeWindow().innerWidth;
+    let viewHeight = this.nativeWindow().innerHeight;
+    return (viewHeight > viewWidth);//if higher than wide, then portrait = true
   }
 
   private scrollStepObservableBuilder(scrollSteps: ScrollPoint[]): Observable<any>{

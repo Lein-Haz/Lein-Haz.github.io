@@ -21,7 +21,7 @@ export class MediaCarouselComponent implements OnInit, OnDestroy {
 
   private pictureDelay: number = 18000;
   private pictureIterator: number = 1;//starts at one since we load array[0] in OnInit
-  private protraitFlag: boolean = false;
+  private portraitFlag: boolean = false;
 
   ngOnInit() {
 
@@ -31,7 +31,7 @@ export class MediaCarouselComponent implements OnInit, OnDestroy {
       'https://images.unsplash.com/photo-1429794890858-d3016a2bb73c?dpr=1&auto=compress,format&fit=crop&fm=jpg&w=1920',
       'https://images.unsplash.com/photo-1490598000245-075175152d25?dpr=1&auto=compress,format&fit=crop&fm=jpg&w=1920'
     ];
-    this.checkAspectRatio();
+    this.portraitFlag = this.windowRef.checkPortraitOrientation();
     this.currentSrc = this.getRightSize(ConstantService.PICTURE_URLS[0]);
     this.picArray = ConstantService.PICTURE_URLS;
     this.startPictureLoop();
@@ -49,19 +49,13 @@ export class MediaCarouselComponent implements OnInit, OnDestroy {
     }
     let baseString = this.picArray[this.pictureIterator];
     this.pictureIterator++;
-    this.checkAspectRatio();
+    this.portraitFlag = this.windowRef.checkPortraitOrientation();
     return this.getRightSize(baseString);
   }
 
-  private checkAspectRatio(){
-    let viewWidth = this.windowRef.nativeWindow().innerWidth;
-    let viewHeight = this.windowRef.nativeWindow().innerHeight;
-    this.protraitFlag = (viewHeight > viewWidth);
-  }
-
   private getRightSize(baseUrl: string): string{
-    let sizingParam = (this.protraitFlag)? '&h=': '&w=';
-    let sizingParamValue = (this.protraitFlag)?
+    let sizingParam = (this.portraitFlag)? '&h=': '&w=';
+    let sizingParamValue = (this.portraitFlag)?
       this.roundHeight(this.windowRef.nativeWindow().innerHeight) :
       WindowRef.getMediaBreakPointFull(this.windowRef.nativeWindow().innerWidth);
     let fitParam = "&fit=crop";// have seen these values for fit: ['clip','crop'] currently not changing
