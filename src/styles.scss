@@ -8,6 +8,12 @@ body{
   font-family: Roboto, Verdana, "Helvetica Neue", "sans-serif";
 }
 
+.cardless-header{
+  padding: 1px;
+  border-left: 2px solid #33809F;
+  border-top: 2px solid #33809F;
+}
+
 .mat-sidenav-content,
 .mat-sidenav-container,
 .mat-drawer-content {

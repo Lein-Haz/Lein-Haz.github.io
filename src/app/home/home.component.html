@@ -13,11 +13,11 @@
     </p>
     <p>
       Though the biggest thing is I wanted to play around with is Progressive Web Apps and this
-      site is one(if I have everything setup correctly).
+      site is one (if I have everything setup correctly).
     </p>
     <p class="small-text">
-      *Disclaimer* Trying to run a lighthouse audit right now will fail, I had to do some goofy path things for Github pages(since I'm not at the domain root).
-      What will work, though is the actual fact that it is a PWA.  Go visit some pages let the service worker cache things up and come back when you are offline.
+      *Disclaimer* Trying to run a lighthouse audit will fail, I had to do some goofy path things for Github pages(since I'm not at the domain root).
+      What will work, though is the actual fact that this is a PWA.  Go visit some pages let the service worker cache things up and come back when you are offline.
     </p>
     <h4>
       Me
@@ -34,9 +34,9 @@
     </p>
   </mat-card>
 
-  <div class="tech-list">
+  <div>
     <div fxLayout="row">
-      <h4 fxFlex="nogrow">Tech Skills</h4>
+      <h4 fxFlex="nogrow" class="cardless-header">Tech Skills</h4>
     </div>
     <div fxLayout="column" fxLayoutWrap fxLayoutAlign="center" fxLayoutGap="1%" fxLayoutGap.xs="2%">
       <display-tile fxFlex="0 1 auto" *ngFor="let techInfo of techInfoArray; let i = index" [text]="i" [displayData]="techInfo"></display-tile>

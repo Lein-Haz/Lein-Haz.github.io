@@ -2,6 +2,7 @@
 
 $footer-hue: 900;
 .app-footer{
+  margin-top: 2em;
   background-color: mat-color($my-app-primary, $footer-hue);
   position: absolute;
   left: 0;
@@ -34,8 +35,5 @@ $footer-hue: 900;
   }
   span + span{
     margin-left: 1em;
-  }
-  i{
-    //font-size: 2em;
   }
 }
