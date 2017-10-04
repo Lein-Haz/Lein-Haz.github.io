@@ -8,7 +8,7 @@
   </mat-toolbar>
 
   <div>
-    <div fxLayout="column" fxLayoutWrap fxLayoutAlign="center" fxLayoutGap="1%">
+    <div fxLayout="column" fxLayoutWrap fxLayoutAlign="center" fxLayoutGap="1%" fxLayoutGap.xs="2%">
       <display-tile fxFlex="0 1 auto" *ngFor="let valt of testArray; let i = index" [text]="i" [displayData]="valt"></display-tile>
     </div>
   </div>
