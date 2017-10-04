@@ -11,13 +11,11 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import { MATERIAL_COMPATIBILITY_MODE } from "@angular/material";
 import {GoogleSigninModule} from "./shared/google-signin/google-signin.module";
 import {BaseModule} from "./base/base.module";
-import {FooterComponent} from "./shared/footer/footer.component";
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FooterComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
