@@ -1,50 +1,26 @@
 <div>
-  <div #displayTile class="display-tile-flex-wrap" fxLayout="row" fxLayoutAlign="center" fxLayoutAlign.xs="space-around">
-    <div fxFlex="60%" fxLayout="column" fxLayoutAlign="center">
-      <div fxFlex="80%" fxFlexFill class="image-hold">
+  <div #displayTile class="display-tile-flex-wrap" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center" fxLayout="row" fxLayoutAlign="center">
+    <div fxFlex.xs="40%" fxFlex="60%" fxLayout="column" fxLayoutAlign="center">
+      <div fxFlex="80%" class="image-hold">
         <div class="image-wrapper">
           <!--<img src="assets/Android_logo.svg">-->
           <img src="{{displayData.imgSrc}}" alt="{{displayData.name}} logo" (load)="onImageLoaded()">
         </div>
       </div>
-
-
     </div>
-    <div fxFlex="40%" fxLayout="column" fxLayoutAlign="center" class="details-wrap">
+
+    <div fxFlex.xs="60%" fxFlex="40%" fxLayout="column" fxLayoutAlign="end center" class="details-wrap">
       <div fxFlex="15%" class="tech-heading">
         <h3>
           {{displayData.name}}
         </h3>
       </div>
-      <div fxFlex>
-        <!--<mat-list>
-          <mat-list-item *ngFor="let info of displayData.information">
-            <mat-icon mat-list-icon>stop</mat-icon>
+      <div fxFlex="85%">
+        <span fxLayout.lt-md="row" fxLayoutAlign.lt-md="center" fxLayoutWrap.lt-md fxLayout="column" fxLayoutAlign="center" class="tech-information">
+          <div fxFlex="100%" *ngFor="let info of displayData.information" class="tech-line">
             {{info}}
-          </mat-list-item>
-          <mat-list-item>
-            <mat-icon mat-list-icon>stop</mat-icon>
-            <ng-content></ng-content>
-          </mat-list-item>
-        </mat-list>-->
-        <!--<mat-list>
-          <mat-list-item>
-            <mat-icon mat-list-icon>folder</mat-icon>
-            My first mobile interest
-          </mat-list-item>
-          <mat-list-item>
-            <mat-icon mat-list-icon>menu</mat-icon>
-            Jibber jabber
-          </mat-list-item>
-          <mat-list-item>
-            <mat-icon mat-list-icon>stop</mat-icon>
-            <ng-content></ng-content>
-          </mat-list-item>
-        </mat-list>-->
-      </div>
-
-      <div>
-
+          </div>
+        </span>
       </div>
     </div>
 
