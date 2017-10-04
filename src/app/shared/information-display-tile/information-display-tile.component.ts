@@ -54,10 +54,12 @@ declare interface DisplayData{
 
 export class InformationDisplayTileComponent implements OnInit, OnDestroy{
 
+  public height:number;
+
   @Input()
   text: string;
   @Input()
-  displayData: DisplayData;
+  public displayData: DisplayData;
 
   @ViewChild('displayTile') tileElement : ElementRef;
 
@@ -87,12 +89,7 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
   }
 
   onImageLoaded(){
-    //console.log("onImageLoaded called");
-    this.initPositionData();
-    if(this.text == "5"){
-      console.log("img src on change happened");
-      //this.updatePositionData();
-    }
+    this.initPositionData();//elements resize after image loads so update position data
   }
 
   filterScrollsThatICareAbout(val):boolean{
@@ -121,16 +118,23 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
     );
   }
 
-  private initListener(){
-
-  }
-
-  heightCalls(source: string = 'Nunya'){
+  logHeightCalls(source: string = 'Nunya'){
     console.log("From " + source + " vals are");
     console.log("Ele client height is " + this.tileElement.nativeElement.clientHeight);
     console.log("Ele offset height is " + this.tileElement.nativeElement.offsetHeight);
     console.log("Ele scroll height is " + this.tileElement.nativeElement.scrollHeight);
     console.log("Done logging " + source + "values");
+  }
+
+  logElementPosData(){
+    console.log("This is the animation keying data for the component with the \"id\" of " + this.text);
+    console.log("This el enters view bot at " + this.elementPositionData.entersViewBotAt);
+    console.log("This el is in full view bot at " + this.elementPositionData.fullViewBotAt);
+    console.log("This el is in full view top at " + this.elementPositionData.fullViewTopAt);
+    console.log("This el leaves view top at " + this.elementPositionData.exitsViewTopAt);
+    console.log("This el is half visible bot at: " + this.elementPositionData.halfVisibleBotAt + " (Triggers animation)");
+    console.log("This el is half visible top at: " + this.elementPositionData.halfVisibleTopAt + " (Triggers animation)");
+    console.log("Done logging elementPositionData values");
   }
 
   ngOnInit(): void {
@@ -139,14 +143,11 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
     this.subToScrollSubject();
 
     if(this.text == "0" ){
-      //this.initListener();
       //this.subToScrollSubject();
     }else if(this.text == "3" || this.text == "1"){
       //this.subToScrollSubject();
       //console.log(this.tileElement);
-      //this.initListener();
     }else if(this.text == "5"){
-      //this.initListener();
       //this.viewState = ConstantService.ANIMATION_VIEW_STATES.IN_VIEW;
     }
   }
