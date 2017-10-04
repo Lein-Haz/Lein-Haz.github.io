@@ -4,7 +4,6 @@ $footer-hue: 900;
 .app-footer{
   background-color: mat-color($my-app-primary, $footer-hue);
   position: absolute;
-  bottom: 0;
   left: 0;
   width: 100%;
 }
