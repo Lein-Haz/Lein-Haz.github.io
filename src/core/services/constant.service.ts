@@ -39,12 +39,17 @@ export class ConstantService {
   };
 
   public static PICTURE_URLS = [
-    'https://images.unsplash.com/photo-1428094479093-8973a318bd76?dpr=1&auto=compress,format&fm=jpg',
-    'https://images.unsplash.com/photo-1444882158336-bcfbd9298309?dpr=1&auto=compress,format&fm=jpg',
-    'https://images.unsplash.com/photo-1435783099294-283725c37230?dpr=1&auto=compress,format&fm=jpg',
-    'https://images.unsplash.com/photo-1459664018906-085c36f472af?dpr=1&auto=compress,format&fm=jpg',
-    'https://images.unsplash.com/photo-1429794890858-d3016a2bb73c?dpr=1&auto=compress,format&fm=jpg',
-    'https://images.unsplash.com/photo-1490598000245-075175152d25?dpr=1&auto=compress,format&fm=jpg'
+    'https://images.unsplash.com/photo-1428094479093-8973a318bd76?dpr=1&auto=compress,format&fm=jpg',//Aurora
+    'https://images.unsplash.com/photo-1490598000245-075175152d25?dpr=1&auto=compress,format&fm=jpg',//golden gate
+    'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?dpr=1&auto=compress,format&fm=jpg',//nasa space shot
+    'https://images.unsplash.com/photo-1459664018906-085c36f472af?dpr=1&auto=compress,format&fm=jpg',//fractal flower
+    'https://images.unsplash.com/photo-1444882158336-bcfbd9298309?dpr=1&auto=compress,format&fm=jpg',//Singapore
+    'https://images.unsplash.com/photo-1435783099294-283725c37230?dpr=1&auto=compress,format&fm=jpg'//Hana, Maui
+  ];
+
+  public static MORE_PICTURES_THAT_IM_NOT_USING_RN = [
+    'https://images.unsplash.com/photo-1417577097439-425fb7dec05e?dpr=1&auto=compress,format&fm=jpg',//nebula & earth
+    'https://images.unsplash.com/photo-1429794890858-d3016a2bb73c?dpr=1&auto=compress,format&fm=jpg',//UAE city, AB or Dubai
   ];
 
   public static TECH_INFO_ARRAY = [
@@ -52,53 +57,61 @@ export class ConstantService {
       name: 'Angular',
       imgSrc: 'assets/Angular_logo.svg',
       information: [
-        'So good',
-        'Building data driven interfaces',
-        '1.x or 2+ whatever, it don\'t matter'
+        'What I\'m most comfortable with, spent a large part of the past two years focused on this',
+        'Building responsive data driven user interfaces...',
+        'Much like this site',
+        '1.x or 2+ whatever, it doesn\'t matter'
       ]
     }, {
       name: 'Node.js',
       imgSrc: 'assets/Node.js_logo.svg',
       information: [
-        'Setting data services to drive user interfaces',
-        'Of course Express too',
-        'Basically MEAN stack, if MYSQL were \'M\''
+        'Most often I\'ve paired front ends with this, though not exclusively',
+        'Setup a TypeScript Node API recently',
+        'Of course have used Express too.',
+        'Basically MEAN stack, if MYSQL were the \'M\''
       ]
     }, {
       name: 'TypeScript',
       imgSrc: 'assets/TypeScript_logo.svg',
       information: [
-        'Microsoft has been up to some good stuff lately',
-        'I love this so far',
+        'Obviously used for any newer Angular projects',
+        'Microsoft has been up to some good stuff lately, TS is pretty sweet',
+        'This and Progressive Web Apps is what I\'ve been learning recently',
       ]
     }, {
       name: 'Android',
       imgSrc: 'assets/Android_logo.svg',
       information: [
-        'Wouldn\'t mind doing more of this',
-        'My first mobile interest'
+        'Began messing with Android back at Jellybean(4.1)',
+        'Wouldn\'t mind doing more of this again',
+        'Native certainly has it\'s place.  I feel like web tech can accomplish most of what you want out of an app'
       ]
     }, {
       name: 'Ionic',
       imgSrc: 'assets/Ionic_logo.svg',
       information: [
-        'Have actual project/work experience here',
-        'An interesting cross section between Angular and native mobile development'
+        'Speaking of web tech being able to meet most of the requirements for a phone app',
+        'Worked on a App for iOS and Android out in production',
+        'An interesting cross section between Angular and mobile development',
+        'This and PWA\'s(Once Apple gets with is) seems like it will continue to blur what an App is'
       ]
     }, {
       name: 'Java',
       imgSrc: 'assets/Java_logo.svg',
       information: [
-        'Where I started',
+        'This is what I started with, this is what made me think, "Oh maybe this programming thing is a good choice."',
+        'Definitely comfortable with the language in general',
         'Though most of the Java I deal with now is Android'
       ]
     }, {
       name: 'PHP',
-      imgSrc: 'assets/PHP_logo.svg',
+      imgSrc: 'assets/PHP_Full_logo.svg',
       information: [
-        'Symfony is pretty tolerable for a PHP framework',
-        'Then you just use Symfony as an API to serve your Angular front-end',
-        'Basically I can, but I\'d rather not'
+        'This language gets a lot of hate, I feel like the implementation is a big reason why',
+        'When you use PHP to dynamically create html code to be served, well then its pretty heinous',
+        'Symfony is pretty tolerable for a PHP framework, you can even just use it as an API to serve your, front end',
+        'To conclude, "Basically I can, but I\'d rather not"'
       ]
     }
   ];
