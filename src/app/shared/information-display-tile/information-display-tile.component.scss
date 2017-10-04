@@ -20,37 +20,21 @@ $display-hue: 100;
   background-color: mat-color($my-app-primary, $display-hue, 0.6);
 
   min-height: 30em;
-  border: 1px black solid;
   padding: 0.5em;
-
-
-  .tech-information{
-    /*.tech-line{
-      //height: 3em;
-      font-size: 1.5em;
-      .tech-line + .tech-line{
-        border-bottom: 1px solid red;
-      }
-    }*/
-  }
 
   .image-hold{
 
     .image-wrapper{
-      display: flex;//working
-      //height: inherit;//working
-      //width: auto;//working
+      display: flex;
       height: 100%;
       width: 100%;
 
       img{
-        //width: 100%;//working
-        width: inherit;
+        width: 100%;
         max-width: 100%;
         max-height: 100%;
       }
     }
-
   }
 }
 
@@ -59,17 +43,12 @@ $display-hue: 100;
   h1,h2,h3,h4,h5,h6{
     margin: 0;
     font-size: 2em;
-    &:after{
-      content:'';
-      display: block;
-      border-bottom: 2px solid mat-color($my-app-accent, 600, 0.8);
-    }
+    border-bottom: 2px solid mat-color($my-app-accent, 600, 0.8);
   }
 }
 
 .tech-line{
-  //height: 3em;
-  padding: 0.3em 0;
+  padding: 0.3em 0;//a bit on top and bottom
   font-size: 1.5em;
   border-top: 1px solid mat-color($my-app-neutral, $display-hue);
   &:last-child{
