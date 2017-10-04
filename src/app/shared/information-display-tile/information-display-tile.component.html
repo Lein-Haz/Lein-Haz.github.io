@@ -1,13 +1,16 @@
 <div>
-  <div #displayTile class="display-tile-flex-wrap mat-card" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center center" fxLayout="row" fxLayoutAlign="center">
-    <div fxFlex.xs="10%" fxShow.lt-md fxHide.gt-sm fxFlex="15%" class="tech-heading">
+  <div #displayTile class="display-tile-flex-wrap mat-card"
+       fxLayout.lt-md="column" fxLayoutAlign.lt-md="center stretch" fxLayoutGap.lt-md="1%"
+       fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center" fxLayoutGap.gt-sm="1%"
+       fxLayout="row" fxLayoutAlign="center">
+    <div fxFlex.lt-md="10%" fxFlexAlign.lt-md="center" fxShow.lt-md fxHide.gt-sm fxFlex="15%" class="tech-heading">
       <!--Hides on medium and up-->
       <h3>
         {{displayData.name}}
       </h3>
     </div>
 
-    <div fxFlex.xs="40%" fxFlex="60%" fxLayout="column" fxLayoutAlign="center">
+    <div fxFlex.lt-md="40%" fxFlex.gt-sm="60%" fxLayout="column" fxLayoutAlign="center">
       <div fxFlex="80%" class="image-hold">
         <div class="image-wrapper">
           <img src="{{displayData.imgSrc}}" alt="{{displayData.name}} logo" (load)="onImageLoaded()">
@@ -15,22 +18,24 @@
       </div>
     </div>
 
-    <div fxFlex.xs="50%" fxFlex="40%" fxLayout="column" fxLayoutAlign="end center" class="details-wrap">
-      <div fxFlex="15%" fxHide.lt-md fxShow.gt-sm class="tech-heading">
-        <!--Hides on small and medium-->
-        <h3>
-          {{displayData.name}}
-        </h3>
-      </div>
-      <div fxFlex="85%">
-        <span fxLayout.lt-md="row" fxLayoutAlign.lt-md="center" fxLayoutWrap.lt-md fxLayout="column" fxLayoutAlign="center">
-          <div fxFlex="100%" *ngFor="let info of displayData.information" class="tech-line">
-            {{info}}
-          </div>
-        </span>
+    <div fxFlex.lt-md="50%" fxFlex.gt-sm="40%"  class="details-wrap">
+      <div fxFlexFill fxLayoutAlign.lt-md="end stretch" fxLayout="column" fxLayoutAlign="space-between">
+        <div fxFlex="15%" fxFlexAlign.gt-sm="center" fxFlex.md="0 1 15%" fxHide.lt-md fxShow.gt-sm class="tech-heading">
+          <!--Hides on small and medium-->
+          <h3>
+            {{displayData.name}}
+          </h3>
+        </div>
+        <div fxFlex.lt-md="100%" fxFlex.gt-sm="85%">
+          <span fxLayout.lt-md="column" fxLayoutAlign.lt-md="end"
+                fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="end" fxLayoutWrap.gt-sm fxFlexAlign.gt-sm="end">
+                <!--fxLayout="column" fxLayoutAlign="center">-->
+            <div fxFlex="100%" *ngFor="let info of displayData.information" class="tech-line">
+              {{info}}
+            </div>
+          </span>
+        </div>
       </div>
     </div>
-
-
   </div>
 </div>
