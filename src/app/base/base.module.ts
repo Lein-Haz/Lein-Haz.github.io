@@ -16,6 +16,7 @@ import {GoogleSigninModule} from "../shared/google-signin/google-signin.module";
 import {NavComponent} from "../shared/nav/nav.component";
 import {MediaCarouselComponent} from "../shared/media-shade/media-carousel.component";
 import {TechDemosModule} from "../tech-demos/tech-demos.module";
+import {FooterComponent} from "../shared/footer/footer.component";
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import {TechDemosModule} from "../tech-demos/tech-demos.module";
     BaseComponent,
     MediaShadeComponent,
     MediaCarouselComponent,
-    NavComponent
+    NavComponent,
+    FooterComponent
   ],
   providers: [BaseResolve]
 })
