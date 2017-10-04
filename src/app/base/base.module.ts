@@ -15,6 +15,7 @@ import {BaseResolve} from "./base.resolve";
 import {GoogleSigninModule} from "../shared/google-signin/google-signin.module";
 import {NavComponent} from "../shared/nav/nav.component";
 import {MediaCarouselComponent} from "../shared/media-shade/media-carousel.component";
+import {TechDemosModule} from "../tech-demos/tech-demos.module";
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {MediaCarouselComponent} from "../shared/media-shade/media-carousel.compo
     MapStuffModule,
     OauthreturnModule,
     AboutModule,
-    GoogleSigninModule
+    GoogleSigninModule,
+    TechDemosModule
   ],
   declarations: [
     BaseComponent,
