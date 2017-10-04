@@ -16,9 +16,12 @@ export class BaseComponent implements OnInit {
 
   public window: Window;
   public navHeight: number;
+  public displayText: string;
 
   ngOnInit(): void {
     this.window = this.windowRef.nativeWindow();
+
+    this.displayText = "Can I help you?";//TODO not here not like this
   }
 
   scrollHandler($event){

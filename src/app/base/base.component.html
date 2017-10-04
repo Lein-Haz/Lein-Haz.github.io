@@ -38,7 +38,7 @@
     <div class="body-content">
       <app-nav (navToggle)="sidenav.toggle()" (signedInState)="updateStatus($event)" (navHeightSize)="updateNavHeight($event)"></app-nav>
 
-      <media-shade (scrollPast)="scrollHandler($event)"></media-shade>
+      <media-shade [shadeText]="displayText" (scrollPast)="scrollHandler($event)"></media-shade>
 
       <div fxLayout="row" fxLayoutAlign="center center" class="app-content">
         <div fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="75%" fxFlex.lg="75%" fxFlex.xl="66%">

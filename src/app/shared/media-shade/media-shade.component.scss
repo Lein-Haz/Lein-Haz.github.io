@@ -69,6 +69,13 @@ $shade-hue: 600;
     z-index: 1;
     text-align: center;
     color: mat-contrast($my-app-neutral, $shade-hue);
+    //color: white;
+    font-family: Roboto, "Helvetica Neue", "sans-serif";
+    p{
+      font-family: Roboto, "Helvetica Neue", "sans-serif" !important;
+      z-index: 2;
+      color: white !important;
+    }
   }
 
   & + .background-pic{
