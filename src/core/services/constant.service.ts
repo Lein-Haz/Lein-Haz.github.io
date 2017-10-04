@@ -94,7 +94,7 @@ export class ConstantService {
         'Speaking of web tech being able to meet most of the requirements for a phone app',
         'Worked on a App for iOS and Android out in production',
         'An interesting cross section between Angular and mobile development',
-        'This and PWA\'s(Once Apple gets with is) seems like it will continue to blur what an App is'
+        'This and PWA\'s(Once Apple gets with it) seems like it will continue to blur what an App is'
       ]
     }, {
       name: 'Java',
