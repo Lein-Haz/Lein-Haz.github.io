@@ -1,3 +1,38 @@
-<div>
-  Thats a footer
+<div class="app-footer">
+  <div class="app-footer-wrap">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>
+
+      <div fxFlex.lt-md="100%" fxFlex.gt-sm="50%" fxFlex="50%"><!--"column" 1 site stuff-->
+        <div fxLayout="column" fxLayoutAlign.lt-md="start start" fxLayoutAlign="start center">
+          <div fxFlex="100%">
+            What even goes in a footer? Oh, stuff like who made this site...Well I did.
+          </div>
+          <div fxFlex="100%">
+            Uhh, Who is I?  Well I is Phil.   Huh yeah, that's not very official, lets try again. <i class="fa fa-arrow-down"></i>
+          </div>
+          <div fxFlex="100%" class="actual-cr">
+            copyright <i class="fa fa-copyright"></i> 2017 - The Philip Zahniel
+          </div>
+          <div fxFlex="100%" class="actual-cr">
+            Nailed it
+          </div>
+        </div>
+      </div>
+
+      <div fxFlex.lt-md="100%" fxFlex.gt-sm="50%" fxFlex="50%"><!--"column" 2 site stuff-->
+        <div fxLayout="column" fxLayoutAlign.lt-md="start center" fxLayoutAlign="start center">
+          <h4 fxFlex="10">Icons side</h4>
+          <div fxFlex="90%" class="icons-section">
+            <span><a target="_blank" href="https://github.com/Lein-Haz" aria-hidden="true"><i class="fa fa-github fa-3x"></i></a></span>
+            <span><a target="_blank" href="https://www.linkedin.com/in/pzahniel/" aria-hidden="true"><i class="fa fa-linkedin fa-3x"></i></a></span>
+            <span matTooltip="Yeah I'm just linking to the main site" [matTooltipPosition]="'above'">
+              <a target="_blank" href="https://www.facebook.com/" aria-hidden="true"><i class="fa fa-facebook fa-3x"></i></a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
 </div>

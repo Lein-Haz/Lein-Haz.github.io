@@ -1,0 +1,42 @@
+@import "../../../theme/variables";
+
+$footer-hue: 900;
+.app-footer{
+  background-color: mat-color($my-app-primary, $footer-hue);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.app-footer-wrap{
+  font-family: Verdana, Roboto, "Helvetica Neue", "sans-serif";
+  margin: 1.5em 0;
+  padding: 0.5em;
+  color: mat-color($my-app-neutral, 100, 0.6);
+  font-size: 0.9em;
+  .actual-cr{
+    margin: 0.5em 0;
+  }
+}
+
+.icons-section{
+  a{
+    color: mat-color($my-app-neutral, 100, 0.6);
+    :visited{
+      color: initial;
+    }
+    :link{
+      color: initial;
+    }
+    :hover{
+      color: mat-color($my-app-accent, 300)
+    }
+  }
+  span + span{
+    margin-left: 1em;
+  }
+  i{
+    //font-size: 2em;
+  }
+}
