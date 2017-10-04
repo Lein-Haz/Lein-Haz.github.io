@@ -47,7 +47,7 @@ export class ConstantService {
     'https://images.unsplash.com/photo-1490598000245-075175152d25?dpr=1&auto=compress,format&fm=jpg'
   ];
 
-  public static TECH_IMAGE_LINKS = [
+  public static TECH_INFO_ARRAY = [
     {
       name: 'Angular',
       imgSrc: 'assets/Angular_logo.svg',
