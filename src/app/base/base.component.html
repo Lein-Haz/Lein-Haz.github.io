@@ -13,19 +13,19 @@
         </mat-list-item>-->
 
         <mat-list-item [routerLink]="['/base/home']">
-          <a>Home</a>
+          <a><i class="fa fa-home fa-lg"></i> Home</a>
         </mat-list-item>
 
         <mat-list-item [routerLink]="['/base/map-stuff']">
-          <a>Map</a>
+          <a><i class="fa fa-globe fa-lg"></i> Map</a>
         </mat-list-item>
 
         <mat-list-item [routerLink]="['/base/tech-demos']">
-          <a>Tech Demos</a>
+          <a><i class="fa fa-cogs fa-lg"></i> Tech Demos</a>
         </mat-list-item>
 
         <mat-list-item [routerLink]="['/base/about']">
-          <span>About</span>
+          <span><i class="fa fa-rebel fa-lg"></i> About</span>
         </mat-list-item>
 
         <mat-list-item *ngIf="isSignedIn" (click)="logout()">
