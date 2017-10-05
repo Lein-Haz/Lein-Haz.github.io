@@ -79,7 +79,7 @@ mat-toolbar.full-nav{
 
 mat-card{
   @media #{$break-point-xs} {
-    padding: 0 !important;
+    padding: 0.1em !important;
   }
 
   @media #{$break-point-sm} {

@@ -62,7 +62,7 @@ $shade-hue: 600;
     z-index: 1;
     height: inherit;
     width: 100%;
-    background-color: mat-color($my-app-neutral, $shade-hue, 0.5);
+    background-color: mat-color($my-app-neutral, $shade-hue, 0.45);
   }
 
   .shade-text{
@@ -72,7 +72,12 @@ $shade-hue: 600;
     font-family: Verdana, Roboto, "Helvetica Neue", "sans-serif";
     div{
       z-index: 2;
+      padding-bottom: 0.3em;
       color: white !important;
+      background-color: mat-color($my-app-accent, 1000, 0.7);
+      &:first-child{
+        padding-top: 0.3em;
+      }
     }
   }
 
