@@ -40,11 +40,12 @@ export class ConstantService {
 
   public static PICTURE_URLS = [
     'https://images.unsplash.com/photo-1428094479093-8973a318bd76?dpr=1&auto=compress,format&fm=jpg',//Aurora
+    'https://images.unsplash.com/photo-1435783099294-283725c37230?dpr=1&auto=compress,format&fm=jpg',//Hana, Maui
     'https://images.unsplash.com/photo-1490598000245-075175152d25?dpr=1&auto=compress,format&fm=jpg',//golden gate
     'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?dpr=1&auto=compress,format&fm=jpg',//nasa space shot
     'https://images.unsplash.com/photo-1459664018906-085c36f472af?dpr=1&auto=compress,format&fm=jpg',//fractal flower
-    'https://images.unsplash.com/photo-1444882158336-bcfbd9298309?dpr=1&auto=compress,format&fm=jpg',//Singapore
-    'https://images.unsplash.com/photo-1435783099294-283725c37230?dpr=1&auto=compress,format&fm=jpg'//Hana, Maui
+    'https://images.unsplash.com/photo-1444882158336-bcfbd9298309?dpr=1&auto=compress,format&fm=jpg'//Singapore
+
   ];
 
   public static MORE_PICTURES_THAT_IM_NOT_USING_RN = [
