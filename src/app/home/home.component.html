@@ -38,7 +38,7 @@
     <div fxLayout="row">
       <h4 fxFlex="nogrow" class="cardless-header">Tech Skills</h4>
     </div>
-    <div fxLayout="column" fxLayoutWrap fxLayoutAlign="center" fxLayoutGap="1%" fxLayoutGap.xs="2%">
+    <div fxLayout="column" fxLayoutWrap fxLayoutAlign="center">
       <display-tile fxFlex="0 1 auto" *ngFor="let techInfo of techInfoArray; let i = index" [text]="i" [displayData]="techInfo"></display-tile>
     </div>
   </div>

@@ -1,3 +1,15 @@
+@import "../../theme/variables";
+
 mat-toolbar + mat-card {
   margin-bottom: 1em;
+}
+
+display-tile + display-tile{
+  @media #{$break-point-mob} {
+    margin-top: 0.55em;
+  }
+
+  @media #{$break-point-dt} {
+    margin-top: 0.75em;
+  }
 }
