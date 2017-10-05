@@ -10,8 +10,8 @@ body{
 
 .cardless-header{
   padding: 1px;
-  border-left: 2px solid #33809F;
-  border-top: 2px solid #33809F;
+  border-left: 2px solid mat-color($my-app-primary, 600);
+  border-top: 2px solid mat-color($my-app-primary, 600);
 }
 
 .mat-sidenav-content,
