@@ -1,7 +1,7 @@
 <div class="screen-flex-tile-wrap" fxLayout="row" fxLayoutAlign="center center" fxLayoutAlign.xs="space-around">
   <div fxFlex.xs="100%" fxFlex.md="75%" fxFlex="66%">
     <div fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.xs="space-around">
-      <button fxFlex="1 1 100%" fxLayout="row" fxLayoutAlign="center center" class="screen-button" mat-raised-button color="primary">
+      <button fxFlex="1 1 100%" fxLayout="row" fxLayoutAlign="center center" class="screen-button" (click)="tileClickHandler()" mat-raised-button color="primary">
         <div fxFlex="100" class="screen-tile-button-group" fxLayout="column" fxLayoutAlign="center center">
           <span fxFlex="nogrow">
             <!-- Allows for optional HTML insertion(transclusion in NG1), used for icons on the home screen -->

@@ -21,6 +21,11 @@ export class TechDemosComponent implements OnInit {
     }
   }
 
+  tileClickHandler($event){
+    console.log("You clicked!");
+    console.log($event);
+  }
+
   moreTiles(){
     let addCount = (this.tileArray.length < 2)? 2 : this.tileArray.length / 2;
     this.delta(this.tileArray.length + addCount);

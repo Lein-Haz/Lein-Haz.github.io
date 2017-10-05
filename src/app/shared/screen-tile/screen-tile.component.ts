@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {EnterLeaveAnimation} from "../../../core/animations/enter-leave.animation";
 
 @Component({
@@ -14,9 +14,14 @@ export class ScreenTileComponent implements OnInit{
   @Input()
   title: string;
 
+  @Output() tileClick: EventEmitter<any> = new EventEmitter();
+
   constructor(
   ){}
 
+  tileClickHandler(){
+    this.tileClick.emit(this.title);
+  }
 
   ngOnInit(): void {
 
