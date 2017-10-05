@@ -10,15 +10,15 @@
       </h3>
     </div>
 
-    <div fxFlex.lt-md="40%" fxFlex.gt-sm="60%" fxLayout="column" fxLayoutAlign="center">
-      <div fxFlex="80%" class="image-hold">
+    <div fxFlex.lt-md="40%" fxFlex.md="50%" fxFlex.lg="60%" fxLayout="column" fxLayoutAlign="center">
+      <div fxFlex.lt-md="80%" fxFlex.md="75%" fxFlex.lg="70%" class="image-hold">
         <div class="image-wrapper">
           <img src="{{displayData.imgSrc}}" alt="{{displayData.name}} logo" (load)="onImageLoaded()">
         </div>
       </div>
     </div>
 
-    <div fxFlex.lt-md="50%" fxFlex.gt-sm="40%">
+    <div fxFlex.lt-md="50%" fxFlex.md="50%" fxFlex.lg="40%">
       <div fxFlexFill fxLayoutAlign.lt-md="end stretch" fxLayout="column" fxLayoutAlign="space-between">
         <div fxFlex="15%" fxFlexAlign.gt-sm="center" fxFlex.gt-sm="15%" fxHide.lt-md fxShow.gt-sm class="tech-heading">
           <!--Hides on small and medium-->
@@ -29,7 +29,6 @@
         <div fxFlex.lt-md="100%" fxFlex.gt-sm="85%">
           <span fxLayout.lt-md="column" fxLayoutAlign.lt-md="end"
                 fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="end" fxLayoutWrap.gt-sm fxFlexAlign.gt-sm="end">
-                <!--fxLayout="column" fxLayoutAlign="center">-->
             <div fxFlex="100%" *ngFor="let info of displayData.information" class="tech-line">
               {{info}}
             </div>
