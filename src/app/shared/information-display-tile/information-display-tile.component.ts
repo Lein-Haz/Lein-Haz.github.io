@@ -10,8 +10,8 @@ declare interface ElementPositionData{
   fullViewBotAt: number;
   fullViewTopAt: number;
   exitsViewTopAt: number;
-  halfVisibleBotAt: number;
-  halfVisibleTopAt: number;
+  viewTopAnimationThreshold: number;
+  viewBotAnimationThreshold: number;
 }
 
 declare interface DisplayData{
@@ -76,15 +76,17 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
   private initPositionData(){
     let boundingRect = this.tileElement.nativeElement.getBoundingClientRect();
     let halfHeight = (this.tileElement.nativeElement.clientHeight / 2);
+    let quarterHeight = (this.tileElement.nativeElement.clientHeight / 4);
     let viewHeight = this.windowRef.nativeWindow().innerHeight;
+    this.height = this.tileElement.nativeElement.clientHeight;
 
     this.elementPositionData = {
       entersViewBotAt: boundingRect.top - viewHeight,//top of element = bottom of view
       fullViewBotAt: boundingRect.bottom - viewHeight,//bottom of element = bottom of view
       fullViewTopAt: boundingRect.top,//top of element = top of view
       exitsViewTopAt: boundingRect.bottom,//bottom of element = top of view
-      halfVisibleBotAt: (boundingRect.top - viewHeight) + halfHeight,
-      halfVisibleTopAt: boundingRect.top + halfHeight,
+      viewTopAnimationThreshold: boundingRect.top + (3 * quarterHeight),//ie 3 quarter height
+      viewBotAnimationThreshold: (boundingRect.top - viewHeight) + quarterHeight
     };
   }
 
@@ -93,7 +95,7 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
   }
 
   filterScrollsThatICareAbout(val):boolean{
-    let inView = (val > this.elementPositionData.halfVisibleBotAt && val < this.elementPositionData.halfVisibleTopAt);
+    let inView = (val > this.elementPositionData.viewBotAnimationThreshold && val < this.elementPositionData.viewTopAnimationThreshold);
     //let inView = (val > this.elementPositionData.entersViewBotAt && val < this.elementPositionData.exitsViewTopAt);
 
     this.viewState = (inView) ? ConstantService.ANIMATION_VIEW_STATES.IN_VIEW : ConstantService.ANIMATION_VIEW_STATES.NOT_IN_VIEW;
@@ -123,6 +125,7 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
     console.log("Ele client height is " + this.tileElement.nativeElement.clientHeight);
     console.log("Ele offset height is " + this.tileElement.nativeElement.offsetHeight);
     console.log("Ele scroll height is " + this.tileElement.nativeElement.scrollHeight);
+    console.log("Viewport height is " + this.windowRef.nativeWindow().innerHeight);
     console.log("Done logging " + source + "values");
   }
 
@@ -132,9 +135,14 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
     console.log("This el is in full view bot at " + this.elementPositionData.fullViewBotAt);
     console.log("This el is in full view top at " + this.elementPositionData.fullViewTopAt);
     console.log("This el leaves view top at " + this.elementPositionData.exitsViewTopAt);
-    console.log("This el is half visible bot at: " + this.elementPositionData.halfVisibleBotAt + " (Triggers animation)");
-    console.log("This el is half visible top at: " + this.elementPositionData.halfVisibleTopAt + " (Triggers animation)");
+    console.log("This el begins animation bot at: " + this.elementPositionData.viewBotAnimationThreshold + " (Triggers animation)");
+    console.log("This el begins animation top at: " + this.elementPositionData.viewTopAnimationThreshold + " (Triggers animation)");
     console.log("Done logging elementPositionData values");
+  }
+
+  doStuffFunction(){
+    this.logElementPosData();
+    this.logHeightCalls();
   }
 
   ngOnInit(): void {
@@ -148,6 +156,7 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
       //this.subToScrollSubject();
       //console.log(this.tileElement);
     }else if(this.text == "5"){
+      //this.doStuffFunction();
       //this.viewState = ConstantService.ANIMATION_VIEW_STATES.IN_VIEW;
     }
   }
