@@ -15,7 +15,7 @@
                    *ngFor="let val of tileArray" [title]="val" (tileClick)="tileClickHandler($event)">
       </screen-tile>-->
       <screen-tile fxFlex.xs="1 1 100%" fxFlex.sm="1 1 50%" fxFlex.md="1 1 33%" fxFlex.lg="1 1 25%" fxFlex.xl="1 1 20%"
-                   *ngFor="let tileData of screenTileArray" [title]="tileData.value" (tileClick)="tileClickHandler($event)">
+                   *ngFor="let tileData of screenTileArray" [data]="tileData" (tileClick)="tileClickHandler($event)">
       </screen-tile>
     </div>
   </mat-card>

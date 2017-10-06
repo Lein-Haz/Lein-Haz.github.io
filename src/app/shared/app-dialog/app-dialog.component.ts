@@ -10,17 +10,16 @@ export class AppDialogComponent {
   constructor(
     @Inject(MD_DIALOG_DATA) public data: any,
     public dialogRef: MdDialogRef<AppDialogComponent>
-  ) {}
+  ) {
+    console.log(data);
+  }
 
-  theYoshiClick(){
+  confirm(){
     console.log("Yoshi");
-    this.dialogRef.close({
-      words: "YOSHI!!!!"
-    });
+    this.dialogRef.close(true);
   }
 
   cancel(){
-    console.log("Dia cancelled");
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 }

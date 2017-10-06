@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {EnterLeaveAnimation} from "../../../core/animations/enter-leave.animation";
+import {ScreenTileData} from "../../../core/models/IScreenTileData.model";
 
 @Component({
   selector: "screen-tile",
@@ -14,13 +15,15 @@ export class ScreenTileComponent implements OnInit{
   @Input()
   title: string;
 
-  @Output() tileClick: EventEmitter<any> = new EventEmitter();
+  @Input() data: ScreenTileData;
+
+  @Output() tileClick: EventEmitter<ScreenTileData> = new EventEmitter();
 
   constructor(
   ){}
 
   tileClickHandler(){
-    this.tileClick.emit(this.title);
+    this.tileClick.emit(this.data);
   }
 
   ngOnInit(): void {

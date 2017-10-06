@@ -12,12 +12,14 @@ import {MATERIAL_COMPATIBILITY_MODE} from "@angular/material";
 import {GoogleSigninModule} from "./shared/google-signin/google-signin.module";
 import {BaseModule} from "./base/base.module";
 import {AppDialogComponent} from "./shared/app-dialog/app-dialog.component";
+import {ScreenTileConfigDialog} from "./shared/screen-tile/screen-tile-config-dialog/screen-tile-config-dialog";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppDialogComponent
+    AppDialogComponent,
+    ScreenTileConfigDialog
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import {AppDialogComponent} from "./shared/app-dialog/app-dialog.component";
     { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true }
   ],
   entryComponents:[
-    AppDialogComponent
+    AppDialogComponent,
+    ScreenTileConfigDialog
   ],
   bootstrap: [AppComponent]
 })

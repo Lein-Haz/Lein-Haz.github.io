@@ -3,14 +3,8 @@ import {isUndefined} from "util";
 import {Observable} from "rxjs";
 import {StoryService} from "../../core/services/story.service";
 import {MdDialog} from "@angular/material";
-import {AppDialogComponent} from "../shared/app-dialog/app-dialog.component";
-
-declare interface ScreenTileData{
-  id: string;
-  value: string;
-  message?: string;
-  selected?: boolean;
-}
+import {ScreenTileData} from "../../core/models/IScreenTileData.model";
+import {ScreenTileConfigDialog} from "../shared/screen-tile/screen-tile-config-dialog/screen-tile-config-dialog";
 
 @Component({
   selector: 'app-tech-demos',
@@ -40,14 +34,16 @@ export class TechDemosComponent implements OnInit {
     let val = value + 1;
     return {
       id: value.toString(),
-      value: val.toString()
+      title: val.toString()
     }
   }
 
-  tileClickHandler($event){
+  tileClickHandler(tileData: ScreenTileData){
     console.log("You clicked!");
-    console.log($event);
-    let diaRef = this.dialog.open(AppDialogComponent);
+    console.log(tileData);
+    let diaRef = this.dialog.open(ScreenTileConfigDialog, {
+      data: tileData
+    });
     diaRef.afterClosed().subscribe(
       (results)=>{
         console.log("after close");
