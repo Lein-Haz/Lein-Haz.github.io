@@ -43,8 +43,7 @@
   },
   "external": {
     "urls": [
-      { "url": "https://fonts.googleapis.com/icon?family=Material+Icons" },
-      { "url": "https://maps.googleapis.com/maps/api/js?key=AIzaSyDW2rnsG-2gOOJM5N3V3h261420EuDSrm4&libraries=geometry" }
+      { "url": "https://fonts.googleapis.com/icon?family=Material+Icons" }
     ]
   }
 }
