@@ -1,4 +1,7 @@
-import {Component, OnInit, Input, ViewChild, ElementRef, OnDestroy} from '@angular/core';
+import {
+  Component, OnInit, Input, ViewChild, ElementRef, OnDestroy, AfterViewInit,
+  AfterContentInit
+} from '@angular/core';
 import {WindowRef} from "../../../core/services/window.ref";
 import {Subscription} from "rxjs";
 import {isUndefined} from "util";
@@ -27,11 +30,21 @@ declare interface DisplayData{
   host: {'[@dispView]':'viewState'},
   animations: [
     trigger('dispView', [
-      state(ConstantService.ANIMATION_VIEW_STATES.IN_VIEW, style({
-        transform: 'rotateY(0deg) rotateX(0deg) scale(1)',
+      //debug help
+      /*state(ConstantService.ANIMATION_VIEW_STATES.IN_VIEW, style({
+        //transform: 'rotateY(0deg) rotateX(0deg) scale(1)',
+        backgroundColor: '#00FF00'
       })),
       state(ConstantService.ANIMATION_VIEW_STATES.NOT_IN_VIEW, style({
         transform: 'rotateY(90deg) rotateX(0deg) scale(1)',
+        backgroundColor: '#FF0000'
+      }))*/
+      //normal
+      state(ConstantService.ANIMATION_VIEW_STATES.IN_VIEW, style({
+
+      })),
+      state(ConstantService.ANIMATION_VIEW_STATES.NOT_IN_VIEW, style({
+        transform: 'rotateY(90deg) rotateX(0deg) scale(1)'
       })),
       transition(ConstantService.ANIMATION_VIEW_STATES.TRANSITION_INTO_VIEW, [
         style({
@@ -67,37 +80,36 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
 
   public subscription: Subscription;
 
-  public viewState: string = ConstantService.ANIMATION_VIEW_STATES.NOT_IN_VIEW;
+  public viewState: string = ConstantService.ANIMATION_VIEW_STATES.IN_VIEW;//initialize in view for the calcs
 
   constructor(
     private windowRef: WindowRef
   ){}
 
-  private initPositionData(){
-    let boundingRect = this.tileElement.nativeElement.getBoundingClientRect();
-    let halfHeight = (this.tileElement.nativeElement.clientHeight / 2);
-    let quarterHeight = (this.tileElement.nativeElement.clientHeight / 4);
-    let viewHeight = this.windowRef.nativeWindow().innerHeight;
+  private initPositionData(){//using offsettop
     this.height = this.tileElement.nativeElement.clientHeight;
+    let halfHeight = (this.height / 2);
+    let quarterHeight = (this.height / 4);
+    let viewHeight = this.windowRef.nativeWindow().innerHeight;
+    let offsetTop = this.tileElement.nativeElement.offsetTop;
 
     this.elementPositionData = {
-      entersViewBotAt: boundingRect.top - viewHeight,//top of element = bottom of view
-      fullViewBotAt: boundingRect.bottom - viewHeight,//bottom of element = bottom of view
-      fullViewTopAt: boundingRect.top,//top of element = top of view
-      exitsViewTopAt: boundingRect.bottom,//bottom of element = top of view
-      viewTopAnimationThreshold: boundingRect.top + (3 * quarterHeight),//ie 3 quarter height
-      viewBotAnimationThreshold: (boundingRect.top - viewHeight) + quarterHeight
+      entersViewBotAt: offsetTop - viewHeight,//top of element = bottom of view
+      fullViewBotAt: offsetTop - viewHeight + this.height,//bottom of element = bottom of view
+      fullViewTopAt: offsetTop,//top of element = top of view
+      exitsViewTopAt: offsetTop + this.height,//bottom of element = top of view
+      viewTopAnimationThreshold: offsetTop + (3 * quarterHeight),//ie 3 quarter height
+      viewBotAnimationThreshold: (offsetTop - viewHeight) + quarterHeight
     };
   }
 
   onImageLoaded(){
     this.initPositionData();//elements resize after image loads so update position data
+    this.subToScrollSubject();//start listening after load call, since we re-init posData here
   }
 
   filterScrollsThatICareAbout(val):boolean{
     let inView = (val > this.elementPositionData.viewBotAnimationThreshold && val < this.elementPositionData.viewTopAnimationThreshold);
-    //let inView = (val > this.elementPositionData.entersViewBotAt && val < this.elementPositionData.exitsViewTopAt);
-
     this.viewState = (inView) ? ConstantService.ANIMATION_VIEW_STATES.IN_VIEW : ConstantService.ANIMATION_VIEW_STATES.NOT_IN_VIEW;
 
     return inView;
@@ -109,6 +121,7 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
       .filter((val)=>this.filterScrollsThatICareAbout(val))
       .subscribe(
       (val)=>{
+        //console.log("scroll thing, val: " + val);
         //console.log("In IDT, with ID: " + this.text+ " val is: " + val);
       },
       (err)=>{
@@ -146,9 +159,7 @@ export class InformationDisplayTileComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-
     this.initPositionData();
-    this.subToScrollSubject();
 
     if(this.text == "0" ){
       //this.subToScrollSubject();
