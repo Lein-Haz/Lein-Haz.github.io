@@ -34,29 +34,32 @@ export class TechDemosComponent implements OnInit {
     let val = value + 1;
     return {
       id: value.toString(),
-      title: val.toString()
+      title: val.toString(),
+      selectionLocked: false
     }
   }
 
-  tileClickHandler(tileData: ScreenTileData){
-    console.log("You clicked!");
-    console.log(tileData);
+  tileConfigClickHandler(tileData: ScreenTileData){
     let diaRef = this.dialog.open(ScreenTileConfigDialog, {
       data: tileData
     });
     diaRef.afterClosed().subscribe(
       (results)=>{
-        console.log("after close");
         console.log(results);
       },
       (err)=>{
         console.log(err);
       },
       ()=>{
-        console.log("This probably doesnt happen");
+        console.log("This probably doesn't happen");//it actually does
       }
     );
+  }
 
+  tileClickHandler(tileData: ScreenTileData){
+    if(!tileData.selectionLocked){
+      tileData.selected = !tileData.selected;
+    }
   }
 
   moreTiles(){

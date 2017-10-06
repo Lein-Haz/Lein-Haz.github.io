@@ -13,6 +13,7 @@ import {GoogleSigninModule} from "./shared/google-signin/google-signin.module";
 import {BaseModule} from "./base/base.module";
 import {AppDialogComponent} from "./shared/app-dialog/app-dialog.component";
 import {ScreenTileConfigDialog} from "./shared/screen-tile/screen-tile-config-dialog/screen-tile-config-dialog";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {ScreenTileConfigDialog} from "./shared/screen-tile/screen-tile-config-di
     HttpModule,
     FlexLayoutModule,
     GoogleSigninModule,
-    BaseModule
+    BaseModule,
+    FormsModule
   ],
   providers: [
     { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true }

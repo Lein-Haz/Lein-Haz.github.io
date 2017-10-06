@@ -9,24 +9,18 @@ import {ScreenTileData} from "../../../../core/models/IScreenTileData.model";
   templateUrl: './screen-tile-config-dialog.html',
 })
 export class ScreenTileConfigDialog extends AppDialogComponent{
+
+  public tempData: ScreenTileData;
+
   constructor(
     @Inject(MD_DIALOG_DATA) public data: ScreenTileData,
     public dialogRef: MdDialogRef<AppDialogComponent>
   ) {
     super(data, dialogRef);
-    console.log("Dia incoming is: ");
-    console.log(data);
+    this.tempData = Object.assign({},data);
   }
 
-  theYoshiClick(){
-    console.log("Yoshi");
-    this.dialogRef.close({
-      words: "YOSHI!!!!"
-    });
-  }
-
-  cancel(){
-    console.log("Dia cancelled");
-    this.dialogRef.close();
+  makeItSo(){
+    this.dialogRef.close(this.data);
   }
 }

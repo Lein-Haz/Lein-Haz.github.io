@@ -2,9 +2,14 @@
 
 
 .screen-flex-tile-wrap{
+  position: relative;
   background-color: mat-color($my-app-neutral, 100, 0.5);
   border: 1px solid mat-color($my-app-primary, 300, 0.8);
-  cursor: pointer;
+  &.selected{
+    background-color: mat-color($my-app-accent, 700, 0.9);
+    border: 1px solid mat-color($my-app-primary, 300, 1);
+  }
+
 
   &:before {
     display: table;//fix for firefox padding collapse
@@ -25,7 +30,7 @@
   }
 }
 
-.screen-button.mat-raised-button.mat-primary {
+.screen-button.mat-raised-button{
   padding: 0.5em;
   .material-icons {
     font-size: 48px;
@@ -34,6 +39,12 @@
   background-color: mat-color($my-app-neutral, 500, 0.4);
   border: solid 2px mat-color($my-app-primary, 500);
   color: mat-color($mat-primary, 500);
+  &.selected{
+    background-color: mat-color($my-app-accent, 200, 0.4);
+    border: solid 2px mat-color($my-app-primary, A700);
+    color: mat-color($mat-primary, 500);
+  }
+
   font-size: 18px;
 
   min-width: 7em;
@@ -47,4 +58,15 @@
   }
 }
 
+.tile-config-overlay{
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5em;
+  color: mat-color($mat-primary, 500);
+  .mat-button{
+    min-width: 0;
+  }
+}
 

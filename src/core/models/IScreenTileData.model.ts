@@ -3,4 +3,5 @@ export interface ScreenTileData{
   title: string;
   message?: string;
   selected?: boolean;
+  selectionLocked: boolean
 }

@@ -2,15 +2,17 @@
   Config for tile: {{data.title}}
 </div>
 <div matDialogContent>
-  <p>
-    some p stuff
-  </p>
-  <p>
-    more p stuff
-  </p>
-
+  <div fxLayout="column">
+    <mat-form-field>
+      <input matInput placeholder="Title" [(ngModel)]="data.title">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Message" [(ngModel)]="data.message">
+    </mat-form-field>
+    <mat-checkbox [(ngModel)]="data.selectionLocked">Lock Selection</mat-checkbox>
+    <p>Currently: {{data.selected ? 'Selected' : 'Not Selected'}}</p>
+  </div>
 </div>
 <div matDialogActions>
-  <button mat-button (click)="cancel()">No thanks</button>
-  <button mat-button (click)="theYoshiClick()">Okay</button>
+  <button mat-button (click)="makeItSo()">Okay</button>
 </div>
