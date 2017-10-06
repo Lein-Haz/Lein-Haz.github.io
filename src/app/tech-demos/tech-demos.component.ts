@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import {isUndefined} from "util";
 import {Observable} from "rxjs";
 import {StoryService} from "../../core/services/story.service";
+import {MdDialog} from "@angular/material";
+import {AppDialogComponent} from "../shared/app-dialog/app-dialog.component";
+
+declare interface ScreenTileData{
+  id: string;
+  value: string;
+  message?: string;
+  selected?: boolean;
+}
 
 @Component({
   selector: 'app-tech-demos',
@@ -11,41 +20,68 @@ import {StoryService} from "../../core/services/story.service";
 export class TechDemosComponent implements OnInit {
 
   public tileArrayInitSize: number = 5;
+  public screenTileArray: ScreenTileData[] = [];
   public tileArray = [];
+  public selectedArray = [];
 
-  constructor(private storyService: StoryService) { }
+  constructor(
+    private storyService: StoryService,
+    private dialog: MdDialog
+  ) { }
 
   ngOnInit() {
     for(let i = 0; i < this.tileArrayInitSize; i++){//init some tiles
       this.tileArray.push(2*i);
+      this.screenTileArray.push(this.newTile(i));
+    }
+  }
+
+  newTile(value: number): ScreenTileData{
+    let val = value + 1;
+    return {
+      id: value.toString(),
+      value: val.toString()
     }
   }
 
   tileClickHandler($event){
     console.log("You clicked!");
     console.log($event);
+    let diaRef = this.dialog.open(AppDialogComponent);
+    diaRef.afterClosed().subscribe(
+      (results)=>{
+        console.log("after close");
+        console.log(results);
+      },
+      (err)=>{
+        console.log(err);
+      },
+      ()=>{
+        console.log("This probably doesnt happen");
+      }
+    );
+
   }
 
   moreTiles(){
-    let addCount = (this.tileArray.length < 2)? 2 : this.tileArray.length / 2;
-    this.delta(this.tileArray.length + addCount);
+    let addCount = (this.screenTileArray.length < 2)? 2 : this.screenTileArray.length / 2;
+    this.delta(this.screenTileArray.length + addCount);
   }
 
   fewerTiles(){
-    if(this.tileArray.length > 0){
-
-      let removeCount = (this.tileArray.length < 3) ? this.tileArray.length : 3;
-      this.delta(this.tileArray.length - removeCount);
+    if(this.screenTileArray.length > 0){
+      let removeCount = (this.screenTileArray.length < 3) ? this.screenTileArray.length : 3;
+      this.delta(this.screenTileArray.length - removeCount);
     }
   }
 
   delta(newSize: number){
-    let removeFlag = (newSize < this.tileArray.length);
-    let changeAmount = (newSize < this.tileArray.length) ? this.tileArray.length - newSize : newSize - this.tileArray.length;
+    let removeFlag = (newSize < this.screenTileArray.length);
+    let changeAmount = (newSize < this.screenTileArray.length) ? this.screenTileArray.length - newSize : newSize - this.screenTileArray.length;
     let animationObservable: Observable<any>;
 
     for (let i = 0; i < changeAmount; i++){
-      let position = this.tileArray.length + (i * ((removeFlag)? -1: 1));
+      let position = this.screenTileArray.length + (i * ((removeFlag)? -1: 1));
       position = (removeFlag) ? position - 1 : position;
       if(isUndefined(animationObservable)){
         animationObservable = this.storyService.setStepDelay(150, position);
@@ -57,10 +93,10 @@ export class TechDemosComponent implements OnInit {
       (indexSpot)=> {
         //console.log("so yeah indexSpot is " + indexSpot);
         if(removeFlag){
-          this.tileArray.splice(indexSpot);
+          this.screenTileArray.splice(indexSpot);
 
         }else{
-          this.tileArray.push((this.tileArray.length) * 2);
+          this.screenTileArray.push(this.newTile(this.screenTileArray.length));
         }
       },
       (err)=> {
