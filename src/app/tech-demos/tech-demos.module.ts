@@ -6,6 +6,7 @@ import { TechDemosComponent } from './tech-demos.component';
 import {AppMaterialModule} from "../shared/app-material/app-material.module";
 import {ScreenTileModule} from "../shared/screen-tile/screen-tile.module";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {NopeSnackComponent} from "./nope-snack/nope-snack.component";
 
 @NgModule({
   imports: [
@@ -15,6 +16,12 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     ScreenTileModule,
     FlexLayoutModule
   ],
-  declarations: [TechDemosComponent]
+  declarations: [
+    TechDemosComponent,
+    NopeSnackComponent
+  ],
+  entryComponents: [
+    NopeSnackComponent
+  ]
 })
 export class TechDemosModule { }

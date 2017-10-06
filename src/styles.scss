@@ -8,6 +8,8 @@ body{
   font-family: Roboto, Verdana, "Helvetica Neue", "sans-serif";
 }
 
+.text-center{text-align: center;}
+
 .cardless-header{
   padding: 1px;
   border-left: 2px solid mat-color($my-app-primary, 600);

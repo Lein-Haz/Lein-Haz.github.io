@@ -1,18 +1,21 @@
 <div matDialogTitle>
   Config for tile: {{data.title}}
 </div>
-<div matDialogContent>
-  <div fxLayout="column">
-    <mat-form-field>
-      <input matInput placeholder="Title" [(ngModel)]="data.title">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Message" [(ngModel)]="data.message">
-    </mat-form-field>
-    <mat-checkbox [(ngModel)]="data.selectionLocked">Lock Selection</mat-checkbox>
-    <p>Currently: {{data.selected ? 'Selected' : 'Not Selected'}}</p>
+<form>
+  <div matDialogContent>
+
+    <div fxLayout="column">
+      <mat-form-field>
+        <input matInput placeholder="Title" [(ngModel)]="data.title" name="title">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Message" [(ngModel)]="data.message" name="message">
+      </mat-form-field>
+      <mat-checkbox [(ngModel)]="data.selectionLocked" name="selectionLocked">Lock Selection</mat-checkbox>
+      <p>Currently: {{data.selected ? 'Selected' : 'Not Selected'}}</p>
+    </div>
   </div>
-</div>
-<div matDialogActions>
-  <button mat-button (click)="makeItSo()">Okay</button>
-</div>
+  <div matDialogActions>
+    <button type="submit" mat-button (click)="makeItSo()">Okay</button>
+  </div>
+</form>

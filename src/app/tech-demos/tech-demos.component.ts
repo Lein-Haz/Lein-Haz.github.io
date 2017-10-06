@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {isUndefined} from "util";
 import {Observable} from "rxjs";
 import {StoryService} from "../../core/services/story.service";
-import {MdDialog} from "@angular/material";
+import {MdDialog, MdSnackBar} from "@angular/material";
 import {ScreenTileData} from "../../core/models/IScreenTileData.model";
 import {ScreenTileConfigDialog} from "../shared/screen-tile/screen-tile-config-dialog/screen-tile-config-dialog";
+import {NopeSnackComponent} from "./nope-snack/nope-snack.component";
 
 @Component({
   selector: 'app-tech-demos',
@@ -16,11 +17,12 @@ export class TechDemosComponent implements OnInit {
   public tileArrayInitSize: number = 5;
   public screenTileArray: ScreenTileData[] = [];
   public tileArray = [];
-  public selectedArray = [];
+  public selectedArray = [];//not using yet
 
   constructor(
     private storyService: StoryService,
-    private dialog: MdDialog
+    private dialog: MdDialog,
+    private nopeSnack: MdSnackBar
   ) { }
 
   ngOnInit() {
@@ -45,7 +47,7 @@ export class TechDemosComponent implements OnInit {
     });
     diaRef.afterClosed().subscribe(
       (results)=>{
-        console.log(results);
+
       },
       (err)=>{
         console.log(err);
@@ -58,7 +60,28 @@ export class TechDemosComponent implements OnInit {
 
   tileClickHandler(tileData: ScreenTileData){
     if(!tileData.selectionLocked){
-      tileData.selected = !tileData.selected;
+      this.selectionChangeHandler(tileData);
+    }else{
+      this.nopeSnack.openFromComponent(NopeSnackComponent,{
+        duration: 200,
+        data: {
+          message: 'Nope'
+        }
+      });
+    }
+  }
+
+  selectionChangeHandler(tileData: ScreenTileData){
+    tileData.selected = !tileData.selected;
+    if(tileData.selected){
+      this.selectedArray.push(tileData);
+    }else{
+      let tileAtIndex = this.selectedArray.findIndex((selectedTile):boolean=>{
+        return (selectedTile.id === tileData.id);
+      });
+      if(tileAtIndex >= 0){
+        this.selectedArray.splice(tileAtIndex, 1);
+      }
     }
   }
 
@@ -90,7 +113,6 @@ export class TechDemosComponent implements OnInit {
     }
     animationObservable.subscribe(
       (indexSpot)=> {
-        //console.log("so yeah indexSpot is " + indexSpot);
         if(removeFlag){
           this.screenTileArray.splice(indexSpot);
 

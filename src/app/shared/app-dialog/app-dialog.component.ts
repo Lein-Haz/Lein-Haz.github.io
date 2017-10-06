@@ -11,11 +11,9 @@ export class AppDialogComponent {
     @Inject(MD_DIALOG_DATA) public data: any,
     public dialogRef: MdDialogRef<AppDialogComponent>
   ) {
-    console.log(data);
   }
 
   confirm(){
-    console.log("Yoshi");
     this.dialogRef.close(true);
   }
 
