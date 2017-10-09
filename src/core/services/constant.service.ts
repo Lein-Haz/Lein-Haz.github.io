@@ -8,7 +8,6 @@ export class ConstantService {
     ADD_END_MARKER: "add_end_marker",
     ADD_PATH: "add_path",
     FOCUS_ADD_PATH: "focus_add_path",
-    FOCUS_BOUNDS: "focus_bounds",
     FOCUS_PATH: "focus_path",
     FOCUS_LAT_LNG: "focus_lat_lng",
     CHANGE_ZOOM: "change_zoom"
@@ -125,137 +124,6 @@ export class ConstantService {
     TRANSITION_OUT_OF_VIEW: 'isInView => isNotInView',
   };
 
-  public static STORIES_OLD = [
-    {
-      text: "Part1",
-      startMarker: {lat: 48.395315, lng: 9.990424},
-      endMarker: {lat: 47.782232, lng: 9.613402},
-      steps: [
-        {
-          action: ConstantService.MAP_ACTIONS.FOCUS_LAT_LNG,
-          text: "One fateful June day, things started for me here",
-          delay: 250,
-          latLng: {
-            lat: 48.395315,
-            lng: 9.990424
-          },
-          bounds: null,
-          zoom: 13
-        }, {
-          action: ConstantService.MAP_ACTIONS.ADD_START_MARKER,
-          text: "One fateful June day, things started for me here",
-          delay: 1500,
-          latLng: {
-            lat: 48.395315,
-            lng: 9.990424
-          },
-          bounds: null,
-          zoom: 13
-        }, {
-          action: ConstantService.MAP_ACTIONS.FOCUS_ADD_PATH,
-          text: "Moved here while I was still pretty little",
-          delay: 2500,
-          latLng: null,
-          bounds: null,
-          zoom: 9
-        }, {
-          action: ConstantService.MAP_ACTIONS.ADD_END_MARKER,
-          text: "Stayed here for awhile",
-          delay: 3000,
-          latLng: {
-            lat: 47.782232,
-            lng: 9.613402
-          },
-          bounds: null,
-          zoom: 9
-        }
-      ]
-    }, {
-      text: "Part2",
-      startMarker: {lat: 47.782232, lng: 9.613402},
-      endMarker: {lat: 47.691274, lng: 9.818637},
-      steps: [
-        {
-          action: ConstantService.MAP_ACTIONS.FOCUS_PATH,
-          text: "Spent a lot of time here",
-          delay: 3000,
-          latLng: null,
-          bounds: null,
-          zoom: 11
-        }, {
-          action: ConstantService.MAP_ACTIONS.FOCUS_ADD_PATH,
-          text: "Bounced around some more",
-          delay: 2500,
-          latLng: null,
-          bounds: null,
-          zoom: 11
-        }, {
-          action: ConstantService.MAP_ACTIONS.ADD_END_MARKER,
-          text: "Was here very briefly",
-          delay: 3000,
-          latLng: {lat: 47.691274, lng: 9.818637},
-          bounds: null,
-          zoom: 11
-        }
-      ]
-    }, {
-      text: "Part3",
-      startMarker: {lat: 47.691274, lng: 9.818637},
-      endMarker: {lat: 47.782232, lng: 9.613402},
-      steps: [
-        {
-          action: ConstantService.MAP_ACTIONS.ADD_PATH,
-          text: "Moved back before too long",
-          delay: 2500,
-          latLng: null,
-          bounds: null,
-          zoom: 11
-        }, {
-          action: ConstantService.MAP_ACTIONS.ADD_END_MARKER,
-          text: "Back here for a time",
-          delay: 3000,
-          latLng: {lat: 47.782232, lng: 9.613402},
-          bounds: null,
-          zoom: 11
-        }
-      ]
-    }, {
-      text: "Part4",
-      startMarker: {lat: 47.782232, lng: 9.613402},
-      endMarker: {lat: 38.624519, lng: -90.185043},
-      steps: [
-        {
-          action: ConstantService.MAP_ACTIONS.FOCUS_BOUNDS,
-          text: "But then a big change.",
-          delay: 3000,
-          latLng: null,
-          bounds: {
-            sw: {lat: 9.474254308035103, lng: -138.76959851589015},
-            ne: {lat: 69.30921854701235, lng: 60.4289101249999}
-          },
-          zoom: 3
-        }, {
-          action: ConstantService.MAP_ACTIONS.ADD_PATH,
-          text: "Moved somewhere very different",
-          delay: 2500,
-          latLng: null,
-          bounds: null,
-          zoom: 3
-        }, {
-          action: ConstantService.MAP_ACTIONS.ADD_END_MARKER,
-          text: "Ended up going through most of school here",
-          delay: 3000,
-          latLng: {
-            lat: 38.624519,
-            lng: -90.185043
-          },
-          bounds: null,
-          zoom: 3
-        }
-      ]
-    }
-  ];
-
   public static STORIES = [
     {
       text: "Part1",
@@ -270,7 +138,6 @@ export class ConstantService {
             lat: 48.395315,
             lng: 9.990424
           },
-          bounds: null,
           zoom: 13
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_START_MARKER,
@@ -280,7 +147,6 @@ export class ConstantService {
             lat: 48.395315,
             lng: 9.990424
           },
-          bounds: null,
           zoom: 13
         }, {
           action: ConstantService.MAP_ACTIONS.CHANGE_ZOOM,
@@ -290,14 +156,12 @@ export class ConstantService {
             lat: 48.395315,
             lng: 9.990424
           },
-          bounds: null,
           zoom: 9
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_PATH,
           text: "When I was still fairly little I moved here",
           delay: 2500,
           latLng: null,
-          bounds: null,
           zoom: 9
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_END_MARKER,
@@ -307,7 +171,6 @@ export class ConstantService {
             lat: 47.782232,
             lng: 9.613402
           },
-          bounds: null,
           zoom: 9
         }, {
           action: ConstantService.MAP_ACTIONS.CHANGE_ZOOM,
@@ -317,7 +180,6 @@ export class ConstantService {
             lat: 48.395315,
             lng: 9.990424
           },
-          bounds: null,
           zoom: 11
         }
       ]
@@ -331,14 +193,12 @@ export class ConstantService {
           text: "I did bounce around the area somewhat though",
           delay: 2500,
           latLng: null,
-          bounds: null,
           zoom: 11
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_END_MARKER,
           text: "Was here very briefly",
           delay: 3050,
           latLng: {lat: 47.691274, lng: 9.818637},
-          bounds: null,
           zoom: 11
         }
       ]
@@ -352,14 +212,12 @@ export class ConstantService {
           text: "But went back before too long",
           delay: 1250,
           latLng: null,
-          bounds: null,
           zoom: 11
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_END_MARKER,
           text: "Back in Ravensburg, but a big change was coming",
           delay: 3050,
           latLng: {lat: 47.782232, lng: 9.613402},
-          bounds: null,
           zoom: 11
         }
       ]
@@ -373,14 +231,12 @@ export class ConstantService {
           text: "Back in Ravensburg, but a big change was coming",
           delay: 2000,
           latLng: {lat: 47.782232, lng: 9.613402},
-          bounds: null,
           zoom: 5
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_PATH,
           text: "Moved somewhere very different",
           delay: 2500,
           latLng: null,
-          bounds: null,
           zoom: 5
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_END_MARKER,
@@ -390,14 +246,12 @@ export class ConstantService {
             lat: 38.624519,
             lng: -90.185043
           },
-          bounds: null,
           zoom: 5
         }, {
           action: ConstantService.MAP_ACTIONS.CHANGE_ZOOM,
           text: "This was home from grade school through high school",
           delay: 2500,
           latLng: {lat: 47.782232, lng: 9.613402},
-          bounds: null,
           zoom: 9
         },
       ]
@@ -411,7 +265,6 @@ export class ConstantService {
           text: "College would take me someplace nearby",
           delay: 2000,
           latLng: null,
-          bounds: null,
           zoom: 9
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_END_MARKER,
@@ -421,7 +274,6 @@ export class ConstantService {
             lat: 38.947736,
             lng: -92.322986
           },
-          bounds: null,
           zoom: 9
         }, {
           action: ConstantService.MAP_ACTIONS.CHANGE_ZOOM,
@@ -431,7 +283,6 @@ export class ConstantService {
             lat: 38.947736,
             lng: -92.322986
           },
-          bounds: null,
           zoom: 8
         }
       ]
@@ -445,7 +296,6 @@ export class ConstantService {
           text: "I would finish school back in St. Louis though",
           delay: 2000,
           latLng: null,
-          bounds: null,
           zoom: 8
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_END_MARKER,
@@ -455,7 +305,6 @@ export class ConstantService {
             lat: 38.624519,
             lng: -90.185043
           },
-          bounds: null,
           zoom: 8
         }
       ]
@@ -472,14 +321,12 @@ export class ConstantService {
             lat: 38.947736,
             lng: -92.322986
           },
-          bounds: null,
           zoom: 6
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_PATH,
           text: "So, as I continue my journey west",
           delay: 3050,
           latLng: null,
-          bounds: null,
           zoom: 6
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_END_MARKER,
@@ -489,7 +336,6 @@ export class ConstantService {
             lat: 37.625891,
             lng: -122.243500
           },
-          bounds: null,
           zoom: 6
         }, {
           action: ConstantService.MAP_ACTIONS.CHANGE_ZOOM,
@@ -499,7 +345,6 @@ export class ConstantService {
             lat: 37.625891,
             lng: -122.243500
           },
-          bounds: null,
           zoom: 6
         }
       ]
@@ -516,7 +361,6 @@ export class ConstantService {
             lat: 37.625891,
             lng: -122.243500
           },
-          bounds: null,
           zoom: 4
         }
       ]

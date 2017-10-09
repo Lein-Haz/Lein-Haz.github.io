@@ -33,11 +33,7 @@ export class StoryService{
         if(stepVal.latLng){
           newLatLng = new MyLatLng(stepVal.latLng.lat, stepVal.latLng.lng);
         }
-        let newBounds: MyLatLngBounds;
-        if(stepVal.bounds){
-          newBounds = new MyLatLngBounds(stepVal.bounds.sw, stepVal.bounds.ne);
-        }
-        let storyStep = new StoryStepModel(stepVal.action, stepVal.delay, stepVal.text, newLatLng, newBounds);
+        let storyStep = new StoryStepModel(stepVal.action, stepVal.delay, stepVal.text, newLatLng);
         storyStep.path = pathArray;
         storyStep.zoom = stepVal.zoom;
         stepsArray.push(storyStep);
@@ -79,10 +75,6 @@ export class StoryService{
         aRetThing = "Add Paff";
         StoryService.panToPath(storyStep.path[0], storyStep.path[1], map);
         story.path = this.drawFilledPath(storyStep.path[0], storyStep.path[1], map, story);
-        break;
-      case ConstantService.MAP_ACTIONS.FOCUS_BOUNDS:
-        aRetThing = "Set bounds";
-        StoryService.panToBounds(storyStep.bounds, map);
         break;
       case ConstantService.MAP_ACTIONS.ADD_PATH:
         aRetThing = "Add path";
@@ -208,10 +200,6 @@ export class StoryService{
   static panToPath(startPoint: MyLatLng, endPoint: MyLatLng, map: MyMap){
     let pathMidway = spherical.interpolate(startPoint, endPoint, .5);
     map.panTo(pathMidway);
-  }
-
-  static panToBounds(bounds: MyLatLngBounds, map: MyMap){
-    map.panToBounds(bounds);
   }
 
   static lockMap(map: MyMap){
