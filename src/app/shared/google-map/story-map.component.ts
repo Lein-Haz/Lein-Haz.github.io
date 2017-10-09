@@ -141,7 +141,7 @@ export class StoryMapComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.overLayText = "Check out my story.";
+    this.overLayText = "This is my story";
   }
 
 }

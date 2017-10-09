@@ -8,7 +8,7 @@ export class StoryConstantService{
       steps: [
         {
           action: ConstantService.MAP_ACTIONS.FOCUS_LAT_LNG,
-          text: "On an average June day immemorable for most, I was born here",
+          text: "On an immemorable June day for most, I was born here",
           delay: 250,
           latLng: {
             lat: 48.395315,
@@ -17,7 +17,7 @@ export class StoryConstantService{
           zoom: 13
         }, {
           action: ConstantService.MAP_ACTIONS.ADD_START_MARKER,
-          text: "On an average June day immemorable for most, I was born here",
+          text: "On an immemorable June day for most, I was born here",
           delay: 2500,
           latLng: {
             lat: 48.395315,
