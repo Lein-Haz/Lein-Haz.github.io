@@ -19,18 +19,11 @@ export class MediaCarouselComponent implements OnInit, OnDestroy {
   private intervalReference;
   private subscription: Subscription;
 
-  private pictureDelay: number = 18000;
+  private pictureDelay: number = 12000;
   private pictureIterator: number = 1;//starts at one since we load array[0] in OnInit
   private portraitFlag: boolean = false;
 
   ngOnInit() {
-
-    let fullUrls = [
-      'https://images.unsplash.com/photo-1428094479093-8973a318bd76?dpr=1&auto=compress,format&fit=crop&fm=jpg&w=1920',
-      'https://images.unsplash.com/photo-1435783099294-283725c37230?dpr=1&auto=compress,format&fit=crop&fm=jpg&w=1920',
-      'https://images.unsplash.com/photo-1429794890858-d3016a2bb73c?dpr=1&auto=compress,format&fit=crop&fm=jpg&w=1920',
-      'https://images.unsplash.com/photo-1490598000245-075175152d25?dpr=1&auto=compress,format&fit=crop&fm=jpg&w=1920'
-    ];
     this.portraitFlag = this.windowRef.checkPortraitOrientation();
     this.currentSrc = this.getRightSize(ConstantService.PICTURE_URLS[0]);
     this.picArray = ConstantService.PICTURE_URLS;
