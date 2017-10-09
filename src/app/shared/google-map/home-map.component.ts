@@ -43,7 +43,17 @@ export class HomeMapComponent implements OnInit, AfterViewInit {
     });
   }
 
+  clearMap(){
+    console.log("clear called");
+  }
 
+  getBnds(){
+    let bnds = this.homeMap.getBounds();
+    console.log("Northeast is " + bnds.getNorthEast().toString());
+    console.log("Southwest is " + bnds.getSouthWest().toString());
+    console.log("Center is " + bnds.getCenter().toString());
+    console.log("Zoom is " + this.homeMap.getZoom());
+  }
 
   constructor(private storyService: StoryService) {}
 

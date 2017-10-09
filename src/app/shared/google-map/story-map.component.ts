@@ -116,14 +116,6 @@ export class StoryMapComponent implements OnInit, AfterViewInit {
     this.storyService.handleAction(storyStep, map, story);
   }
 
-  getBnds(){
-    let bnds = this.storyMap.getBounds();
-    console.log("Northeast is " + bnds.getNorthEast().toString());
-    console.log("Southwest is " + bnds.getSouthWest().toString());
-    console.log("Center is " + bnds.getCenter().toString());
-    console.log("Zoom is " + this.storyMap.getZoom());
-  }
-
   clearMap(){
     this.totalDistance = 0;
     StoryService.clearStoryElements(this.storyArray);
