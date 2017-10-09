@@ -1,6 +1,6 @@
 <div>
   <mat-toolbar color="accent">
-    <h4>Summary - <i class="fa fa-exclamation-triangle"></i> page in progress</h4>
+    <h4>Summary</h4>
   </mat-toolbar>
   <mat-card>
     <p>
@@ -8,10 +8,16 @@
       is still lots of knowledge out there to acquire.  Luckily, as someone that is an eager learner and tinkerer,
       I shouldn't be getting bored anytime soon.
     </p>
-    <p>
+    <button mat-button *ngIf="!showText" (click)="showText=true" color="primary">
+      More...
+    </button>
 
-    </p>
     <div *ngIf="showText">
+      <p>
+        I was born in Ulm, Germany, but was in Ravensburg for much of my early youth.  We moved to St. Louis, MO as
+        I was entering grade school, where I spent my adolescence when I wasn't visiting Germany.  I'd like to believe
+        those experiences made me a more open person.
+      </p>
       <p>
         My first foray into programming was with Java and C++, a lot of console apps as you can imagine.
         Early on I stayed away from front end work, though I did play around with Java Swing a bit which looks really dated now.
@@ -25,8 +31,33 @@
         material design.
       </p>
       <p>
-        After that class I got an opportunity to do more web development
+        After that class I got an opportunity to do more web development.  This let me work on my front end skills,
+        allowing me to become adept at layout frameworks like Bootstrap and Flex.
+        This changed my understanding of what modern web development is, now that application logic could be put on the
+        client side.
       </p>
+
+      <p>
+        Tech Interests:
+      </p>
+      <ul>
+        <li>Progressive Web Apps</li>
+        <li>Typescript</li>
+        <li>Data Science</li>
+      </ul>
+
+      <p>
+        More about me:
+      </p>
+      <ul>
+        <li>I worked as a network admin before I got into software development.</li>
+        <li>I really enjoy traveling.</li>
+        <li>I grew up near the mountains and really enjoy snowboarding and skiing, but that is difficult to do in Missouri.</li>
+        <li>I like trying new food/cuisine, I have a personal rule of thumb: I'll try anything once.</li>
+      </ul>
+      <button mat-button (click)="showText=false" color="primary">
+        Less
+      </button>
     </div>
   </mat-card>
 
