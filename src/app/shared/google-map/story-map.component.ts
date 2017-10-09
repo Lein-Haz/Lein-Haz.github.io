@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, ViewChild, AfterViewInit, Output} from '@angular/core';
+import {Component, OnInit, AfterViewInit, Output} from '@angular/core';
 import {MyMap} from "./mapModels/myMap";
 import {ConstantService} from "../../../core/services/constant.service";
 
@@ -14,13 +14,12 @@ import {isUndefined} from "util";
   styleUrls: ['./google-map.component.scss']
 })
 export class StoryMapComponent implements OnInit, AfterViewInit {
-  @ViewChild('gmap') myMap: ElementRef;
-
   private storyMap: MyMap;
   public overLayText: string;
   private storyArray: StoryModel[];
   public storyActive: boolean;
   public totalDistance: number = 0;
+  public tenMillion: number = 10000000;
 
   @Output()
   runStory(){
@@ -32,9 +31,7 @@ export class StoryMapComponent implements OnInit, AfterViewInit {
   }
 
   steppedZoom(map: MyMap, destinationZoomLevel: number){
-    if(map.getZoom() == destinationZoomLevel){
-      //console.log("You good");
-    }else{
+    if(map.getZoom() !== destinationZoomLevel){
       let zoomObservable = this.storyService.steppedZoom(map, destinationZoomLevel);
 
       zoomObservable.subscribe(
@@ -76,9 +73,12 @@ export class StoryMapComponent implements OnInit, AfterViewInit {
       ()=>{
         StoryService.unlockMap(this.storyMap);
         this.storyActive = false;
-        console.log("Total distance is: " + this.totalDistance)
       }
     );
+  }
+
+  metersToMiles(meters: number):number{
+    return StoryService.convertMetersToMiles(meters);
   }
 
   storyHandler(story: StoryModel, map: MyMap): Observable<any>{
@@ -112,8 +112,6 @@ export class StoryMapComponent implements OnInit, AfterViewInit {
 
   processStep(storyStep: StoryStepModel, map: MyMap, story: StoryModel){
     this.overLayText = storyStep.text;
-
-    //needs delays set and zoom storysteps
     this.steppedZoom(map, storyStep.zoom);
     this.storyService.handleAction(storyStep, map, story);
   }

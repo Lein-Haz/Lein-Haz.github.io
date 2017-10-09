@@ -1,9 +1,18 @@
 <div>
-  <mat-card-title>A Journey of 10 million meters</mat-card-title>
-  <!--<p>A Journey of 10 million meters</p>-->
-  <mat-card-subtitle *ngIf="totalDistance > 0 || storyActive">Journey so far: {{totalDistance}}M</mat-card-subtitle>
-  <!--<span>Journey so far: {{totalDistance}}M</span>-->
-  <google-map (mapInitializedEmitter)="mapInitHandler($event)" [showOverLay]="true" [overLayText]="overLayText" #gmap></google-map>
+  <mat-card-title>
+    A Journey of
+    <span [matTooltip]="'About ' + metersToMiles(tenMillion) + 'mi'" [matTooltipPosition]="'above'">
+      10 million meters
+    </span>
+  </mat-card-title>
+
+  <mat-card-subtitle *ngIf="totalDistance > 0 || storyActive">
+    Journey so far:
+    <span [matTooltip]="'About ' + metersToMiles(totalDistance) + 'mi'" [matTooltipPosition]="'above'">
+      {{totalDistance}}M
+    </span>
+  </mat-card-subtitle>
+  <google-map (mapInitializedEmitter)="mapInitHandler($event)" [showOverLay]="true" [overLayText]="overLayText"></google-map>
 
   <span>
     <div fxLayout="row" fxLayoutAlign="space-between center">

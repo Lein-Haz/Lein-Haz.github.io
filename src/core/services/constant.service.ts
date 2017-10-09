@@ -13,6 +13,12 @@ export class ConstantService {
     CHANGE_ZOOM: "change_zoom"
   };
 
+  public static CONVERSION_CONSTANTS = {
+    KM_TO_MILE_MULTIPLIER: 0.621371,
+    MILE_TO_KM_MULTIPLIER: 1.609344,
+    M_TO_KM_MULTIPLIER: 0.001,
+  };
+
   /*These used to be Google's enums but issues with async loading on the script*/
   public static ICON_SHAPES = {
     ACTIVE_CIRCLE: {

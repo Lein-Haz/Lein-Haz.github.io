@@ -3,7 +3,6 @@ import { Observable } from "rxjs/Rx";
 import {StoryStepModel} from "../models/StoryStep.model";
 import {MyLatLng} from "../../app/shared/google-map/mapModels/myLatLng";
 import {StoryModel} from "../models/Story.model";
-import {MyLatLngBounds} from "../../app/shared/google-map/mapModels/myLatLngBounds";
 import {MyPolyline} from "../../app/shared/google-map/mapModels/myPolyline";
 import {MyMap} from "../../app/shared/google-map/mapModels/myMap";
 import {MyMarker} from "../../app/shared/google-map/mapModels/myMarker";
@@ -53,37 +52,29 @@ export class StoryService{
   }
 
   public handleAction(storyStep: StoryStepModel , map: MyMap, story){
-    let aRetThing: string;
     switch (storyStep.action){
       case ConstantService.MAP_ACTIONS.FOCUS_LAT_LNG:
-        aRetThing = "Focus spot";
         map.panTo(storyStep.latLng);
         break;
       case ConstantService.MAP_ACTIONS.ADD_START_MARKER:
-        aRetThing = "Add Mah-ka";
         story.startMarker = this.addMarker(storyStep.latLng, map);
         break;
       case ConstantService.MAP_ACTIONS.ADD_END_MARKER:
-        aRetThing = "Add Mah-ka";
         story.endMarker = this.addMarker(storyStep.latLng, map);
         break;
       case ConstantService.MAP_ACTIONS.FOCUS_PATH:
-        aRetThing = "Focus Path";
         StoryService.panToPath(storyStep.path[0], storyStep.path[1], map);
         break;
       case ConstantService.MAP_ACTIONS.FOCUS_ADD_PATH:
-        aRetThing = "Add Paff";
         StoryService.panToPath(storyStep.path[0], storyStep.path[1], map);
         story.path = this.drawFilledPath(storyStep.path[0], storyStep.path[1], map, story);
         break;
       case ConstantService.MAP_ACTIONS.ADD_PATH:
-        aRetThing = "Add path";
         story.path = this.drawFilledPath(storyStep.path[0], storyStep.path[1], map, story);
         break;
       default:
         break;
     }
-    return aRetThing;
   }
 
   public addMarker(position: MyLatLng, map: MyMap, title: string = ""): MyMarker{
@@ -217,6 +208,14 @@ export class StoryService{
     }else if(stories){
       StoryService.mapClearFunction(stories as StoryModel);
     }
+  }
+
+  static convertMetersToMiles(distanceInMeters: number):number{
+    let asMiles = distanceInMeters *
+      ConstantService.CONVERSION_CONSTANTS.M_TO_KM_MULTIPLIER *
+      ConstantService.CONVERSION_CONSTANTS.KM_TO_MILE_MULTIPLIER;
+
+    return Math.round(asMiles);
   }
 
   static mapClearFunction(story: StoryModel){

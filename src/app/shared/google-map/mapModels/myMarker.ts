@@ -6,7 +6,7 @@ export class MyMarker extends Marker {
 
   constructor(opts?: MarkerOptions) {
     super(opts);
-    this.addMarkerClickListener();
+    //this.addMarkerClickListener();//off until other map work
   }
 
   private addMarkerClickListener(){
