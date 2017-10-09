@@ -16,6 +16,7 @@ import * as Services from "./services/services";
     Services.AuthService,
     Services.ApiService,
     Services.ConstantService,
+    Services.StoryConstantService,
     Services.StoryService,
     Services.GoogleRef,
     Services.WindowRef,

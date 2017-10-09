@@ -1,12 +1,11 @@
 import {Component, OnInit, AfterViewInit, Output} from '@angular/core';
 import {MyMap} from "./mapModels/myMap";
-import {ConstantService} from "../../../core/services/constant.service";
-
 import {StoryService} from "../../../core/services/story.service";
 import {StoryStepModel} from "../../../core/models/StoryStep.model";
 import {StoryModel} from "../../../core/models/Story.model";
 import {Observable } from "rxjs";
 import {isUndefined} from "util";
+import {StoryConstantService} from "../../../core/services/story-constant.service";
 
 @Component({
   selector: 'story-map',
@@ -50,7 +49,7 @@ export class StoryMapComponent implements OnInit, AfterViewInit {
 
   public doStory(map: MyMap){
     this.storyActive = true;
-    const STORIES = ConstantService.STORIES;
+    const STORIES = StoryConstantService.STORIES;
     this.storyArray = this.storyService.buildStoryFromConstant(STORIES);
 
     let wholeStoryObservable: Observable<any>;
