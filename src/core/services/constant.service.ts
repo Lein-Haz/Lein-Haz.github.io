@@ -7,8 +7,6 @@ export class ConstantService {
     ADD_START_MARKER: "add_start_marker",
     ADD_END_MARKER: "add_end_marker",
     ADD_PATH: "add_path",
-    FOCUS_ADD_PATH: "focus_add_path",
-    FOCUS_PATH: "focus_path",
     FOCUS_LAT_LNG: "focus_lat_lng",
     CHANGE_ZOOM: "change_zoom"
   };

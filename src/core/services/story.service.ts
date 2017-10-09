@@ -62,13 +62,6 @@ export class StoryService{
       case ConstantService.MAP_ACTIONS.ADD_END_MARKER:
         story.endMarker = this.addMarker(storyStep.latLng, map);
         break;
-      case ConstantService.MAP_ACTIONS.FOCUS_PATH:
-        StoryService.panToPath(storyStep.path[0], storyStep.path[1], map);
-        break;
-      case ConstantService.MAP_ACTIONS.FOCUS_ADD_PATH:
-        StoryService.panToPath(storyStep.path[0], storyStep.path[1], map);
-        story.path = this.drawFilledPath(storyStep.path[0], storyStep.path[1], map, story);
-        break;
       case ConstantService.MAP_ACTIONS.ADD_PATH:
         story.path = this.drawFilledPath(storyStep.path[0], storyStep.path[1], map, story);
         break;
@@ -186,11 +179,6 @@ export class StoryService{
   public closeStory(story: StoryModel){
     story.startMarker.set('icon',ConstantService.ICON_SHAPES.INACTIVE_CIRCLE);
     story.endMarker.set('icon',ConstantService.ICON_SHAPES.INACTIVE_CIRCLE);
-  }
-
-  static panToPath(startPoint: MyLatLng, endPoint: MyLatLng, map: MyMap){
-    let pathMidway = spherical.interpolate(startPoint, endPoint, .5);
-    map.panTo(pathMidway);
   }
 
   static lockMap(map: MyMap){
