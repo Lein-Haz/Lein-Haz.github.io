@@ -11,7 +11,7 @@ export class GoogleMapComponent implements OnInit, AfterViewInit {
 
   private theMap: MyMap;
   @Input() public showOverLay: boolean = false;
-  @Input() private overLayText: string;
+  @Input() private overLayText: string = "Initing the overlay text";
 
   @Output() mapInitializedEmitter: EventEmitter<MyMap> = new EventEmitter();
 
@@ -32,7 +32,6 @@ export class GoogleMapComponent implements OnInit, AfterViewInit {
   constructor() {}
 
   ngOnInit() {
-    this.overLayText = "Just initing the overlay text";
   }
 
 }
