@@ -1,5 +1,5 @@
 <div #navref>
-  <mat-toolbar class="full-nav" fxShow.gt-md fxHide.lt-md>
+  <mat-toolbar class="full-nav" fxShow.md fxShow.lg fxHide.xs fxHide.sm>
         <span fxLayout="row" fxLayoutAlign="space-between center">
           <button aria-label="menu" fxFlex="{{FLEX_LAYOUT.NO_GROW}}" mat-button (click)="toggleNav()" color="accent">
             <mat-icon>menu</mat-icon>
@@ -18,7 +18,7 @@
   </mat-toolbar>
 </div>
 
-<div fxShow.lt-md fxHide.gt-md class="mobile-nav">
+<div fxShow.xs fxShow.sm fxHide.md fxHide.lg class="mobile-nav">
   <button aria-label="menu" mat-fab (click)="toggleNav()">
     <mat-icon>menu</mat-icon>
   </button>
