@@ -1,13 +1,17 @@
 <div>
+  <mat-card-title>A Journey of 10 million meters</mat-card-title>
+  <!--<p>A Journey of 10 million meters</p>-->
+  <mat-card-subtitle *ngIf="totalDistance > 0 || storyActive">Journey so far: {{totalDistance}}M</mat-card-subtitle>
+  <!--<span>Journey so far: {{totalDistance}}M</span>-->
   <google-map (mapInitializedEmitter)="mapInitHandler($event)" [showOverLay]="true" [overLayText]="overLayText" #gmap></google-map>
 
   <span>
     <div fxLayout="row" fxLayoutAlign="space-between center">
-      <button mat-raised-button (click)="doSomething()" color="primary">
-        Do the thing
+      <button mat-raised-button [disabled]="storyActive" (click)="runStory()" color="primary">
+        Show story
       </button>
 
-      <button mat-raised-button (click)="clearMap()">
+      <button mat-raised-button [disabled]="storyActive" (click)="clearMap()">
         Clear
       </button>
 

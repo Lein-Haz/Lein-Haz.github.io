@@ -129,6 +129,8 @@ export class StoryService{
       ]
 
     });
+    let distanceInMeters = spherical.computeDistanceBetween(startPoint, endPoint);
+    story.distanceTraveled = Number.parseFloat(distanceInMeters.toFixed(1));
 
     return this.fillPath(myLine, startPoint, endPoint, map, story);
   }
@@ -154,6 +156,7 @@ export class StoryService{
 
       let pathEnd = spherical.interpolate(origin, end, (count === 0)? 1: ((count/2)/100));
       fillLine.setPath([origin,pathEnd]);
+      map.panTo(pathEnd);
       guideLine.set('icons', icons);
 
       //On first completion
@@ -161,7 +164,6 @@ export class StoryService{
         guideLine.setMap(null);//remove guideLine from map
         fillLine.set('strokeColor', '#4C9CB7');//change color
         fillLine.set('zIndex', 0);//lower zIndex so future animating lines will cover it
-
 
         clearInterval(lineAnimate);
       }
@@ -230,16 +232,22 @@ export class StoryService{
   }
 
   static mapClearFunction(story: StoryModel){
-    story.startMarker.setMap(null);
-    story.endMarker.setMap(null);
-    story.path.setMap(null);
+    if(!isUndefined(story.startMarker)){
+      story.startMarker.setMap(null);
+    }
+    if(!isUndefined(story.endMarker)){
+      story.endMarker.setMap(null);
+    }
+    if(!isUndefined(story.path)){
+      story.path.setMap(null);
+    }
   }
 
   public setStepDelay(delay: number, index:number): Observable<any>{
-    console.log("creating new delay return, with a delay of " + delay + ", for the index " + index);
+    //console.log("creating new delay return, with a delay of " + delay + ", for the index " + index);
     return Observable.create((observer)=>{
       setTimeout(()=>{
-        console.log("In the timeout with a delay of " + delay);
+        //console.log("In the timeout with a delay of " + delay);
         observer.next(index);
         observer.complete();
       }, delay);

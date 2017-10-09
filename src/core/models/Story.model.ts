@@ -9,6 +9,7 @@ export class StoryModel implements IStoryModel{
   endMarker: MyMarker;
   steps: StoryStepModel[];
   path: MyPolyline;
+  distanceTraveled?: number = 0;
 
   constructor(text: string, steps: StoryStepModel[]){
     this.text = text;

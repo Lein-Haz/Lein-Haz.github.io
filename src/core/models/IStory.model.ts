@@ -8,4 +8,5 @@ export interface IStoryModel{
   endMarker: MyMarker;
   steps: StoryStepModel[];
   path: MyPolyline;
+  distanceTraveled?: number;
 }
