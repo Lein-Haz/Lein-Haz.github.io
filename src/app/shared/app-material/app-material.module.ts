@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 
 import {
   MdSidenavModule, MdListModule, MdButtonModule, MdToolbarModule, MdInputModule,
-  MdFormFieldModule, MdCardModule, MdIconModule, MdTooltipModule, MdDialogModule, MdCheckboxModule, MdSnackBarModule
+  MdFormFieldModule, MdCardModule, MdIconModule, MdTooltipModule, MdDialogModule, MdCheckboxModule, MdSnackBarModule,
+  MdChipsModule
 } from "@angular/material";
 
 @NgModule({
@@ -20,7 +21,8 @@ import {
     MdTooltipModule,
     MdDialogModule,
     MdCheckboxModule,
-    MdSnackBarModule
+    MdSnackBarModule,
+    MdChipsModule
   ],
   exports: [
     MdSidenavModule,
@@ -34,7 +36,8 @@ import {
     MdTooltipModule,
     MdDialogModule,
     MdCheckboxModule,
-    MdSnackBarModule
+    MdSnackBarModule,
+    MdChipsModule
   ],
   providers: [],
   bootstrap: []
