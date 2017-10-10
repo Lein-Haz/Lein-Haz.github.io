@@ -21,6 +21,7 @@ export class MapStuffComponent implements OnInit {
   public distanceBetween: number = 0;
 
   public useMetric: boolean = true;//controls whether to use metric or the other output
+  public pushSecondSelected: boolean = false;
 
   @ViewChild('chipList') chipList: MdChipList;
   @ViewChild('toggler') toggler: MdSlideToggle;
@@ -81,6 +82,8 @@ export class MapStuffComponent implements OnInit {
 
   chipSelectionClick($event, clickedMarker: MyMarker){
     let findId = clickedMarker.id;
+    console.log("Second selected");
+    console.log(this.pushSecondSelected);
 
     let chipReference = this.chipList.chips.find((chipo, index)=>{
       let markerVal = chipo.value as MyMarker;
@@ -98,7 +101,11 @@ export class MapStuffComponent implements OnInit {
       this.chipDeselectHandler(chipRef);
     }else{//otherwise check against selection limit
       if(selArray.length >= this.selectLimit){//if we are at the selection limit
-        this.chipDeselectHandler(this.chipList.selected[0]);
+        if(this.pushSecondSelected){
+          this.chipDeselectHandler(this.chipList.selected[1]);
+        }else{
+          this.chipDeselectHandler(this.chipList.selected[0]);
+        }
         this.chipSelectHandler(chipRef);
       }else{//if not at the selection limit toggle freely
         this.chipSelectHandler(chipRef);

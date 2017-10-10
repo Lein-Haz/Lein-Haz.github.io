@@ -2,7 +2,8 @@
   <h4>Map - <i class="fa fa-exclamation-triangle"></i> in progress, more too come</h4>
 </mat-toolbar>
 <mat-card>
-  <p>Why the middle of the Atlantic?</p>
+  <p>Click the map to place pins.  All the pins are tracked through a chiplist.</p>
+  <p>Select any two chips to get the distance between the two pins.</p>
   <home-map [markerList]="markerList" (markerListEmit)="markerListAdd(marker)" (mapInitEmitter)="mapInitHandler($event)"></home-map>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -14,24 +15,35 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <span class="choice-toggle" >
-      <mat-slide-toggle
-        #toggler
-        [checked]="useMetric"
-        [labelPosition]="'before'"
-        (change)="metricToggleChanged($event)"
+    <span fxLayout="row" fxLayoutAlign="space-between center" fxLayoutWrap>
+      <mat-checkbox
+        [checked]="pushSecondSelected"
+        (change)="pushSecondSelected = !pushSecondSelected"
       >
-        <span [ngClass]="{'toggle-active': !useMetric}">
-          Use Not Metric
+        Overwrite second selected marker instead of first?
+      </mat-checkbox>
+
+      <div class="choice-toggle" >
+        <mat-slide-toggle
+          #toggler
+          [checked]="useMetric"
+          [labelPosition]="'before'"
+          (change)="metricToggleChanged($event)"
+        >
+          <span [ngClass]="{'toggle-active': !useMetric}">
+            Use Not Metric
+          </span>
+        </mat-slide-toggle>
+        <span (click)="extraToggleClick()" [ngClass]="{'toggle-active': useMetric}">
+          Use Metric
         </span>
-      </mat-slide-toggle>
-      <span (click)="extraToggleClick()" [ngClass]="{'toggle-active': useMetric}">
-        Use Metric
-      </span>
+      </div>
     </span>
+
   </mat-expansion-panel>
   <p>Line distance: {{getDistance() | number:'1.02'}} {{getDistanceLabel()}}</p>
   <mat-form-field>
+    Pins:
     <mat-chip-list #chipList [multiple]="true">
       <mat-chip *ngFor="let myMarkerObj of markerList; let i = index" [selectable]="true"
                 [removable]="true" (removed)="remove(myMarkerObj, $event)"
