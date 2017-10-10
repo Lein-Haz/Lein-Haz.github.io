@@ -2,7 +2,23 @@
   <h4>Map - <i class="fa fa-exclamation-triangle"></i> in progress, more too come</h4>
 </mat-toolbar>
 <mat-card>
-  <p>Why the middle of the Atlantic?</p>
-  <home-map></home-map>
+  <p>Why the middle of the Atlantic? {{markerList.length}}  Selected: {{chipList.selected.length}}</p>
+  <home-map [markerList]="markerList" (markerListEmit)="markerListAdd(marker)"></home-map>
+  <button mat-raised-button (click)="meClicker()">
+    Me click
+  </button>
+  <mat-form-field>
+    <mat-chip-list #chipList [multiple]="true">
+      <mat-chip *ngFor="let myMarkerObj of markerList; let i = index" [selectable]="true"
+                [removable]="true" (removed)="remove(myMarkerObj, $event)"
+                (selectionChange)="selctionChange($event)"
+                [value]="myMarkerObj"
+                (click)="toggleSelection($event, myMarkerObj)"
+      >
+        Marker {{i}} {{myMarkerObj.id}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </mat-form-field>
 
 </mat-card>

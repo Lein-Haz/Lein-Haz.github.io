@@ -1,8 +1,11 @@
-import {Component, OnInit, ElementRef, ViewChild, AfterViewInit, Output, EventEmitter, Input} from '@angular/core';
+import {
+  Component, OnInit, ElementRef, ViewChild, AfterViewInit, Output, EventEmitter, Input,
+  ChangeDetectorRef
+} from '@angular/core';
 import {MyMap} from "./mapModels/myMap";
 import {MyLatLng} from "./mapModels/myLatLng";
 import {MyMarker} from "./mapModels/myMarker";
-import {StoryService} from "../../../core/services/story.service";
+import {MapService} from "../../../core/services/map.service";
 
 @Component({
   selector: 'home-map',
@@ -12,7 +15,8 @@ import {StoryService} from "../../../core/services/story.service";
 export class HomeMapComponent implements OnInit, AfterViewInit {
   private homeMap: MyMap;
 
-  private markerList: MyMarker[] = [];
+  @Input() public markerList: MyMarker[] = [];
+  @Output() markerListEmit: EventEmitter<MyMarker> = new EventEmitter();
   @Input()
   public overLayText: string;
 
@@ -36,15 +40,22 @@ export class HomeMapComponent implements OnInit, AfterViewInit {
   addMapClickListener(): void{
     this.homeMap.addListener('click', ($event) => {
       let clickedLatLng: MyLatLng = new MyLatLng($event.latLng.lat(), $event.latLng.lng());
-      console.log(clickedLatLng);
-      console.log(clickedLatLng.toString());
-      this.markerList.push(this.storyService.addMarker(clickedLatLng, this.homeMap));
-
+      //console.log(clickedLatLng);
+      //console.log(clickedLatLng.toString());
+      this.addToMarkerList(clickedLatLng);
     });
+  }
+
+  private addToMarkerList(markerPosition: MyLatLng){
+    let id = MapService.getMarkerCount();
+    let newMarker = this.mapService.addMarker(markerPosition, this.homeMap, ++id);
+    this.markerList.push(newMarker);
+    this.markerListEmit.emit(newMarker);
   }
 
   clearMap(){
     console.log("clear called");
+    console.log(this.markerList);
   }
 
   getBnds(){
@@ -55,7 +66,7 @@ export class HomeMapComponent implements OnInit, AfterViewInit {
     console.log("Zoom is " + this.homeMap.getZoom());
   }
 
-  constructor(private storyService: StoryService) {}
+  constructor(private mapService: MapService, private ref: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.overLayText = "Just initing the overlay text";

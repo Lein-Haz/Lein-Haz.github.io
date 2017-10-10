@@ -4,7 +4,9 @@ import MarkerOptions = google.maps.MarkerOptions;
 
 export class MyMarker extends Marker {
 
-  constructor(opts?: MarkerOptions) {
+  public id: number;
+
+  constructor(opts?: MarkerOptions, addListener: boolean = false) {
     super(opts);
     //this.addMarkerClickListener();//off until other map work
   }

@@ -7,17 +7,23 @@ import MarkerOptions = google.maps.MarkerOptions;
 @Injectable()
 export class MapService{
 
+  static markerCount: number = 0;
 
-  public addMarker(position: MyLatLng, map: MyMap, title: string = "", markerOpts?: MarkerOptions): MyMarker{
+  public addMarker(position: MyLatLng, map: MyMap, markerId: number, markerOpts?: MarkerOptions): MyMarker{
     let defaultMapOpts: MarkerOptions = {
       position: position,
       map: map,
-      label: title,
-      title: title,
       animation: google.maps.Animation.DROP
     };
 
     defaultMapOpts = Object.assign(defaultMapOpts, markerOpts);
-    return new MyMarker(defaultMapOpts);
+    let newMarker = new MyMarker(defaultMapOpts);
+    newMarker.id = markerId;
+    MapService.markerCount++;
+    return newMarker;
+  }
+
+  static getMarkerCount(){
+    return MapService.markerCount;
   }
 }
