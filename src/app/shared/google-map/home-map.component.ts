@@ -1,7 +1,4 @@
-import {
-  Component, OnInit, ElementRef, ViewChild, AfterViewInit, Output, EventEmitter, Input,
-  ChangeDetectorRef
-} from '@angular/core';
+import {Component, OnInit, AfterViewInit, Output, EventEmitter, Input} from '@angular/core';
 import {MyMap} from "./mapModels/myMap";
 import {MyLatLng} from "./mapModels/myLatLng";
 import {MyMarker} from "./mapModels/myMarker";
@@ -55,20 +52,7 @@ export class HomeMapComponent implements OnInit, AfterViewInit {
     this.markerListEmit.emit(newMarker);
   }
 
-  clearMap(){
-    console.log("clear called");
-    console.log(this.markerList);
-  }
-
-  getBnds(){
-    let bnds = this.homeMap.getBounds();
-    console.log("Northeast is " + bnds.getNorthEast().toString());
-    console.log("Southwest is " + bnds.getSouthWest().toString());
-    console.log("Center is " + bnds.getCenter().toString());
-    console.log("Zoom is " + this.homeMap.getZoom());
-  }
-
-  constructor(private mapService: MapService, private ref: ChangeDetectorRef) {}
+  constructor(private mapService: MapService) {}
 
   ngOnInit() {
     this.overLayText = "Just initing the overlay text";

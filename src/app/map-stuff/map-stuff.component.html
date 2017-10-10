@@ -2,12 +2,35 @@
   <h4>Map - <i class="fa fa-exclamation-triangle"></i> in progress, more too come</h4>
 </mat-toolbar>
 <mat-card>
-  <p>Why the middle of the Atlantic? {{markerList.length}}  Selected: {{chipList.selected.length}}</p>
+  <p>Why the middle of the Atlantic?</p>
   <home-map [markerList]="markerList" (markerListEmit)="markerListAdd(marker)" (mapInitEmitter)="mapInitHandler($event)"></home-map>
-  <button mat-raised-button (click)="meClicker()">
-    Me click
-  </button>
-  <p>Line distance: {{distanceBetween}}</p>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Map Controls
+      </mat-panel-title>
+      <mat-panel-description>
+        Adjust defaults
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <span class="choice-toggle" >
+      <mat-slide-toggle
+        #toggler
+        [checked]="useMetric"
+        [labelPosition]="'before'"
+        (change)="metricToggleChanged($event)"
+      >
+        <span [ngClass]="{'toggle-active': !useMetric}">
+          Use Not Metric
+        </span>
+      </mat-slide-toggle>
+      <span (click)="extraToggleClick()" [ngClass]="{'toggle-active': useMetric}">
+        Use Metric
+      </span>
+    </span>
+  </mat-expansion-panel>
+  <p>Line distance: {{getDistance() | number:'1.02'}} {{getDistanceLabel()}}</p>
   <mat-form-field>
     <mat-chip-list #chipList [multiple]="true">
       <mat-chip *ngFor="let myMarkerObj of markerList; let i = index" [selectable]="true"

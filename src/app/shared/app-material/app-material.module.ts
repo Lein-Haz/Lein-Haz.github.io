@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {
   MdSidenavModule, MdListModule, MdButtonModule, MdToolbarModule, MdInputModule,
   MdFormFieldModule, MdCardModule, MdIconModule, MdTooltipModule, MdDialogModule, MdCheckboxModule, MdSnackBarModule,
-  MdChipsModule
+  MdChipsModule, MdExpansionModule, MdSlideToggleModule
 } from "@angular/material";
 
 @NgModule({
@@ -22,7 +22,9 @@ import {
     MdDialogModule,
     MdCheckboxModule,
     MdSnackBarModule,
-    MdChipsModule
+    MdChipsModule,
+    MdExpansionModule,
+    MdSlideToggleModule
   ],
   exports: [
     MdSidenavModule,
@@ -37,7 +39,9 @@ import {
     MdDialogModule,
     MdCheckboxModule,
     MdSnackBarModule,
-    MdChipsModule
+    MdChipsModule,
+    MdExpansionModule,
+    MdSlideToggleModule
   ],
   providers: [],
   bootstrap: []

@@ -1,6 +1,6 @@
 import {Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef} from '@angular/core';
 import {MyMarker} from "../shared/google-map/mapModels/myMarker";
-import {MdChipList, MdChip} from "@angular/material";
+import {MdChipList, MdChip, MdSlideToggleChange, MdSlideToggle} from "@angular/material";
 import {WindowRef} from "../../core/services/window.ref";
 import {MapService} from "../../core/services/map.service";
 import {MyMap} from "../shared/google-map/mapModels/myMap";
@@ -18,38 +18,35 @@ export class MapStuffComponent implements OnInit {
   private mapRef: MyMap;
 
   private selectedPath: MyPolyline;
-  public distanceBetween: number;
+  public distanceBetween: number = 0;
+
+  public useMetric: boolean = true;//controls whether to use metric or the other output
 
   @ViewChild('chipList') chipList: MdChipList;
+  @ViewChild('toggler') toggler: MdSlideToggle;
 
   constructor(private ref: ChangeDetectorRef, private windowRef: WindowRef, private mapService: MapService) { }
 
   remove(myMarkerObj, chipReference){
-    //console.log("Removal time");
-    let chip = chipReference as MdChip;
-    console.log(myMarkerObj);
     let markerIndex = this.markerList.map((marker)=>{return marker.id}).indexOf(myMarkerObj.id);
-    console.log("found at index "+markerIndex);
     let deletedMarker = this.markerList.splice(markerIndex,1);
     deletedMarker[0].setMap(null);
     this.ref.detectChanges();
   }
 
+  //gets called for every chip on add or remove
   selectionChange($event){
     let thisChip = $event.source;
     let thisMarker = $event.source.value;
-    //console.log("DIS HERE BE " + $event.selected + " for the marker: " + thisMarker.id);
-    //console.log($event.source.value);
 
     if(thisMarker.selected && (thisChip.selected !== thisMarker.selected)){
+      /*
+      * Keeps chip marked as selected if the matching marker is set to selected
+      */
       $event.source.select();
     }
     this.mapService.setMarkerSelected($event.source.value, thisMarker.selected);
     this.pathLineHandler();
-  }
-
-  meClicker(){
-    console.log(this.chipList.selected);
   }
 
   pathLineHandler(){
@@ -73,10 +70,16 @@ export class MapStuffComponent implements OnInit {
     }
   }
 
+  metricToggleChanged(toggleChange: MdSlideToggleChange){
+    console.log(toggleChange.checked);
+    this.useMetric = toggleChange.checked;
+  }
+
+  extraToggleClick(){
+    this.useMetric = !this.toggler.checked;
+  }
+
   chipSelectionClick($event, clickedMarker: MyMarker){
-    console.log("Chip click handler");
-    //console.log($event);
-    //console.log(clickedMarker);
     let findId = clickedMarker.id;
 
     let chipReference = this.chipList.chips.find((chipo, index)=>{
@@ -102,6 +105,24 @@ export class MapStuffComponent implements OnInit {
       }
     }
     this.pathLineHandler();
+  }
+
+  public getDistance(): number{
+    let returnDis = 0;
+    if(this.useMetric){
+      returnDis = this.distanceBetween;
+    }else{
+      returnDis = MapService.convertMetersToMiles(this.distanceBetween);
+    }
+    return returnDis;
+  }
+
+  public getDistanceLabel(): string{
+    if(this.useMetric){
+      return " M";
+    }else{
+      return " miles";
+    }
   }
 
   chipDeselectHandler(chip: MdChip){

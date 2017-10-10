@@ -6,6 +6,7 @@ import MarkerOptions = google.maps.MarkerOptions;
 import SymbolPath = google.maps.SymbolPath;
 import {MyPolyline} from "../../app/shared/google-map/mapModels/myPolyline";
 import spherical = google.maps.geometry.spherical;
+import {ConstantService} from "./constant.service";
 
 @Injectable()
 export class MapService{
@@ -60,10 +61,18 @@ export class MapService{
   static getPolyLineLength(line: MyPolyline){
     let latLngArray = line.getPath().getArray();
     let distanceInMeters = spherical.computeDistanceBetween(latLngArray[0], latLngArray[1]);
-    return Number.parseFloat(distanceInMeters.toFixed(1));
+    return distanceInMeters;
   }
 
   static getMarkerCount(){
     return MapService.markerCount;
+  }
+
+  static convertMetersToMiles(distanceInMeters: number):number{
+    let asMiles = distanceInMeters *
+      ConstantService.CONVERSION_CONSTANTS.M_TO_KM_MULTIPLIER *
+      ConstantService.CONVERSION_CONSTANTS.KM_TO_MILE_MULTIPLIER;
+
+    return Math.round(asMiles);
   }
 }

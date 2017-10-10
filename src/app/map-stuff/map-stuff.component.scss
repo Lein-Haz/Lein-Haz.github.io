@@ -1,3 +1,24 @@
+@import "../../theme/variables";
+
 .mat-form-field{
   width: 100%;
+}
+
+.mat-chip:not(.mat-basic-chip){
+  &:focus{
+    background-color: mat-color($my-app-primary, 100);
+  }
+  &.mat-chip-selected{
+    &:focus{
+      background-color: mat-color($my-app-primary, 500);
+    }
+  }
+}
+
+.choice-toggle{
+  cursor: pointer;
+}
+
+.toggle-active{
+  font-weight: 800;
 }
