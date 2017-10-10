@@ -46,7 +46,6 @@ export class MapStuffComponent implements OnInit {
       */
       $event.source.select();
     }
-    this.mapService.setMarkerSelected($event.source.value, thisMarker.selected);
     this.pathLineHandler();
   }
 
@@ -82,8 +81,6 @@ export class MapStuffComponent implements OnInit {
 
   chipSelectionClick($event, clickedMarker: MyMarker){
     let findId = clickedMarker.id;
-    console.log("Second selected");
-    console.log(this.pushSecondSelected);
 
     let chipReference = this.chipList.chips.find((chipo, index)=>{
       let markerVal = chipo.value as MyMarker;
@@ -137,6 +134,8 @@ export class MapStuffComponent implements OnInit {
       chip.value.selected = false;
     }
     chip.deselect();//triggers call to selectionChange
+    this.mapService.setMarkerSelected(chip.value);
+    this.setSelectedArrayMarkers();
   }
 
   chipSelectHandler(chip: MdChip){
@@ -144,10 +143,24 @@ export class MapStuffComponent implements OnInit {
       chip.value.selected = true;
     }
     chip.select();//triggers call to selectionChange
+    this.setSelectedArrayMarkers();
   }
 
-  focused(){
-    console.log("THINGS FUCUSED");
+  setSelectedArrayMarkers(){
+    let selArr = this.chipList.selected as MdChip[];
+    selArr.forEach((chip, index:number)=>{
+      this.mapService.setMarkerSelected(chip.value, index);
+    });
+  }
+
+  focused($event, meMar){
+    //console.log("THINGS FUCUSED");
+    MapService.bounceMarker(meMar);
+  }
+
+  blurred($event, meMar){
+    //console.log("THINGS blurred");
+    MapService.bounceMarker(meMar);
   }
 
   markerListAdd(marker: MyMarker){

@@ -17,7 +17,8 @@ export class MapService{
     let defaultMapOpts: MarkerOptions = {
       position: position,
       map: map,
-      animation: google.maps.Animation.DROP
+      animation: google.maps.Animation.DROP,
+      icon: 'https://mt.google.com/vt/icon?color=ff004C13&name=icons/spotlight/spotlight-waypoint-blue.png'
     };
 
     defaultMapOpts = Object.assign(defaultMapOpts, markerOpts);
@@ -40,22 +41,37 @@ export class MapService{
     return myLine;
   }
 
-  public setMarkerSelected(marker: MyMarker, isSelected: boolean){
-    if(isSelected){
-      let lineSymbol = {
-        path: SymbolPath.BACKWARD_CLOSED_ARROW,
-        scale: 6,
-        strokeColor: '#4C9CB7',
-        strokeWeight: 4,
-        strokeOpacity: 1,
-      };
-      marker.set("icon", lineSymbol);
-      marker.set("label", "Selected");
+  public setMarkerSelected(marker: MyMarker, selectedPosition?: number){
+    if(marker.selected){
+      let url = this.getUrl(selectedPosition);
+      marker.set("icon", url);
+      marker.set("title", "Selected");
     }else{
-      marker.set("icon", "");
-      marker.set("label", "");
+      marker.set("icon", "https://mt.google.com/vt/icon?color=ff004C13&name=icons/spotlight/spotlight-waypoint-blue.png");
+      marker.set("title", "");
     }
+  }
 
+  getUrl(selectedPosition: number){
+    let retUrl = '';
+    if(selectedPosition == 0){
+      retUrl = "https://mt.google.com/vt/icon?psize=16&font=fonts/Roboto-Regular.ttf&color=ff004C13&name=icons/spotlight/spotlight-waypoint-b.png&ax=44&ay=48&scale=1&text=1";
+    }else{
+      retUrl = "https://mt.google.com/vt/icon?psize=16&font=fonts/Roboto-Regular.ttf&color=ff004C13&name=icons/spotlight/spotlight-waypoint-a.png&ax=44&ay=48&scale=1&text=2";
+    }
+    return retUrl;
+  }
+
+  static bounceMarker(marker: MyMarker){
+    let anim = marker.getAnimation();
+    //console.log(anim);
+    if(!anim && !marker.selected){
+      //console.log("commence the bouncing");
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+    }else{
+      //console.log("stop the animation");
+      marker.setAnimation(null);
+    }
   }
 
   static getPolyLineLength(line: MyPolyline){

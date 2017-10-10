@@ -3,8 +3,8 @@
 </mat-toolbar>
 <mat-card>
   <p>Click the map to place pins.  All the pins are tracked through a chiplist.</p>
-  <p>Select any two chips to get the distance between the two pins.</p>
-  <home-map [markerList]="markerList" (markerListEmit)="markerListAdd(marker)" (mapInitEmitter)="mapInitHandler($event)"></home-map>
+  <p>Select any two chips to get the distance between the two pins.  Only two pins can be selected.</p>
+  <home-map [markerList]="markerList" (markerListEmit)="markerListAdd($event)" (mapInitEmitter)="mapInitHandler($event)"></home-map>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -41,7 +41,7 @@
     </span>
 
   </mat-expansion-panel>
-  <p>Line distance: {{getDistance() | number:'1.02'}} {{getDistanceLabel()}}</p>
+  <p>Line distance: {{getDistance() | number:'1.0-2'}} {{getDistanceLabel()}}</p>
   <mat-form-field>
     Pins:
     <mat-chip-list #chipList [multiple]="true">
@@ -50,9 +50,10 @@
                 (selectionChange)="selectionChange($event)"
                 [value]="myMarkerObj"
                 (click)="chipSelectionClick($event, myMarkerObj)"
-                (focus)="focused()"
+                (focus)="focused($event, myMarkerObj)"
+                (blur)="blurred($event, myMarkerObj)"
       >
-        Marker {{i}} {{myMarkerObj.id}}
+        Map Pin {{myMarkerObj.id}}
         <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
