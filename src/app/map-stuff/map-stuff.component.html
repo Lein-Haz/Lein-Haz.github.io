@@ -3,17 +3,19 @@
 </mat-toolbar>
 <mat-card>
   <p>Why the middle of the Atlantic? {{markerList.length}}  Selected: {{chipList.selected.length}}</p>
-  <home-map [markerList]="markerList" (markerListEmit)="markerListAdd(marker)"></home-map>
+  <home-map [markerList]="markerList" (markerListEmit)="markerListAdd(marker)" (mapInitEmitter)="mapInitHandler($event)"></home-map>
   <button mat-raised-button (click)="meClicker()">
     Me click
   </button>
+  <p>Line distance: {{distanceBetween}}</p>
   <mat-form-field>
     <mat-chip-list #chipList [multiple]="true">
       <mat-chip *ngFor="let myMarkerObj of markerList; let i = index" [selectable]="true"
                 [removable]="true" (removed)="remove(myMarkerObj, $event)"
-                (selectionChange)="selctionChange($event)"
+                (selectionChange)="selectionChange($event)"
                 [value]="myMarkerObj"
-                (click)="toggleSelection($event, myMarkerObj)"
+                (click)="chipSelectionClick($event, myMarkerObj)"
+                (focus)="focused()"
       >
         Marker {{i}} {{myMarkerObj.id}}
         <mat-icon matChipRemove>cancel</mat-icon>

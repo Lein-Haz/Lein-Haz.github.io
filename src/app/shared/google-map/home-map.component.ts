@@ -6,6 +6,7 @@ import {MyMap} from "./mapModels/myMap";
 import {MyLatLng} from "./mapModels/myLatLng";
 import {MyMarker} from "./mapModels/myMarker";
 import {MapService} from "../../../core/services/map.service";
+import SymbolPath = google.maps.SymbolPath;
 
 @Component({
   selector: 'home-map',
@@ -17,8 +18,8 @@ export class HomeMapComponent implements OnInit, AfterViewInit {
 
   @Input() public markerList: MyMarker[] = [];
   @Output() markerListEmit: EventEmitter<MyMarker> = new EventEmitter();
-  @Input()
-  public overLayText: string;
+  @Output() mapInitEmitter: EventEmitter<MyMap> = new EventEmitter();
+  @Input() public overLayText: string;
 
   ngAfterViewInit(): void {
 
@@ -28,6 +29,7 @@ export class HomeMapComponent implements OnInit, AfterViewInit {
     this.homeMap = $event;
     this.setMapOptions();
     this.addMapClickListener();
+    this.mapInitEmitter.emit(this.homeMap);
   }
 
   setMapOptions(){

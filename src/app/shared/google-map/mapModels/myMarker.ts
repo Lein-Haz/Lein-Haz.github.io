@@ -5,6 +5,7 @@ import MarkerOptions = google.maps.MarkerOptions;
 export class MyMarker extends Marker {
 
   public id: number;
+  public selected: boolean;
 
   constructor(opts?: MarkerOptions, addListener: boolean = false) {
     super(opts);
