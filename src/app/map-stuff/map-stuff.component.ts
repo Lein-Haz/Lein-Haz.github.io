@@ -1,7 +1,6 @@
 import {Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef} from '@angular/core';
 import {MyMarker} from "../shared/google-map/mapModels/myMarker";
 import {MdChipList, MdChip, MdSlideToggleChange, MdSlideToggle} from "@angular/material";
-import {WindowRef} from "../../core/services/window.ref";
 import {MapService} from "../../core/services/map.service";
 import {MyMap} from "../shared/google-map/mapModels/myMap";
 import {MyPolyline} from "../shared/google-map/mapModels/myPolyline";
@@ -26,7 +25,7 @@ export class MapStuffComponent implements OnInit {
   @ViewChild('chipList') chipList: MdChipList;
   @ViewChild('toggler') toggler: MdSlideToggle;
 
-  constructor(private ref: ChangeDetectorRef, private windowRef: WindowRef, private mapService: MapService) { }
+  constructor(private ref: ChangeDetectorRef, private mapService: MapService) { }
 
   remove(myMarkerObj, chipReference){
     let markerIndex = this.markerList.map((marker)=>{return marker.id}).indexOf(myMarkerObj.id);
@@ -39,6 +38,13 @@ export class MapStuffComponent implements OnInit {
   selectionChange($event){
     let thisChip = $event.source;
     let thisMarker = $event.source.value;
+
+    if($event.isUserInput){//only call when the change was user initiated from a non-click
+      if(thisChip.selected !== thisMarker.selected){
+        thisChip.selected = thisMarker.selected;
+      }
+      this.limitSelection(thisChip);
+    }
 
     if(thisMarker.selected && (thisChip.selected !== thisMarker.selected)){
       /*
@@ -153,14 +159,12 @@ export class MapStuffComponent implements OnInit {
     });
   }
 
-  focused($event, meMar){
-    //console.log("THINGS FUCUSED");
-    MapService.bounceMarker(meMar);
+  focused($event, marker: MyMarker){
+    MapService.bounceMarker(marker);
   }
 
-  blurred($event, meMar){
-    //console.log("THINGS blurred");
-    MapService.bounceMarker(meMar);
+  blurred($event, marker: MyMarker){
+    MapService.bounceMarker(marker);
   }
 
   markerListAdd(marker: MyMarker){
@@ -172,7 +176,7 @@ export class MapStuffComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.windowRef.nativeWindow().scrollTo(0, 1300);//TODO Remove
+
 
   }
 

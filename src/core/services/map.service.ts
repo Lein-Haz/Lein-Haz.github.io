@@ -64,12 +64,14 @@ export class MapService{
 
   static bounceMarker(marker: MyMarker){
     let anim = marker.getAnimation();
-    //console.log(anim);
     if(!anim && !marker.selected){
-      //console.log("commence the bouncing");
+
       marker.setAnimation(google.maps.Animation.BOUNCE);
+      setTimeout(($event)=>{
+        console.log($event);
+        marker.setAnimation(null);
+      }, 2800);
     }else{
-      //console.log("stop the animation");
       marker.setAnimation(null);
     }
   }
