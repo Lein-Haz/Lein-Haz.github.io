@@ -1,5 +1,4 @@
 import {Component, OnInit, AfterViewInit, Output} from '@angular/core';
-import {MyMap} from "./mapModels/myMap";
 import {StoryService} from "../../../core/services/story.service";
 import {StoryStepModel} from "../../../core/models/StoryStep.model";
 import {StoryModel} from "../../../core/models/Story.model";
@@ -13,7 +12,7 @@ import {StoryConstantService} from "../../../core/services/story-constant.servic
   styleUrls: ['./google-map.component.scss']
 })
 export class StoryMapComponent implements OnInit, AfterViewInit {
-  private storyMap: MyMap;
+  private storyMap: google.maps.Map;
   public overLayText: string;
   private storyArray: StoryModel[];
   public storyActive: boolean;
@@ -29,7 +28,7 @@ export class StoryMapComponent implements OnInit, AfterViewInit {
     }
   }
 
-  steppedZoom(map: MyMap, destinationZoomLevel: number){
+  steppedZoom(map: google.maps.Map, destinationZoomLevel: number){
     if(map.getZoom() !== destinationZoomLevel){
       let zoomObservable = this.storyService.steppedZoom(map, destinationZoomLevel);
 
@@ -47,7 +46,7 @@ export class StoryMapComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public doStory(map: MyMap){
+  public doStory(map: google.maps.Map){
     this.storyActive = true;
     const STORIES = StoryConstantService.STORIES;
     this.storyArray = this.storyService.buildStoryFromConstant(STORIES);
@@ -80,7 +79,7 @@ export class StoryMapComponent implements OnInit, AfterViewInit {
     return StoryService.convertMetersToMiles(meters);
   }
 
-  storyHandler(story: StoryModel, map: MyMap): Observable<any>{
+  storyHandler(story: StoryModel, map: google.maps.Map): Observable<any>{
     return Observable.create((sceneObserver)=>{
       let stepObservable;
       story.steps.forEach((storyStep: StoryStepModel, index:number)=>{
@@ -109,7 +108,7 @@ export class StoryMapComponent implements OnInit, AfterViewInit {
     });
   }
 
-  processStep(storyStep: StoryStepModel, map: MyMap, story: StoryModel){
+  processStep(storyStep: StoryStepModel, map: google.maps.Map, story: StoryModel){
     this.overLayText = storyStep.text;
     this.steppedZoom(map, storyStep.zoom);
     this.storyService.handleAction(storyStep, map, story);

@@ -1,5 +1,4 @@
 import {Component, OnInit, ElementRef, ViewChild, AfterViewInit, Output, EventEmitter, Input} from '@angular/core';
-import {MyMap} from "./mapModels/myMap";
 
 @Component({
   selector: 'google-map',
@@ -9,11 +8,11 @@ import {MyMap} from "./mapModels/myMap";
 export class GoogleMapComponent implements OnInit, AfterViewInit {
   @ViewChild('mymap') myMap: ElementRef;
 
-  private theMap: MyMap;
+  private theMap: google.maps.Map;
   @Input() public showOverLay: boolean = false;
   @Input() private overLayText: string = "Initing the overlay text";
 
-  @Output() mapInitializedEmitter: EventEmitter<MyMap> = new EventEmitter();
+  @Output() mapInitializedEmitter: EventEmitter<google.maps.Map> = new EventEmitter();
 
   ngAfterViewInit(): void {
     this.mapInit();
@@ -25,7 +24,7 @@ export class GoogleMapComponent implements OnInit, AfterViewInit {
       zoom: 14
     };
 
-    this.theMap = new MyMap(this.myMap.nativeElement, opts);
+    this.theMap = new google.maps.Map(this.myMap.nativeElement, opts);
     this.mapInitializedEmitter.emit(this.theMap);
   }
 

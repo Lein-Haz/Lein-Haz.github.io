@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {WindowRef} from "./window.ref";
 import {Observable} from "rxjs";
 
-const url = 'https://apis.google.com/js/platform.js?onload=__onGoogleLoaded';
+const url = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDW2rnsG-2gOOJM5N3V3h261420EuDSrm4&libraries=geometry&callback=__onGMapLoaded';
 
 @Injectable()
-export class GoogleAuthLoadService {
-  loadAPI;
+export class GoogleMapLoadService {
+  loadApi;
 
   window: Window;
   constructor(private windowRef: WindowRef){
@@ -14,24 +14,23 @@ export class GoogleAuthLoadService {
   }
 
   public load(): Observable<any>{
-    //console.log(this.loadAPI);
-    if(!this.loadAPI){
-      this.loadAPI = new Promise((resolve)=> {
-        this.window['__onGoogleLoaded'] = (ev) => {
-          console.debug("gapi loaded");
-          resolve(this.window['gapi']);
+    //console.log(this.loadApi);
+    if(!this.loadApi){
+      this.loadApi = new Promise((resolve)=> {
+        this.window['__onGMapLoaded'] = (ev) => {
+          console.debug("Gmap loaded");
+          resolve(this.window['google']);
         };
 
         this.loadScript();
       });
     }
-    //return this.loadAPI;
-    return Observable.fromPromise(this.loadAPI);
+    return Observable.fromPromise(this.loadApi);
   }
 
 
   private loadScript(){
-    console.log("Loading gapi");
+    console.log("Loading gmap");
     let node = document.createElement('script');
     node.src = url;
     node.type = 'text/javascript';

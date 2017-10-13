@@ -1,23 +1,25 @@
 import {} from '@types/googlemaps';
-import Marker = google.maps.Marker;
-import MarkerOptions = google.maps.MarkerOptions;
 
-export class MyMarker extends Marker {
+export interface MyMarker extends google.maps.Marker {
+  id: number;
+  selected: boolean;
+}
 
-  public id: number;
-  public selected: boolean;
+export function ClassLoader(){
+  return class MyMarker extends google.maps.Marker {
+    id: number;
+    selected: boolean;
 
-  constructor(opts?: MarkerOptions, addListener: boolean = false) {
-    super(opts);
-    //this.addMarkerClickListener();//off until other map work
+    constructor(opts?: google.maps.MarkerOptions, addListener: boolean = false){
+      super(opts);
+    }
+
+    private addMarkerClickListener(){
+      this.addListener('click', ($event)=>{
+        console.log("You clicked the marker");
+        console.log($event);
+        this.setMap(null);
+      });
+    }
   }
-
-  private addMarkerClickListener(){
-    this.addListener('click', ($event)=>{
-      console.log("You clicked the marker");
-      console.log($event);
-      this.setMap(null);
-    })
-  }
-
 }

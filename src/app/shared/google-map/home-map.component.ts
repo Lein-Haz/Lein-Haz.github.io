@@ -1,9 +1,6 @@
 import {Component, OnInit, AfterViewInit, Output, EventEmitter, Input} from '@angular/core';
-import {MyMap} from "./mapModels/myMap";
-import {MyLatLng} from "./mapModels/myLatLng";
 import {MyMarker} from "./mapModels/myMarker";
 import {MapService} from "../../../core/services/map.service";
-import SymbolPath = google.maps.SymbolPath;
 
 @Component({
   selector: 'home-map',
@@ -11,11 +8,11 @@ import SymbolPath = google.maps.SymbolPath;
   styleUrls: ['./google-map.component.scss']
 })
 export class HomeMapComponent implements OnInit, AfterViewInit {
-  private homeMap: MyMap;
+  private homeMap: google.maps.Map;
 
   @Input() public markerList: MyMarker[] = [];
   @Output() markerListEmit: EventEmitter<MyMarker> = new EventEmitter();
-  @Output() mapInitEmitter: EventEmitter<MyMap> = new EventEmitter();
+  @Output() mapInitEmitter: EventEmitter<google.maps.Map> = new EventEmitter();
   @Input() public overLayText: string;
 
   ngAfterViewInit(): void {
@@ -38,14 +35,14 @@ export class HomeMapComponent implements OnInit, AfterViewInit {
 
   addMapClickListener(): void{
     this.homeMap.addListener('click', ($event) => {
-      let clickedLatLng: MyLatLng = new MyLatLng($event.latLng.lat(), $event.latLng.lng());
+      let clickedLatLng: google.maps.LatLng = new google.maps.LatLng($event.latLng.lat(), $event.latLng.lng());
       //console.log(clickedLatLng);
       //console.log(clickedLatLng.toString());
       this.addToMarkerList(clickedLatLng);
     });
   }
 
-  private addToMarkerList(markerPosition: MyLatLng){
+  private addToMarkerList(markerPosition: google.maps.LatLng){
     let id = MapService.getMarkerCount();
     let newMarker = this.mapService.addMarker(markerPosition, this.homeMap, ++id);
     this.markerList.push(newMarker);

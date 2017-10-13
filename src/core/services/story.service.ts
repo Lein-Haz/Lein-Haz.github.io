@@ -1,15 +1,10 @@
 import {Injectable} from "@angular/core";
 import { Observable } from "rxjs/Rx";
 import {StoryStepModel} from "../models/StoryStep.model";
-import {MyLatLng} from "../../app/shared/google-map/mapModels/myLatLng";
 import {StoryModel} from "../models/Story.model";
-import {MyPolyline} from "../../app/shared/google-map/mapModels/myPolyline";
-import {MyMap} from "../../app/shared/google-map/mapModels/myMap";
-import {MyMarker} from "../../app/shared/google-map/mapModels/myMarker";
+import {MyMarker, ClassLoader} from "../../app/shared/google-map/mapModels/myMarker";
 
 import {} from '@types/googlemaps';
-import SymbolPath = google.maps.SymbolPath;
-import spherical = google.maps.geometry.spherical
 import {ConstantService} from "./constant.service";
 import {isUndefined} from "util";
 
@@ -18,19 +13,21 @@ export class StoryService{
 
   constructor( ){ }
 
+  MyMarkerClass = ClassLoader();
+
   public buildStoryFromConstant(storiesArray):StoryModel[]{
     let storyArray: StoryModel[] = [];
     for(let val of storiesArray){
-      let startLL = new MyLatLng(val.startMarker.lat, val.startMarker.lng);
-      let endLL = new MyLatLng(val.endMarker.lat, val.endMarker.lng);
+      let startLL = new google.maps.LatLng(val.startMarker.lat, val.startMarker.lng);
+      let endLL = new google.maps.LatLng(val.endMarker.lat, val.endMarker.lng);
 
       let pathArray = [startLL, endLL];
 
       let stepsArray: StoryStepModel[] = [];
       for(let stepVal of val.steps){
-        let newLatLng: MyLatLng;
+        let newLatLng: google.maps.LatLng;
         if(stepVal.latLng){
-          newLatLng = new MyLatLng(stepVal.latLng.lat, stepVal.latLng.lng);
+          newLatLng = new google.maps.LatLng(stepVal.latLng.lat, stepVal.latLng.lng);
         }
         let storyStep = new StoryStepModel(stepVal.action, stepVal.delay, stepVal.text, newLatLng);
         storyStep.path = pathArray;
@@ -39,10 +36,10 @@ export class StoryService{
       }
       let aStory = new StoryModel(val.text, stepsArray);
 
-      aStory.startMarker = new MyMarker({
+      aStory.startMarker = new this.MyMarkerClass({
         position: startLL
       });
-      aStory.endMarker = new MyMarker({
+      aStory.endMarker = new this.MyMarkerClass({
         position: endLL
       });
 
@@ -51,7 +48,7 @@ export class StoryService{
     return storyArray;
   }
 
-  public handleAction(storyStep: StoryStepModel , map: MyMap, story){
+  public handleAction(storyStep: StoryStepModel , map: google.maps.Map, story){
     switch (storyStep.action){
       case ConstantService.MAP_ACTIONS.FOCUS_LAT_LNG:
         map.panTo(storyStep.latLng);
@@ -70,8 +67,8 @@ export class StoryService{
     }
   }
 
-  public addMarker(position: MyLatLng, map: MyMap, title: string = ""): MyMarker{
-    return new MyMarker({
+  public addMarker(position: google.maps.LatLng, map: google.maps.Map, title: string = ""): MyMarker{
+    return new this.MyMarkerClass({
       position: position,
       map: map,
       label: title,
@@ -81,16 +78,16 @@ export class StoryService{
     });
   }
 
-  drawFilledPath(startPoint: MyLatLng, endPoint: MyLatLng, map: MyMap, story: StoryModel): MyPolyline{
+  drawFilledPath(startPoint: google.maps.LatLng, endPoint: google.maps.LatLng, map: google.maps.Map, story: StoryModel): google.maps.Polyline{
     let lineSymbol = {
-      path: SymbolPath.FORWARD_OPEN_ARROW,
+      path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
       scale: 7,
       strokeColor: '#FFB700',
       strokeWeight: 4,
       strokeOpacity: 1,
     };
 
-    let myLine = new MyPolyline({
+    let myLine = new google.maps.Polyline({
       strokeColor: '#C4E5E6',
       strokeOpacity: 0.1,
       strokeWeight: 2,
@@ -105,15 +102,15 @@ export class StoryService{
       ]
 
     });
-    let distanceInMeters = spherical.computeDistanceBetween(startPoint, endPoint);
+    let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(startPoint, endPoint);
     story.distanceTraveled = Number.parseFloat(distanceInMeters.toFixed(1));
 
     return this.fillPath(myLine, startPoint, endPoint, map, story);
   }
 
-  fillPath(guideLine: MyPolyline, origin: MyLatLng, end: MyLatLng, map: MyMap, story: StoryModel): MyPolyline{
+  fillPath(guideLine: google.maps.Polyline, origin: google.maps.LatLng, end: google.maps.LatLng, map: google.maps.Map, story: StoryModel): google.maps.Polyline{
     let count = 0;
-    let fillLine = new MyPolyline({
+    let fillLine = new google.maps.Polyline({
       strokeColor: '#FFB700',
       strokeOpacity: 1.0,
       strokeWeight: 5,
@@ -130,7 +127,7 @@ export class StoryService{
 
       icons[0].offset = (count/2) + '%';
 
-      let pathEnd = spherical.interpolate(origin, end, (count === 0)? 1: ((count/2)/100));
+      let pathEnd = google.maps.geometry.spherical.interpolate(origin, end, (count === 0)? 1: ((count/2)/100));
       fillLine.setPath([origin,pathEnd]);
       map.panTo(pathEnd);
       guideLine.set('icons', icons);
@@ -148,7 +145,7 @@ export class StoryService{
     return fillLine;
   }
 
-  steppedZoom(map: MyMap, destinationZoomLevel: number): Observable<any>{
+  steppedZoom(map: google.maps.Map, destinationZoomLevel: number): Observable<any>{
     let zoomLvlSteps = StoryService.getSteppedZoomArray(map.getZoom(), destinationZoomLevel);
     let zoomObservable: Observable<any>;
     zoomLvlSteps.forEach((zoomLevel: number)=>{
@@ -181,10 +178,10 @@ export class StoryService{
     story.endMarker.set('icon',ConstantService.ICON_SHAPES.INACTIVE_CIRCLE);
   }
 
-  static lockMap(map: MyMap){
+  static lockMap(map: google.maps.Map){
     map.set('gestureHandling','none');
   }
-  static unlockMap(map: MyMap){
+  static unlockMap(map: google.maps.Map){
     map.set('gestureHandling','auto');
   }
   static clearStoryElements(stories: StoryModel|StoryModel[]){

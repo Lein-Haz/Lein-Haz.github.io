@@ -2,8 +2,6 @@ import {Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef} from '@angu
 import {MyMarker} from "../shared/google-map/mapModels/myMarker";
 import {MdChipList, MdChip, MdSlideToggleChange, MdSlideToggle} from "@angular/material";
 import {MapService} from "../../core/services/map.service";
-import {MyMap} from "../shared/google-map/mapModels/myMap";
-import {MyPolyline} from "../shared/google-map/mapModels/myPolyline";
 
 @Component({
   selector: 'app-map-stuff',
@@ -14,9 +12,9 @@ export class MapStuffComponent implements OnInit {
 
   public markerList: MyMarker[] = [];
   private selectLimit: number = 2;
-  private mapRef: MyMap;
+  private mapRef: google.maps.Map;
 
-  private selectedPath: MyPolyline;
+  private selectedPath: google.maps.Polyline;
   public distanceBetween: number = 0;
 
   public useMetric: boolean = true;//controls whether to use metric or the other output
@@ -171,13 +169,10 @@ export class MapStuffComponent implements OnInit {
     this.ref.detectChanges();
   }
 
-  mapInitHandler(map: MyMap){
+  mapInitHandler(map: google.maps.Map){
     this.mapRef = map;
   }
 
   ngOnInit() {
-
-
   }
-
 }

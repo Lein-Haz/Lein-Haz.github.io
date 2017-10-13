@@ -1,11 +1,5 @@
 import {Injectable} from "@angular/core";
-import {MyLatLng} from "../../app/shared/google-map/mapModels/myLatLng";
-import {MyMap} from "../../app/shared/google-map/mapModels/myMap";
-import {MyMarker} from "../../app/shared/google-map/mapModels/myMarker";
-import MarkerOptions = google.maps.MarkerOptions;
-import SymbolPath = google.maps.SymbolPath;
-import {MyPolyline} from "../../app/shared/google-map/mapModels/myPolyline";
-import spherical = google.maps.geometry.spherical;
+import {MyMarker, ClassLoader} from "../../app/shared/google-map/mapModels/myMarker";
 import {ConstantService} from "./constant.service";
 
 @Injectable()
@@ -13,8 +7,8 @@ export class MapService{
 
   static markerCount: number = 0;
 
-  public addMarker(position: MyLatLng, map: MyMap, markerId: number, markerOpts?: MarkerOptions): MyMarker{
-    let defaultMapOpts: MarkerOptions = {
+  public addMarker(position: google.maps.LatLng, map: google.maps.Map, markerId: number, markerOpts?: google.maps.MarkerOptions): MyMarker{
+    let defaultMapOpts: google.maps.MarkerOptions = {
       position: position,
       map: map,
       animation: google.maps.Animation.DROP,
@@ -22,14 +16,15 @@ export class MapService{
     };
 
     defaultMapOpts = Object.assign(defaultMapOpts, markerOpts);
-    let newMarker = new MyMarker(defaultMapOpts);
+    let MyMarkerClass = ClassLoader();
+    let newMarker = new MyMarkerClass(defaultMapOpts);
     newMarker.id = markerId;
     MapService.markerCount++;
     return newMarker;
   }
 
-  drawPath(startPoint: MyLatLng, endPoint: MyLatLng, map: MyMap): MyPolyline{
-    let myLine = new MyPolyline({
+  drawPath(startPoint: google.maps.LatLng, endPoint: google.maps.LatLng, map: google.maps.Map): google.maps.Polyline{
+    let myLine = new google.maps.Polyline({
       strokeColor: '#4C9CB7',
       strokeOpacity: 1,
       strokeWeight: 2,
@@ -75,9 +70,9 @@ export class MapService{
     }
   }
 
-  static getPolyLineLength(line: MyPolyline){
+  static getPolyLineLength(line: google.maps.Polyline){
     let latLngArray = line.getPath().getArray();
-    let distanceInMeters = spherical.computeDistanceBetween(latLngArray[0], latLngArray[1]);
+    let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(latLngArray[0], latLngArray[1]);
     return distanceInMeters;
   }
 
