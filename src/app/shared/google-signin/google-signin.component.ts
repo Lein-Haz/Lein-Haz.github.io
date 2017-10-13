@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ElementRef, Output, EventEmitter, ChangeDetectorRef } from "@angular/core";
 import { AuthService } from "../../../core/services/auth.service";
-
-declare const gapi: any;
+import {} from '@types/gapi';
+import {} from '@types/gapi.auth2';
 
 @Component({
   selector: 'google-signin',
