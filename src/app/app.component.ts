@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
 
   }
 
-  title = 'app';
+  title = 'asite';
 
   constructor(){
 
