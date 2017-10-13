@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pwa": "ng build --prod && firebase deploy"
+    "pwa": "ng build --prod && firebase deploy",
+    "testy": "ng test --sourcemap=false --code-coverage"
   },
   "private": true,
   "dependencies": {

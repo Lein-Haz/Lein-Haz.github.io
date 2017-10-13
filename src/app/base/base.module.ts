@@ -16,6 +16,7 @@ import {NavComponent} from "../shared/nav/nav.component";
 import {MediaCarouselComponent} from "../shared/media-shade/media-carousel.component";
 import {TechDemosModule} from "../tech-demos/tech-demos.module";
 import {FooterComponent} from "../shared/footer/footer.component";
+import {NavListComponent} from "../shared/nav-list/nav-list.component";
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import {FooterComponent} from "../shared/footer/footer.component";
     MediaShadeComponent,
     MediaCarouselComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    NavListComponent
   ],
   providers: [BaseResolve]
 })

@@ -1,38 +1,7 @@
 <div>
   <mat-sidenav-container class="nav-drawer-container">
     <mat-sidenav #sidenav mode="over" (click)="sidenav.toggle()">
-      <mat-nav-list fxLayout="column" fxLayoutAlign="space-between">
-        <mat-list-item>
-          <button aria-hidden="true" mat-button color="accent">
-            <mat-icon>chevron_left</mat-icon>
-          </button>
-        </mat-list-item>
-
-        <!--<mat-list-item [routerLink]="['/base/oauthreturn']">
-          <a >Auth return</a>
-        </mat-list-item>-->
-
-        <mat-list-item [routerLink]="['/base/home']">
-          <a><i class="fa fa-home fa-lg"></i> Home</a>
-        </mat-list-item>
-
-        <mat-list-item [routerLink]="['/base/map-stuff']">
-          <a><i class="fa fa-globe fa-lg"></i> Map</a>
-        </mat-list-item>
-
-        <mat-list-item [routerLink]="['/base/tech-demos']">
-          <a><i class="fa fa-cogs fa-lg"></i> Tech Demos</a>
-        </mat-list-item>
-
-        <mat-list-item [routerLink]="['/base/about']">
-          <span><i class="fa fa-rebel fa-lg"></i> About</span>
-        </mat-list-item>
-
-        <mat-list-item *ngIf="isSignedIn" (click)="logout()">
-          <div>Logout</div>
-        </mat-list-item>
-
-      </mat-nav-list>
+      <nav-list></nav-list>
     </mat-sidenav>
 
     <div class="body-content">
