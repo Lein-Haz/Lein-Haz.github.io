@@ -7,6 +7,7 @@ import {AppMaterialModule} from "../shared/app-material/app-material.module";
 import {GoogleMapModule} from "../shared/google-map/google-map.module";
 import {FormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {MapStuffResolve} from "./map-stuff.resolve";
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
   ],
   declarations: [
     MapStuffComponent
-  ]
+  ],
+  providers: [MapStuffResolve]
 })
 export class MapStuffModule { }

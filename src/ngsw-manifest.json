@@ -29,7 +29,7 @@
         "name": "gmap",
         "urls": {
           "https://maps.googleapis.com/maps/api/js?key=AIzaSyDW2rnsG-2gOOJM5N3V3h261420EuDSrm4&libraries=geometry": {
-            "match": "full"
+            "match": "prefix"
           }
         },
         "cache": {
