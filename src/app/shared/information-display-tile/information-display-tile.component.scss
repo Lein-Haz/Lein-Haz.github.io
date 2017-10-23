@@ -4,11 +4,7 @@ $display-hue: 100;
 
 .display-tile-flex-wrap{
   @media #{$break-point-mob} {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: stretch;
-    flex-wrap: wrap;
+    display: inline-block;
   }
   @media #{$break-point-dt} {
     display: flex;
@@ -24,6 +20,17 @@ $display-hue: 100;
 
 }
 
+.heading-container{
+  @media #{$break-point-mob} {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: stretch;
+  }
+  @media #{$break-point-dt} {
+    display: none;
+  }
+}
 .tech-heading-top{
   text-align: center;
   h1,h2,h3,h4,h5,h6{
@@ -34,13 +41,10 @@ $display-hue: 100;
 
   @media #{$break-point-mob} {
     display: flex;
-    flex-grow: 1;
+    flex-grow: 0;
     flex-shrink: 1;
     flex-basis: 10%;
     align-self: center;
-  }
-  @media #{$break-point-dt} {
-    display: none;
   }
 }
 
@@ -57,9 +61,8 @@ $display-hue: 100;
   }
   @media #{$break-point-dt} {
     display: flex;
-    flex-grow: 1;
+    flex-grow: 0;
     flex-shrink: 1;
-    flex-basis: 15%;
     align-self: center;
   }
 }
@@ -70,10 +73,8 @@ $display-hue: 100;
   align-content: stretch;
   flex-wrap: wrap;
   @media #{$break-point-mob} {
-    display: flex;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 40%;
+    display: block;
+    height: auto;
   }
   @media #{$break-point-md} {
     display: flex;
@@ -93,10 +94,7 @@ $display-hue: 100;
   padding: 0.5em;
 
   @media #{$break-point-mob} {
-    display: flex;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 80%;
+    display: block;
   }
   @media #{$break-point-md} {
     display: flex;
@@ -112,30 +110,43 @@ $display-hue: 100;
   }
 
   .image-wrapper{
-    /*@media #{$break-point-xs} {
-      display: block;
-    }*/
+    @media #{$break-point-mob} {
+      //display: block;
+      //height: auto;
 
-    display: flex;//working org
-    height: 100%;//working org
-    width: 100%;//working org
-    justify-content: center;
-    flex-direction: column;
+      display: flex;//working org
+      height: 100%;//working org
+      width: 100%;//working org
+      justify-content: center;
+      flex-direction: column;
+    }
+    @media #{$break-point-dt} {
+      display: flex;//working org
+      height: 100%;//working org
+      width: 100%;//working org
+      justify-content: center;
+      flex-direction: column;
+    }
+
 
     img{
-      height: auto;
-      max-width: 100%;//working org
-      max-height: 100%;//working org
+      @media #{$break-point-mob} {
+        width: 100%;
+        display: inline-block;
+        max-height: 50vh;
+      }
+      @media #{$break-point-dt} {
+        height: auto;
+        max-width: 100%;//working org
+        max-height: 100%;//working org
+      }
     }
   }
 }
 
 .information-container{
   @media #{$break-point-mob} {
-    display: flex;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 50%;
+    display: block;
   }
   @media #{$break-point-md} {
     display: flex;
@@ -177,7 +188,7 @@ $display-hue: 100;
   }
 }
 
-.tech-lines-wrap{
+.tech-lines-layout{
   @media #{$break-point-mob} {
     flex-direction: column;
     justify-content: flex-end;
@@ -188,11 +199,24 @@ $display-hue: 100;
     justify-content: flex-end;
     align-content: stretch;
     flex-wrap: wrap;
-    align-self: flex-end;
+    align-self: flex-start;
+    padding-top: 2em;
   }
 }
 
 .tech-line{
+  @media #{$break-point-mob} {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100%;
+  }
+  @media #{$break-point-dt} {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100%;
+  }
   padding: 0.3em 0;//a bit on top and bottom
   font-size: 1.5em;
   border-top: 1px solid mat-color($my-app-neutral, $display-hue);

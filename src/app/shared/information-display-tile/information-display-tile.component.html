@@ -1,10 +1,12 @@
 <div>
   <div #displayTile class="display-tile-flex-wrap mat-card">
-    <div class="tech-heading-top">
-      <!--Hides on medium and up-->
-      <h3>
-        {{displayData.name}}
-      </h3>
+    <div class="heading-container">
+      <div class="tech-heading-top">
+        <!--Hides on medium and up-->
+        <h3>
+          {{displayData.name}}
+        </h3>
+      </div>
     </div>
 
     <div class="image-container">
@@ -24,8 +26,8 @@
           </h3>
         </div>
         <div class="tech-lines-container">
-          <span class="tech-lines-wrap">
-            <div fxFlex="100%" *ngFor="let info of displayData.information" class="tech-line">
+          <span class="tech-lines-layout">
+            <div *ngFor="let info of displayData.information" class="tech-line">
               {{info}}
             </div>
           </span>
