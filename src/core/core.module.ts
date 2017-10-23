@@ -22,6 +22,7 @@ import * as Services from "./services/services";
     Services.WindowRef,
     Services.GoogleAuthLoadService,
     Services.GoogleMapLoadService,
+    Services.UtilService,
   ],
   bootstrap: []
 })
