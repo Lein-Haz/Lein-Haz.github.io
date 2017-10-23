@@ -8,7 +8,7 @@ $footer-hue: 900;
 }
 
 .app-footer-wrap{
-  padding: 1.5em 0.5em 1em;
+  padding: 1.5em 0.5em 2em;
   color: mat-color($my-app-neutral, 100, 0.6);
   background-color: mat-color($my-app-primary, $footer-hue);
   font-size: 0.9em;
@@ -17,7 +17,22 @@ $footer-hue: 900;
   }
 }
 
+.footer-text-container{
+  @media #{$break-point-dt} {
+    text-align: center;
+  }
+}
+
+.icons-container{
+  min-height: 6em;
+}
+
+.icons-heading{
+  height: 1.33em;
+}
+
 .icons-section{
+  height: 3em;
   a{
     color: mat-color($my-app-neutral, 100, 0.6);
     :visited{
