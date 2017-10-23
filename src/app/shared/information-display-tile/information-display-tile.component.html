@@ -1,10 +1,47 @@
 <div>
-  <div #displayTile class="display-tile-flex-wrap mat-card"
+  <div #displayTile class="display-tile-flex-wrap mat-card">
+    <div class="tech-heading-top">
+      <!--Hides on medium and up-->
+      <h3>
+        {{displayData.name}}
+      </h3>
+    </div>
+
+    <div class="image-container">
+      <div class="image-hold">
+        <div class="image-wrapper">
+          <img src="{{displayData.imgSrc}}" alt="{{displayData.name}} logo not loaded" (load)="onImageLoaded()">
+        </div>
+      </div>
+    </div>
+
+    <div class="information-container">
+      <div class="information-layout">
+        <div class="tech-heading-bot">
+          <!--Hides on small and medium-->
+          <h3>
+            {{displayData.name}}
+          </h3>
+        </div>
+        <div class="tech-lines-container">
+          <span class="tech-lines-wrap">
+            <div fxFlex="100%" *ngFor="let info of displayData.information" class="tech-line">
+              {{info}}
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--<div #displayTile class="display-tile-flex-wrap mat-card"
        fxLayout.lt-md="column" fxLayoutAlign.lt-md="center stretch" fxLayoutGap.lt-md="1%"
        fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center" fxLayoutGap.gt-sm="1%"
        fxLayout="row" fxLayoutAlign="center">
     <div fxFlex.lt-md="10%" fxFlexAlign.lt-md="center" fxShow.lt-md fxHide.gt-sm fxFlex="15%" class="tech-heading">
-      <!--Hides on medium and up-->
+      &lt;!&ndash;Hides on medium and up&ndash;&gt;
       <h3>
         {{displayData.name}}
       </h3>
@@ -21,7 +58,7 @@
     <div fxFlex.lt-md="50%" fxFlex.md="50%" fxFlex.lg="40%">
       <div fxFlexFill fxLayoutAlign.lt-md="end stretch" fxLayout="column" fxLayoutAlign="space-between">
         <div fxFlex="15%" fxFlexAlign.gt-sm="center" fxFlex.gt-sm="15%" fxHide.lt-md fxShow.gt-sm class="tech-heading">
-          <!--Hides on small and medium-->
+          &lt;!&ndash;Hides on small and medium&ndash;&gt;
           <h3>
             {{displayData.name}}
           </h3>
@@ -36,5 +73,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
