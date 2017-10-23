@@ -105,9 +105,10 @@ export class ConstantService {
       name: 'Java',
       imgSrc: 'assets/Java_logo.svg',
       information: [
-        'This is what I started with, this is what made me think, "Oh maybe this programming thing is a good choice."',
-        'Definitely comfortable with the language in general',
-        'Though most of the Java I deal with now is Android'
+        'This is what I was first introduced to',
+        'Ubiquitous, solid, made me think, "Oh maybe this programming thing is a good choice."',
+        'Have played around with it lots, definitely comfortable with the language in general',
+        'Though, now most of the Java I deal with is Android'
       ]
     }, {
       name: 'PHP',
@@ -116,7 +117,7 @@ export class ConstantService {
         'This language gets a lot of hate, I feel like the implementation is a big reason why',
         'When you use PHP to dynamically create html code to be served, well then its pretty heinous',
         'Symfony is pretty tolerable for a PHP framework, you can even just use it as an API to serve your, front end',
-        'To conclude, "Basically I can, but I\'d rather not"'
+        'To conclude, "I can, but I\'d rather not"'
       ]
     }
   ];
