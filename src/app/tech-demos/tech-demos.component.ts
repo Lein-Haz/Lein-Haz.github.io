@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {isUndefined} from "util";
 import {Observable} from "rxjs";
-import {StoryService} from "../../core/services/story.service";
 import {MdDialog, MdSnackBar} from "@angular/material";
 import {ScreenTileData} from "../../core/models/IScreenTileData.model";
 import {ScreenTileConfigDialog} from "../shared/screen-tile/screen-tile-config-dialog/screen-tile-config-dialog";
 import {NopeSnackComponent} from "./nope-snack/nope-snack.component";
+import {UtilService} from "../../core/services/util.service";
 
 @Component({
   selector: 'app-tech-demos',
@@ -20,7 +20,6 @@ export class TechDemosComponent implements OnInit {
   public selectedArray = [];//not using yet
 
   constructor(
-    private storyService: StoryService,
     private dialog: MdDialog,
     private nopeSnack: MdSnackBar
   ) { }
@@ -106,9 +105,9 @@ export class TechDemosComponent implements OnInit {
       let position = this.screenTileArray.length + (i * ((removeFlag)? -1: 1));
       position = (removeFlag) ? position - 1 : position;
       if(isUndefined(animationObservable)){
-        animationObservable = this.storyService.setStepDelay(150, position);
+        animationObservable = UtilService.setStepDelay(150, position);
       }else{
-        animationObservable = animationObservable.concat(this.storyService.setStepDelay(150, position));
+        animationObservable = animationObservable.concat(UtilService.setStepDelay(150, position));
       }
     }
     animationObservable.subscribe(

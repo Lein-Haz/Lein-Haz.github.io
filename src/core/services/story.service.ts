@@ -7,6 +7,7 @@ import {MyMarker, ClassLoader} from "../../app/shared/google-map/mapModels/myMar
 import {} from '@types/googlemaps';
 import {ConstantService} from "./constant.service";
 import {isUndefined} from "util";
+import {UtilService} from "./util.service";
 
 @Injectable()
 export class StoryService{
@@ -149,7 +150,7 @@ export class StoryService{
     let zoomLvlSteps = StoryService.getSteppedZoomArray(map.getZoom(), destinationZoomLevel);
     let zoomObservable: Observable<any>;
     zoomLvlSteps.forEach((zoomLevel: number)=>{
-      let newObservable = this.setStepDelay(150, zoomLevel);
+      let newObservable = UtilService.setStepDelay(150, zoomLevel);
       if(isUndefined(zoomObservable)){
         zoomObservable = newObservable;
       }else{
@@ -213,16 +214,5 @@ export class StoryService{
     if(!isUndefined(story.path)){
       story.path.setMap(null);
     }
-  }
-
-  public setStepDelay(delay: number, index:number): Observable<any>{
-    //console.log("creating new delay return, with a delay of " + delay + ", for the index " + index);
-    return Observable.create((observer)=>{
-      setTimeout(()=>{
-        //console.log("In the timeout with a delay of " + delay);
-        observer.next(index);
-        observer.complete();
-      }, delay);
-    });
   }
 }

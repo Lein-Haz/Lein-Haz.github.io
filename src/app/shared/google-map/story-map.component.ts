@@ -5,6 +5,7 @@ import {StoryModel} from "../../../core/models/Story.model";
 import {Observable } from "rxjs";
 import {isUndefined} from "util";
 import {StoryConstantService} from "../../../core/services/story-constant.service";
+import {UtilService} from "../../../core/services/util.service";
 
 @Component({
   selector: 'story-map',
@@ -84,9 +85,9 @@ export class StoryMapComponent implements OnInit, AfterViewInit {
       let stepObservable;
       story.steps.forEach((storyStep: StoryStepModel, index:number)=>{
         if(isUndefined(stepObservable)){
-          stepObservable = this.storyService.setStepDelay(storyStep.delay, index);
+          stepObservable = UtilService.setStepDelay(storyStep.delay, index);
         }else{
-          stepObservable = stepObservable.concat(this.storyService.setStepDelay(storyStep.delay, index));
+          stepObservable = stepObservable.concat(UtilService.setStepDelay(storyStep.delay, index));
         }
       });
       stepObservable.subscribe(
