@@ -14,13 +14,20 @@ $display-hue: 100;
   }
 
   background-color: mat-color($my-app-primary, $display-hue, 0.6);
-
   min-height: 30em;
   padding: 0.5em;
-
 }
 
 .heading-container{
+  @media #{$break-point-mob} {
+    display: block;
+  }
+  @media #{$break-point-dt} {
+    display: none;
+  }
+}
+
+.heading-layout{
   @media #{$break-point-mob} {
     display: flex;
     flex-direction: row;
@@ -37,14 +44,6 @@ $display-hue: 100;
     margin: 0;
     font-size: 2em;
     border-bottom: 2px solid mat-color($my-app-accent, 600, 0.8);
-  }
-
-  @media #{$break-point-mob} {
-    display: flex;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: 10%;
-    align-self: center;
   }
 }
 
@@ -75,6 +74,7 @@ $display-hue: 100;
   @media #{$break-point-mob} {
     display: block;
     height: auto;
+    padding-top: 1.2em;
   }
   @media #{$break-point-md} {
     display: flex;
@@ -110,24 +110,11 @@ $display-hue: 100;
   }
 
   .image-wrapper{
-    @media #{$break-point-mob} {
-      //display: block;
-      //height: auto;
-
-      display: flex;//working org
-      height: 100%;//working org
-      width: 100%;//working org
-      justify-content: center;
-      flex-direction: column;
-    }
-    @media #{$break-point-dt} {
-      display: flex;//working org
-      height: 100%;//working org
-      width: 100%;//working org
-      justify-content: center;
-      flex-direction: column;
-    }
-
+    display: flex;//working org
+    height: 100%;//working org
+    width: 100%;//working org
+    justify-content: center;
+    flex-direction: column;
 
     img{
       @media #{$break-point-mob} {
@@ -175,10 +162,8 @@ $display-hue: 100;
 }
 .tech-lines-container{
   @media #{$break-point-mob} {
-    display: flex;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 100%;
+    display: block;
+    padding-top: 1.2em;
   }
   @media #{$break-point-dt} {
     display: flex;
