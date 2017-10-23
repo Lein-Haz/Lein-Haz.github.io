@@ -140,12 +140,14 @@ $display-hue: 100;
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 50%;
+    padding-left: 1em;
   }
   @media #{$break-point-lg} {
     display: flex;
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 40%;
+    padding-left: 1em;
   }
 }
 
