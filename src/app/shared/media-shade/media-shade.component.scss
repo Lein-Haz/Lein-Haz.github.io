@@ -3,6 +3,10 @@
 $shade-hue: 600;
 
 .shade{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: stretch;
   @media #{$break-point-mob} {
     height: $view-port-height-mob;
     &:after{
@@ -14,6 +18,7 @@ $shade-hue: 600;
     }
   }
   @media #{$break-point-dt} {
+
     height: $view-port-height-dt;
     &:after{
       top: $nav-tool-bar-height-dt;
@@ -26,34 +31,6 @@ $shade-hue: 600;
 
   z-index: -3;
 
-  .shade-footer{
-    span{
-      position: relative;
-      overflow: hidden;
-      display: flex;
-    }
-    .butt-wrapper{//as in short for button, it wraps a button
-      border: 2px solid mat-color($my-app-primary, $shade-hue);
-      display: flex;
-      position: absolute;
-      top: 50%;
-      border-top-left-radius: 23em;
-      border-top-right-radius: 23em;
-      height: 100%;
-      width: 100%;
-      z-index: 4;
-      overflow: hidden;
-
-      button{
-        z-index: 4;
-        color: mat-color($my-app-primary, $shade-hue);
-        height: 50%;
-        width: 100%;
-        position: absolute;
-      }
-    }
-  }
-
   &:after{
     content: "";
     display: block;
@@ -65,22 +42,6 @@ $shade-hue: 600;
     background-color: mat-color($my-app-neutral, $shade-hue, 0.45);
   }
 
-  .shade-text{
-    z-index: 1;
-    text-align: center;
-    color: mat-contrast($my-app-neutral, $shade-hue);
-    font-family: Verdana, Roboto, "Helvetica Neue", "sans-serif";
-    div{
-      z-index: 2;
-      padding-bottom: 0.3em;
-      color: white !important;
-      background-color: mat-color($my-app-accent, 1000, 0.7);
-      &:first-child{
-        padding-top: 0.3em;
-      }
-    }
-  }
-
   & + .background-pic{
     width: 100%;
     position: absolute;
@@ -88,5 +49,84 @@ $shade-hue: 600;
     z-index: 0;
     overflow: hidden;
   }
+}
 
+.text-container{
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  @media #{$break-point-xs} {
+    height: 90vh;
+    flex-basis: 90%;
+  }
+  @media #{$break-point-sm} {
+    height: 85vh;
+    flex-basis: 85%;
+  }
+  @media #{$break-point-dt} {
+    height: 80vh;
+    flex-basis: 80%;
+  }
+}
+
+.button-container{
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  @media #{$break-point-xs} {
+    height: 10vh;
+    flex-basis: 10%;
+  }
+  @media #{$break-point-sm} {
+    height: 15vh;
+    flex-basis: 15%;
+  }
+  @media #{$break-point-dt} {
+    height: 20vh;
+    flex-basis: 20%;
+  }
+}
+
+.shade-footer{
+  span{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+  }
+  .butt-wrapper{//as in short for button, it wraps a button
+    border: 2px solid mat-color($my-app-primary, $shade-hue);
+    display: flex;
+    position: absolute;
+    top: 50%;
+    border-top-left-radius: 23em;
+    border-top-right-radius: 23em;
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    overflow: hidden;
+
+    button{
+      z-index: 4;
+      color: mat-color($my-app-primary, $shade-hue);
+      height: 50%;
+      width: 100%;
+      position: absolute;
+    }
+  }
+}
+
+.shade-text{
+  z-index: 1;
+  text-align: center;
+  color: mat-contrast($my-app-neutral, $shade-hue);
+  font-family: Verdana, Roboto, "Helvetica Neue", "sans-serif";
+  div{
+    z-index: 2;
+    padding-bottom: 0.3em;
+    color: white !important;
+    background-color: mat-color($my-app-accent, 1000, 0.7);
+    &:first-child{
+      padding-top: 0.3em;
+    }
+  }
 }
